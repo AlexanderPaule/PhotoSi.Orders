@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using PhotoSi.Orders.Server.Orders.Controllers.Models;
 
-namespace PhotoSi.Orders.Server.Orders.Core.Models
+namespace PhotoSi.Orders.Server.Orders.Core.Dto
 {
 	public class Order
 	{

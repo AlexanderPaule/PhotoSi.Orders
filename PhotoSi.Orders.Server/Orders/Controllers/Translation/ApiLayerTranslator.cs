@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Core.Models;
+using PhotoSi.Orders.Server.Orders.Core.Dto;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PhotoSi.Orders.Server.Orders.Core.Models
+namespace PhotoSi.Orders.Server.Orders.Core.Dto
 {
 	public class OrderedProduct
 	{

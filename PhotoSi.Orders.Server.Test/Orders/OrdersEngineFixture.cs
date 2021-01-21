@@ -3,8 +3,7 @@ using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using PhotoSi.Orders.Server.Orders.Core;
-using PhotoSi.Orders.Server.Orders.Core.Models;
-using PhotoSi.Orders.Server.Orders.Data;
+using PhotoSi.Orders.Server.Orders.Core.Dto;
 
 namespace PhotoSi.Orders.Server.Test.Orders
 {

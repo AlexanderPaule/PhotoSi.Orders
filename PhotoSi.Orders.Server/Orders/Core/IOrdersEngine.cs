@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PhotoSi.Orders.Server.Orders.Core.Models;
+using PhotoSi.Orders.Server.Orders.Core.Dto;
 
 namespace PhotoSi.Orders.Server.Orders.Core
 {

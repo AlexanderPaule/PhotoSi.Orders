@@ -7,7 +7,7 @@ using NUnit.Framework;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
 using PhotoSi.Orders.Server.Orders.Controllers.Validation;
 using PhotoSi.Orders.Server.Orders.Core;
-using PhotoSi.Orders.Server.Orders.Core.Models;
+using PhotoSi.Orders.Server.Orders.Core.Dto;
 
 namespace PhotoSi.Orders.Server.Test.Orders
 {
