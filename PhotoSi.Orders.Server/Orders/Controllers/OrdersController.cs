@@ -18,14 +18,14 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 		private readonly ILogger<OrdersController> _logger;
 		private readonly IValidator _validator;
 		private readonly IApiLayerTranslator _apiLayerTranslator;
-		private readonly IOrderEngine _orderEngine;
+		private readonly IOrdersEngine _ordersEngine;
 
-		public OrdersController(ILogger<OrdersController> logger, IValidator validator, IApiLayerTranslator apiLayerTranslator, IOrderEngine orderEngine)
+		public OrdersController(ILogger<OrdersController> logger, IValidator validator, IApiLayerTranslator apiLayerTranslator, IOrdersEngine ordersEngine)
 		{
 			_logger = logger;
 			_validator = validator;
 			_apiLayerTranslator = apiLayerTranslator;
-			_orderEngine = orderEngine;
+			_ordersEngine = ordersEngine;
 		}
 
 		[HttpPost]
@@ -43,7 +43,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 			_logger.LogInformation($"Order validation end [{nameof(OrderModel.Id)}:{order.Id}]");
 			_logger.LogInformation($"Order process start [{nameof(OrderModel.Id)}:{order.Id}]");
 
-			await _orderEngine
+			await _ordersEngine
 				.ProcessAsync(_apiLayerTranslator.Translate(order));
 
 			_logger.LogInformation($"Order process end [{nameof(OrderModel.Id)}:{order.Id}]");
@@ -56,7 +56,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public async Task<IActionResult> Get(Guid id)
 		{
-			var requestResult = await _orderEngine.GetAsync(id);
+			var requestResult = await _ordersEngine.GetAsync(id);
 			if (!requestResult.Found())
 				return NotFound(id);
 

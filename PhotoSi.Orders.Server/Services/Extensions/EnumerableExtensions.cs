@@ -10,6 +10,7 @@ namespace PhotoSi.Orders.Server.Services.Extensions
 		{
 			return string.Join(separator, source);
 		}
+		
 		public static async Task<List<T>> ToListAsync<T>(this Task<IEnumerable<T>> source)
 		{
 			var enumerable = await source;

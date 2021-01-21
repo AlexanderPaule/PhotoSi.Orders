@@ -42,7 +42,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			    .Returns(order)
 			    .Verifiable("Translation operation not performed");
 
-		    var orderEngine = new Mock<IOrderEngine>(MockBehavior.Strict);
+		    var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 		    orderEngine
 			    .Setup(x => x.ProcessAsync(order))
 			    .Returns(Task.CompletedTask)
@@ -52,7 +52,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			    logger: _logger,
 			    validator: validator.Object,
 			    apiLayerTranslator: apiLayerTranslator.Object,
-			    orderEngine: orderEngine.Object);
+			    ordersEngine: orderEngine.Object);
 
 
 		    var result = await controller.Create(orderModel);
@@ -81,7 +81,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			    logger: _logger,
 			    validator: validator.Object,
 			    apiLayerTranslator: Mock.Of<IApiLayerTranslator>(MockBehavior.Strict),
-			    orderEngine: Mock.Of<IOrderEngine>(MockBehavior.Strict));
+			    ordersEngine: Mock.Of<IOrdersEngine>(MockBehavior.Strict));
 
 
 			var result = await controller.Create(orderModel);
@@ -99,7 +99,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		    var orderModel = new OrderModel();
 			var order = new Order();
 			
-			var orderEngine = new Mock<IOrderEngine>(MockBehavior.Strict);
+			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
 				.Setup(x => x.GetAsync(id))
 				.ReturnsAsync(RequestResult<Order>.New(order))
@@ -115,7 +115,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			    logger: _logger,
 			    validator: Mock.Of<IValidator>(MockBehavior.Strict),
 			    apiLayerTranslator: apiLayerTranslator.Object,
-			    orderEngine: orderEngine.Object);
+			    ordersEngine: orderEngine.Object);
 
 
 			var result = await controller.Get(id);
@@ -131,7 +131,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 	    {
 		    var id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
 			
-			var orderEngine = new Mock<IOrderEngine>(MockBehavior.Strict);
+			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
 				.Setup(x => x.GetAsync(id))
 				.ReturnsAsync(RequestResult<Order>.NewNotFound)
@@ -141,7 +141,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			    logger: _logger,
 			    validator: Mock.Of<IValidator>(MockBehavior.Strict),
 			    apiLayerTranslator: Mock.Of<IApiLayerTranslator>(MockBehavior.Strict),
-			    orderEngine: orderEngine.Object);
+			    ordersEngine: orderEngine.Object);
 
 
 			var result = await controller.Get(id);
