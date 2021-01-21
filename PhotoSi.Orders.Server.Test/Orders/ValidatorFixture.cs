@@ -131,5 +131,33 @@ namespace PhotoSi.Orders.Server.Test.Orders
 
 			Assert.That(validationResult.IsValid, Is.False);
 		}
+
+		[Test]
+		public async Task NotValidMissingProduct()
+		{
+			var orderModel = new OrderModel
+			{
+				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
+				Category = new Category { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Products = new[]
+				{
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+				}
+			};
+			var products = new List<Product>
+			{
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } }
+			};
+			var productsStorage = new Mock<IProductsStorage>(MockBehavior.Strict);
+			productsStorage
+				.Setup(x => x.GetProducts(It.IsAny<IEnumerable<Guid>>()))
+				.ReturnsAsync(products);
+			var validator = new Validator(productsStorage.Object);
+
+			var validationResult = await validator.ValidateAsync(orderModel);
+
+			Assert.That(validationResult.IsValid, Is.False);
+		}
 	}
 }
