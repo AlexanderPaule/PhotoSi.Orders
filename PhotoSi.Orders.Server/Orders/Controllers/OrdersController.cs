@@ -33,12 +33,20 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> Create([FromBody, Required] OrderModel order)
 		{
+			_logger.LogInformation($"Order creation requested [{nameof(OrderModel.Id)}:{order.Id}]");
+			_logger.LogInformation($"Order validation start [{nameof(OrderModel.Id)}:{order.Id}]");
+
 			var validationResult = _validator.Validate(order);
 			if (!validationResult.IsValid)
 				return BadRequest(validationResult.GetErrorMessage());
 
+			_logger.LogInformation($"Order validation end [{nameof(OrderModel.Id)}:{order.Id}]");
+			_logger.LogInformation($"Order process start [{nameof(OrderModel.Id)}:{order.Id}]");
+
 			await _orderEngine
 				.ProcessAsync(_apiLayerTranslator.Translate(order));
+
+			_logger.LogInformation($"Order process end [{nameof(OrderModel.Id)}:{order.Id}]");
 
 			return Ok(order);
 		}
