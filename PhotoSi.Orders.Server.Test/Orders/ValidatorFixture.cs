@@ -30,8 +30,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new CategoryModel { Id = orderModel.Category.Id } },
-				new Product { Id = orderModel.Products.Last().Id, Category = new CategoryModel { Id = orderModel.Category.Id } }
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } },
+				new Product { Id = orderModel.Products.Last().Id, Category = new Category { Id = orderModel.Category.Id } }
 			};
 
 			var requestResult = RequestResult<Product, Guid>.New(products, products.Select(x => x.Id));
@@ -145,8 +145,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new CategoryModel { Id = orderModel.Category.Id } },
-				new Product { Id = orderModel.Products.Last().Id, Category = new CategoryModel { Id = orderModel.Category.Id } }
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } },
+				new Product { Id = orderModel.Products.Last().Id, Category = new Category { Id = orderModel.Category.Id } }
 			};
 
 			var requestResult = RequestResult<Product, Guid>.New(products, products.Select(x => x.Id));
@@ -184,8 +184,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new CategoryModel { Id = orderModel.Category.Id } },
-				new Product { Id = orderModel.Products.Last().Id, Category = new CategoryModel { Id = new Guid("995174E4-37B7-44EE-A8A2-EE920C6FAB9C") } }
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } },
+				new Product { Id = orderModel.Products.Last().Id, Category = new Category { Id = new Guid("995174E4-37B7-44EE-A8A2-EE920C6FAB9C") } }
 			};
 
 			var requestResult = RequestResult<Product, Guid>.New(products, products.Select(x => x.Id));
@@ -222,7 +222,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new CategoryModel { Id = orderModel.Category.Id } }
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } }
 			};
 
 			var requestResult = RequestResult<Product, Guid>.New(products, products.Select(x => x.Id));

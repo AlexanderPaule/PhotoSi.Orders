@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PhotoSi.Orders.Server.Orders.Core.Dto
@@ -29,9 +30,9 @@ namespace PhotoSi.Orders.Server.Orders.Core.Dto
 			return _searchedIds.Count() == _foundObjects.Count();
 		}
 
-		public static RequestResult<TObj, TId> New(IEnumerable<TObj> requestedObject, IEnumerable<TId> searchedIds)
+		public static RequestResult<TObj, TId> New(IEnumerable<TObj> requestedObjects, IEnumerable<TId> searchedIds)
 		{
-			return new RequestResult<TObj, TId>(requestedObject, searchedIds);
+			return new RequestResult<TObj, TId>(requestedObjects.Where(x => x != null).ToList(), searchedIds);
 		}
 
 		public static RequestResult<TObj, TId> NewNotFound(IEnumerable<TId> searchedIds)

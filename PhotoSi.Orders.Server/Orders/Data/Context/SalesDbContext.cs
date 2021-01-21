@@ -14,6 +14,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 		}
 
 		public DbSet<OrderEntity> Orders { get; set; }
+		public DbSet<ProductEntity> Products { get; set; }
 		public DbSet<CategoryEntity> Categories { get; set; }
 		public DbSet<OptionEntity> Options { get; set; }
 		public DbSet<OrderedProductEntity> OrderedProducts { get; set; }
