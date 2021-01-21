@@ -1,23 +1,9 @@
 ﻿using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Controllers.Translation;
-using PhotoSi.Orders.Server.Orders.Controllers.Validation;
 using PhotoSi.Orders.Server.Orders.Core.Models;
 
-namespace PhotoSi.Orders.Server.Orders.Setup
+namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 {
-	public static class OrdersSetup
-	{
-		public static IServiceCollection AddPhotoSiOrders(this IServiceCollection services)
-		{
-			services.AddScoped<IValidator, Validator>();
-			services.AddScoped<IApiLayerTranslator, ApiLayerTranslator>();
-
-			return services;
-		}
-	}
-
 	public class ApiLayerTranslator : IApiLayerTranslator
 	{
 		public Order Translate(OrderModel source)
