@@ -4,10 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Orders.Server.Orders.Data.Models
 {
-	public class OrderEntity
+	public class OrderedProductEntity
 	{
 		public Guid Id { get; set; }
-		public CategoryEntity Category { get; set; }
-		public IEnumerable<OrderedProductEntity> Products { get; set; }
+		public IEnumerable<OptionEntity> Options { get; set; }
 	}
 }
