@@ -1,27 +1,42 @@
-﻿namespace PhotoSi.Orders.Server.Orders.Core
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace PhotoSi.Orders.Server.Orders.Core
 {
-	public class RequestResult<T> where T : class
+	public class RequestResult<TObj, TId> where TObj : class
 	{
-		private RequestResult(T requestedObject)
+		private readonly IEnumerable<TObj> _foundObjects;
+		private readonly IEnumerable<TId> _searchedIds;
+
+		private RequestResult(IEnumerable<TObj> foundObject, IEnumerable<TId> searchedIds)
 		{
-			Object = requestedObject;
+			_foundObjects = foundObject;
+			_searchedIds = searchedIds;
 		}
 
-		public T Object { get; }
-
-		public bool Found()
+		public TObj GetScalar()
 		{
-			return Object != default;
+			return _foundObjects.Single();
 		}
 
-		public static RequestResult<T> New(T requestedObject)
+		public IReadOnlyCollection<TObj> GetList()
 		{
-			return new RequestResult<T>(requestedObject);
+			return _foundObjects.ToList();
 		}
 
-		public static RequestResult<T> NewNotFound()
+		public bool FoundAll()
 		{
-			return new RequestResult<T>(default);
+			return _searchedIds.Count() == _foundObjects.Count();
+		}
+
+		public static RequestResult<TObj, TId> New(IEnumerable<TObj> requestedObject, IEnumerable<TId> searchedIds)
+		{
+			return new RequestResult<TObj, TId>(requestedObject, searchedIds);
+		}
+
+		public static RequestResult<TObj, TId> NewNotFound(IEnumerable<TId> searchedIds)
+		{
+			return new RequestResult<TObj, TId>(Enumerable.Empty<TObj>(), searchedIds);
 		}
 	}
 }

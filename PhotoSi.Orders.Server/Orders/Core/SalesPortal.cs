@@ -21,7 +21,7 @@ namespace PhotoSi.Orders.Server.Orders.Core
 				.SaveAsync(order);
 		}
 
-		public Task<RequestResult<Order>> GetAsync(Guid id)
+		public Task<RequestResult<Order, Guid>> GetAsync(Guid id)
 		{
 			return _persistence
 				.GetOrderAsync(id);

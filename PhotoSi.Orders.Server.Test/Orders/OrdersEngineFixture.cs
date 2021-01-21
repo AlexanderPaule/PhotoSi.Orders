@@ -36,15 +36,15 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var order = new Order();
 			persistence
 				.Setup(x => x.GetOrderAsync(orderId))
-				.ReturnsAsync(RequestResult<Order>.New(order))
+				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new [] { orderId }))
 				.Verifiable("Save operation was not been performed");
 			var ordersEngine = new SalesPortal(persistence.Object);
 
 			var requestResult = await ordersEngine.GetAsync(orderId);
 
 			Assert.That(requestResult, Is.Not.Null);
-			Assert.That(requestResult.Found, Is.True);
-			Assert.That(requestResult.Object, Is.EqualTo(order));
+			Assert.That(requestResult.FoundAll(), Is.True);
+			Assert.That(requestResult.GetScalar(), Is.EqualTo(order));
 			persistence.Verify();
 		}
 	}

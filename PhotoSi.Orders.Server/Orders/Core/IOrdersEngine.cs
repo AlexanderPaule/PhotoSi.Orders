@@ -7,6 +7,6 @@ namespace PhotoSi.Orders.Server.Orders.Core
 	public interface IOrdersEngine
 	{
 		Task ProcessAsync(Order order);
-		Task<RequestResult<Order>> GetAsync(Guid id);
+		Task<RequestResult<Order, Guid>> GetAsync(Guid id);
 	}
 }

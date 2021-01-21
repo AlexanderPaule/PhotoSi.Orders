@@ -102,7 +102,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
 				.Setup(x => x.GetAsync(id))
-				.ReturnsAsync(RequestResult<Order>.New(order))
+				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new[] { id }))
 				.Verifiable("Request operation not performed");
 
 			var apiLayerTranslator = new Mock<IApiLayerTranslator>(MockBehavior.Strict);
@@ -134,7 +134,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
 				.Setup(x => x.GetAsync(id))
-				.ReturnsAsync(RequestResult<Order>.NewNotFound)
+				.ReturnsAsync(RequestResult<Order, Guid>.NewNotFound(new [] { id }))
 				.Verifiable("Request operation not performed");
 
 			var controller = new OrdersController(

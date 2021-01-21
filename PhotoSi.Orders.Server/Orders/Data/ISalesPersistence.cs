@@ -8,6 +8,6 @@ namespace PhotoSi.Orders.Server.Orders.Data
 	internal interface ISalesPersistence
 	{
 		Task SaveAsync(Order order);
-		Task<RequestResult<Order>> GetOrderAsync(Guid id);
+		Task<RequestResult<Order, Guid>> GetOrderAsync(Guid id);
 	}
 }

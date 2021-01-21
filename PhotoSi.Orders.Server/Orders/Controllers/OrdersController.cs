@@ -57,10 +57,10 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 		public async Task<IActionResult> Get(Guid id)
 		{
 			var requestResult = await _ordersEngine.GetAsync(id);
-			if (!requestResult.Found())
+			if (!requestResult.FoundAll())
 				return NotFound(id);
 
-			return Ok(_apiLayerTranslator.Translate(requestResult.Object));
+			return Ok(_apiLayerTranslator.Translate(requestResult.GetScalar()));
 		}
 	}
 }
