@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
@@ -7,7 +8,12 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 	{
 		public async Task<ValidationResult> ValidateAsync(OrderModel order)
 		{
-			return ValidationResult.New();
+			var validationResult = ValidationResult.New();
+
+			if (order.Id == Guid.Empty)
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Id)} property is required");
+			
+			return validationResult;
 		}
 	}
 }

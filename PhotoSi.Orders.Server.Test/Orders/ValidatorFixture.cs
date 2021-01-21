@@ -35,5 +35,24 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			
 			Assert.That(validationResult.IsValid, Is.True);
 		}
+
+		[Test]
+		public async Task NotValidEmptyId()
+		{
+			var orderModel = new OrderModel
+			{
+				Id = new Guid(),
+				Category = new Category { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Products = new []
+				{
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+				}
+			};
+
+			var validationResult = await _validator.ValidateAsync(orderModel);
+			
+			Assert.That(validationResult.IsValid, Is.False);
+		}
 	}
 }
