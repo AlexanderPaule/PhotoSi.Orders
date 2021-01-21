@@ -20,7 +20,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 	    [SetUp]
 	    public void SetUp()
 	    {
-		    _logger = Mock.Of<ILogger<OrdersController>>(MockBehavior.Strict);
+		    _logger = Mock.Of<ILogger<OrdersController>>(MockBehavior.Loose);
 	    }
 
 	    [Test]
@@ -31,8 +31,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 
 		    var validator = new Mock<IValidator>(MockBehavior.Strict);
 		    validator
-			    .Setup(x => x.Validate(orderModel))
-			    .Returns(ValidationResult.New)
+			    .Setup(x => x.ValidateAsync(orderModel))
+			    .ReturnsAsync(ValidationResult.New)
 			    .Verifiable("Validation operation not performed");
 
 		    var apiLayerTranslator = new Mock<IApiLayerTranslator>(MockBehavior.Strict);
@@ -72,8 +72,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 
 		    var validator = new Mock<IValidator>(MockBehavior.Strict);
 		    validator
-			    .Setup(x => x.Validate(orderModel))
-			    .Returns(validationResult)
+			    .Setup(x => x.ValidateAsync(orderModel))
+			    .ReturnsAsync(validationResult)
 			    .Verifiable("Validation operation not performed");
 
 		    var controller = new OrdersController(

@@ -36,7 +36,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 			_logger.LogInformation($"Order creation requested [{nameof(OrderModel.Id)}:{order.Id}]");
 			_logger.LogInformation($"Order validation start [{nameof(OrderModel.Id)}:{order.Id}]");
 
-			var validationResult = _validator.Validate(order);
+			var validationResult = await _validator.ValidateAsync(order);
 			if (!validationResult.IsValid)
 				return BadRequest(validationResult.GetErrorMessage());
 

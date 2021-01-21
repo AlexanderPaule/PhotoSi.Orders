@@ -1,9 +1,10 @@
-﻿using PhotoSi.Orders.Server.Orders.Controllers.Models;
+﻿using System.Threading.Tasks;
+using PhotoSi.Orders.Server.Orders.Controllers.Models;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 {
 	public interface IValidator
 	{
-		ValidationResult Validate(OrderModel order);
+		Task<ValidationResult> ValidateAsync(OrderModel order);
 	}
 }
