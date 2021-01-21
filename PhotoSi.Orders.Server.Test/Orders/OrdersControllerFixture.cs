@@ -99,17 +99,17 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		    var orderModel = new OrderModel();
 			var order = new Order();
 			
+			var orderEngine = new Mock<IOrderEngine>(MockBehavior.Strict);
+			orderEngine
+				.Setup(x => x.GetAsync(id))
+				.ReturnsAsync(RequestResult<Order>.New(order))
+				.Verifiable("Request operation not performed");
+
 			var apiLayerTranslator = new Mock<IApiLayerTranslator>(MockBehavior.Strict);
 			apiLayerTranslator
 				.Setup(x => x.Translate(order))
 				.Returns(orderModel)
 				.Verifiable("Translation operation not performed");
-
-			var orderEngine = new Mock<IOrderEngine>(MockBehavior.Strict);
-			orderEngine
-				.Setup(x => x.GetAsync(id))
-				.ReturnsAsync(RequestResult<Order>.New(order))
-				.Verifiable("process operation not performed");
 
 			var controller = new OrdersController(
 			    logger: _logger,
@@ -123,6 +123,31 @@ namespace PhotoSi.Orders.Server.Test.Orders
 
 			Assert.That(result, Is.TypeOf<OkObjectResult>());
 			apiLayerTranslator.VerifyAll();
+			orderEngine.VerifyAll();
+	    }
+
+	    [Test]
+	    public async Task GetNotFound()
+	    {
+		    var id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
+			
+			var orderEngine = new Mock<IOrderEngine>(MockBehavior.Strict);
+			orderEngine
+				.Setup(x => x.GetAsync(id))
+				.ReturnsAsync(RequestResult<Order>.NewNotFound)
+				.Verifiable("Request operation not performed");
+
+			var controller = new OrdersController(
+			    logger: _logger,
+			    validator: Mock.Of<IValidator>(MockBehavior.Strict),
+			    apiLayerTranslator: Mock.Of<IApiLayerTranslator>(MockBehavior.Strict),
+			    orderEngine: orderEngine.Object);
+
+
+			var result = await controller.Get(id);
+
+
+			Assert.That(result, Is.TypeOf<NotFoundObjectResult>());
 			orderEngine.VerifyAll();
 	    }
     }
