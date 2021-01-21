@@ -38,7 +38,10 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 
 			var validationResult = await _validator.ValidateAsync(order);
 			if (!validationResult.IsValid)
+			{
+				_logger.LogInformation($"Order validation failed [{nameof(OrderModel.Id)}:{order.Id}]");
 				return BadRequest(validationResult.GetErrorMessage());
+			}
 
 			_logger.LogInformation($"Order validation end [{nameof(OrderModel.Id)}:{order.Id}]");
 			_logger.LogInformation($"Order process start [{nameof(OrderModel.Id)}:{order.Id}]");
@@ -56,10 +59,16 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public async Task<IActionResult> Get(Guid id)
 		{
+			_logger.LogInformation($"Order get start [{nameof(id)}:{id}]");
+
 			var requestResult = await _ordersEngine.GetAsync(id);
 			if (!requestResult.FoundAll())
+			{
+				_logger.LogInformation($"Order not found [{nameof(id)}:{id}]");
 				return NotFound(id);
+			}
 
+			_logger.LogInformation($"Order get end [{nameof(id)}:{id}]");
 			return Ok(_apiLayerTranslator.Translate(requestResult.GetScalar()));
 		}
 	}
