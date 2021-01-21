@@ -32,6 +32,12 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 			if (!validationResult.IsValid)
 				return validationResult;
 
+			if (!await _checkGateway.ExistsCategoryAsync(order.Category.Id))
+			{
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Category)}.{nameof(CategoryModel.Id)} specified category does not exists [{order.Category.Id}] ");
+				return validationResult;
+			}
+
 			var productsIds = order
 				.Products
 				.Select(x => x.Id)
@@ -39,7 +45,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 				.ToList();
 
 			var storedProducts = await _checkGateway
-				.GetProducts(productsIds)
+				.GetProductsAsync(productsIds)
 				.ToListAsync();
 
 			var wrongCategoryProducts = storedProducts
