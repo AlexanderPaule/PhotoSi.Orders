@@ -29,12 +29,14 @@ namespace PhotoSi.Orders.Server.Orders.Core
 
 		public Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> productsIds)
 		{
-			return _persistence.GetProductsAsync(productsIds);
+			return _persistence
+				.GetProductsAsync(productsIds);
 		}
 
 		public Task<bool> ExistsCategoryAsync(Guid id)
 		{
-			throw new NotImplementedException();
+			return _persistence
+				.ExistsCategoryAsync(id);
 		}
 	}
 }

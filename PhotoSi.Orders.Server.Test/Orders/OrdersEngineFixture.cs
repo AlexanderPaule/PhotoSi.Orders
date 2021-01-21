@@ -31,12 +31,12 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		public async Task GetOrder()
 		{
 			var orderId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
 			var order = new Order();
+			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.GetOrderAsync(orderId))
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new [] { orderId }))
-				.Verifiable("Save operation was not been performed");
+				.Verifiable("Get operation was not been performed");
 			var ordersEngine = new SalesPortal(persistence.Object);
 
 			var requestResult = await ordersEngine.GetAsync(orderId);
@@ -55,22 +55,39 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
 				new Guid("3C5174E4-37B7-44EE-A8A2-EE920C6FAB9C")
 			};
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
 			var products = new[]
 			{
 				new Product()
 			};
 			var expectedRequestResult = RequestResult<Product, Guid>.New(products, productsIds);
+			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.GetProductsAsync(productsIds))
 				.ReturnsAsync(expectedRequestResult)
-				.Verifiable("Save operation was not been performed");
+				.Verifiable("Get operation was not been performed");
 			var ordersEngine = new SalesPortal(persistence.Object);
 
 			var actualRequestResult = await ordersEngine.GetProductsAsync(productsIds);
 
 			Assert.That(actualRequestResult, Is.Not.Null);
 			Assert.That(actualRequestResult, Is.EqualTo(expectedRequestResult));
+			persistence.Verify();
+		}
+
+		[Test]
+		public async Task ExistsCategoryAsync()
+		{
+			var categoryId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
+			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			persistence
+				.Setup(x => x.ExistsCategoryAsync(categoryId))
+				.ReturnsAsync(true)
+				.Verifiable("Exists operation was not been performed");
+			var ordersEngine = new SalesPortal(persistence.Object);
+
+			var exists = await ordersEngine.ExistsCategoryAsync(categoryId);
+
+			Assert.That(exists, Is.True);
 			persistence.Verify();
 		}
 	}
