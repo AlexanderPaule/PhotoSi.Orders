@@ -12,10 +12,5 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Models
 		public CategoryModel Category { get; set; }
 		[Required]
 		public IEnumerable<OrderedProductModel> Products { get; set; }
-
-		public OrderModel()
-		{
-			Products = new List<OrderedProductModel>();
-		}
 	}
 }

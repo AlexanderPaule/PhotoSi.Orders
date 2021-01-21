@@ -112,6 +112,22 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		}
 
 		[Test]
+		public async Task NotValidEmptyProductList()
+		{
+			var orderModel = new OrderModel
+			{
+				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Products = new List<OrderedProductModel>()
+			};
+			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
+
+			var validationResult = await validator.ValidateAsync(orderModel);
+
+			Assert.That(validationResult.IsValid, Is.False);
+		}
+
+		[Test]
 		public async Task NotValidMissingCategory()
 		{
 			var orderModel = new OrderModel

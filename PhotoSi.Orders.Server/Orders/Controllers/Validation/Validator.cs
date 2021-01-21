@@ -25,7 +25,10 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 			
 			if (order.Category.Id == Guid.Empty)
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Category)}.{nameof(CategoryModel.Id)} property is required");
-			
+
+			if (!order.Products.Any())
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)} Orders without products are not allowed");
+
 			if (order.Products.Any(x => x.Id == Guid.Empty))
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
 
