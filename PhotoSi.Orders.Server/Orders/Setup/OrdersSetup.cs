@@ -3,6 +3,8 @@ using PhotoSi.Orders.Server.Orders.Controllers.Translation;
 using PhotoSi.Orders.Server.Orders.Controllers.Validation;
 using PhotoSi.Orders.Server.Orders.Core;
 using PhotoSi.Orders.Server.Orders.Data;
+using PhotoSi.Orders.Server.Orders.Data.Context;
+using PhotoSi.Orders.Server.Orders.Data.Translation;
 
 namespace PhotoSi.Orders.Server.Orders.Setup
 {
@@ -18,6 +20,8 @@ namespace PhotoSi.Orders.Server.Orders.Setup
 			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
 			
 			services.AddScoped<ISalesPersistence, SalesPersistence>();
+			services.AddScoped<IDbContextFactory, DbContextFactory>();
+			services.AddScoped<IDbLayerTranslator, DbLayerTranslator>();
 
 			return services;
 		}
