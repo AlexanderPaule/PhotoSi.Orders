@@ -48,10 +48,10 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 				.ToList();
 
 			var storedProducts = await _checkGateway
-				.GetProductsAsync(productsIds)
-				.ToListAsync();
+				.GetProductsAsync(productsIds);
 
 			var wrongCategoryProducts = storedProducts
+				.GetList()
 				.Where(p => p.Category.Id != order.Category.Id)
 				.Select(x => x.Id)
 				.ToList();
@@ -60,7 +60,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)} [{wrongCategoryProducts.JoinStrings()}] has category different from the category specified in order");
 
 			var missingProducts = productsIds
-				.Except(storedProducts.Select(x => x.Id))
+				.Except(storedProducts.GetList().Select(x => x.Id))
 				.ToList();
 
 			if (missingProducts.Any())

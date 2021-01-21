@@ -27,9 +27,9 @@ namespace PhotoSi.Orders.Server.Orders.Core
 				.GetOrderAsync(id);
 		}
 
-		public Task<IEnumerable<Product>> GetProductsAsync(IEnumerable<Guid> productsIds)
+		public Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> productsIds)
 		{
-			throw new NotImplementedException();
+			return _persistence.GetProductsAsync(productsIds);
 		}
 
 		public Task<bool> ExistsCategoryAsync(Guid id)

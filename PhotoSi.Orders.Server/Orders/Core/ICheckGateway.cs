@@ -7,7 +7,7 @@ namespace PhotoSi.Orders.Server.Orders.Core
 {
 	internal interface ICheckGateway
 	{
-		Task<IEnumerable<Product>> GetProductsAsync(IEnumerable<Guid> productsIds);
+		Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> productsIds);
 		Task<bool> ExistsCategoryAsync(Guid id);
 	}
 }
