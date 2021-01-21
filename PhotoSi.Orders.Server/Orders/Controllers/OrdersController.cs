@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
+using PhotoSi.Orders.Server.Orders.Controllers.Translation;
 using PhotoSi.Orders.Server.Orders.Controllers.Validation;
 using PhotoSi.Orders.Server.Orders.Core;
-using PhotoSi.Orders.Server.Test.Orders;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers
 {
@@ -48,6 +49,18 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 			_logger.LogInformation($"Order process end [{nameof(OrderModel.Id)}:{order.Id}]");
 
 			return Ok(order);
+		}
+
+		[HttpGet]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		public async Task<IActionResult> Get(Guid id)
+		{
+			var requestResult = await _orderEngine.GetAsync(id);
+			if (!requestResult.Found())
+				return NotFound(id);
+
+			return Ok(_apiLayerTranslator.Translate(requestResult.Object));
 		}
 	}
 }
