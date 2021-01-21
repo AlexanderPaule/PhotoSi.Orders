@@ -13,6 +13,9 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 			if (order.Id == Guid.Empty)
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Id)} property is required");
 			
+			if (order.Category.Id == Guid.Empty)
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Category)}.{nameof(Category.Id)} property is required");
+			
 			return validationResult;
 		}
 	}
