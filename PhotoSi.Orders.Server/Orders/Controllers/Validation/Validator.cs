@@ -9,11 +9,11 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 {
 	internal class Validator : IValidator
 	{
-		private readonly IProductsStorage _productsStorage;
+		private readonly ICheckGateway _checkGateway;
 
-		public Validator(IProductsStorage productsStorage)
+		public Validator(ICheckGateway checkGateway)
 		{
-			_productsStorage = productsStorage;
+			_checkGateway = checkGateway;
 		}
 
 		public async Task<ValidationResult> ValidateAsync(OrderModel order)
@@ -24,7 +24,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Id)} property is required");
 			
 			if (order.Category.Id == Guid.Empty)
-				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Category)}.{nameof(Category.Id)} property is required");
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Category)}.{nameof(CategoryModel.Id)} property is required");
 			
 			if (order.Products.Any(x => x.Id == Guid.Empty))
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
@@ -38,7 +38,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 				.Distinct()
 				.ToList();
 
-			var storedProducts = await _productsStorage
+			var storedProducts = await _checkGateway
 				.GetProducts(productsIds)
 				.ToListAsync();
 

@@ -6,6 +6,6 @@ namespace PhotoSi.Orders.Server.Orders.Core.Models
 	internal class Product
 	{
 		public Guid Id { get; set; }
-		public Category Category { get; set; }
+		public CategoryModel Category { get; set; }
 	}
 }

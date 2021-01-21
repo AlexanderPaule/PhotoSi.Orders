@@ -5,8 +5,9 @@ using PhotoSi.Orders.Server.Orders.Core.Models;
 
 namespace PhotoSi.Orders.Server.Orders.Core
 {
-	internal interface IProductsStorage
+	internal interface ICheckGateway
 	{
 		Task<IEnumerable<Product>> GetProducts(IEnumerable<Guid> productsIds);
+		Task<bool> ExistsCategory(Guid id);
 	}
 }

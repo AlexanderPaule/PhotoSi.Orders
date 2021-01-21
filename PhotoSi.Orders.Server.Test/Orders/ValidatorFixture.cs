@@ -20,7 +20,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new Category { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
 					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
@@ -29,10 +29,10 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			};
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } },
-				new Product { Id = orderModel.Products.Last().Id, Category = new Category { Id = orderModel.Category.Id } }
+				new Product { Id = orderModel.Products.First().Id, Category = new CategoryModel { Id = orderModel.Category.Id } },
+				new Product { Id = orderModel.Products.Last().Id, Category = new CategoryModel { Id = orderModel.Category.Id } }
 			};
-			var productsStorage = new Mock<IProductsStorage>(MockBehavior.Strict);
+			var productsStorage = new Mock<ICheckGateway>(MockBehavior.Strict);
 			productsStorage
 				.Setup(x => x.GetProducts(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(products);
@@ -49,14 +49,14 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid(),
-				Category = new Category { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
 					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
 					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
 				}
 			};
-			var validator = new Validator(Mock.Of<IProductsStorage>(MockBehavior.Strict));
+			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
 
 			var validationResult = await validator.ValidateAsync(orderModel);
 			
@@ -69,14 +69,14 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new Category { Id = new Guid() },
+				Category = new CategoryModel { Id = new Guid() },
 				Products = new[]
 				{
 					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
 					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
 				}
 			};
-			var validator = new Validator(Mock.Of<IProductsStorage>(MockBehavior.Strict));
+			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
 
 			var validationResult = await validator.ValidateAsync(orderModel);
 
@@ -89,14 +89,14 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new Category { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
 					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
 					new OrderedProductModel { Id = new Guid() }
 				}
 			};
-			var validator = new Validator(Mock.Of<IProductsStorage>(MockBehavior.Strict));
+			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
 
 			var validationResult = await validator.ValidateAsync(orderModel);
 
@@ -104,12 +104,12 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		}
 
 		[Test]
-		public async Task NotValidWrongCategory()
+		public async Task NotValidMissingCategory()
 		{
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new Category { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
 					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
@@ -138,7 +138,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new Category { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
 					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
@@ -147,9 +147,9 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			};
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } }
+				new Product { Id = orderModel.Products.First().Id, Category = new CategoryModel { Id = orderModel.Category.Id } }
 			};
-			var productsStorage = new Mock<IProductsStorage>(MockBehavior.Strict);
+			var productsStorage = new Mock<ICheckGateway>(MockBehavior.Strict);
 			productsStorage
 				.Setup(x => x.GetProducts(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(products);

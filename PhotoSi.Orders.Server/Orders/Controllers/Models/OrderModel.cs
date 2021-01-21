@@ -9,7 +9,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Models
 		[Required]
 		public Guid Id { get; set; }
 		[Required]
-		public Category Category { get; set; }
+		public CategoryModel Category { get; set; }
 		[Required]
 		public IEnumerable<OrderedProductModel> Products { get; set; }
 
