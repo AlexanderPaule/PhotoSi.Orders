@@ -1,11 +1,12 @@
 ﻿using System;
-using PhotoSi.Orders.Server.Orders.Controllers.Models;
+using System.Collections.Generic;
 
 namespace PhotoSi.Orders.Server.Orders.Core.Dto
 {
-	internal class Product
+	public class Product
 	{
 		public Guid Id { get; set; }
 		public Category Category { get; set; }
+		public IEnumerable<Option> Options { get; set; }
 	}
 }

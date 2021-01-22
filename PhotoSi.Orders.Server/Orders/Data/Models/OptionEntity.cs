@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Orders.Server.Orders.Data.Models
 {
-	public class OptionEntity
+	internal class OptionEntity : TimeTrackedEntity
 	{
 		public const int NameLength = 100;
 		

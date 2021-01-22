@@ -11,6 +11,7 @@ Database: Entity Framework Core - per il progetto serve gestire pochi dati, in p
 # TODO
 options
 validate if order already exists
+validate if option Id is empty?
 database
 prodotti
 test

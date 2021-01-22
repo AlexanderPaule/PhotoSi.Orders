@@ -9,6 +9,8 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Models
 		[Required]
 		public Guid Id { get; set; }
 		[Required]
+		public DateTimeOffset CreatedOn { get; set; }
+		[Required]
 		public CategoryModel Category { get; set; }
 		[Required]
 		public IEnumerable<OrderedProductModel> Products { get; set; }

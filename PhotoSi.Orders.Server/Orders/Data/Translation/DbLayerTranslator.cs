@@ -11,6 +11,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			return new Order
 			{
 				Id = source.Id,
+				CreatedOn = source.CreatedOn,
 				Category = Translate(source.Category),
 				Products = source.Products.Select(Translate)
 			};
@@ -22,7 +23,8 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			{
 				Id = source.Id,
 				Category = Translate(source.Category),
-				Products = source.Products.Select(Translate)
+				Products = source.Products.Select(Translate),
+				CreatedOn = source.CreatedOn
 			};
 		}
 
@@ -31,7 +33,8 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			return new Product
 			{
 				Id = source.Id,
-				Category = Translate(source.Category)
+				Category = Translate(source.Category),
+				Options = source.Options.Select(Translate)
 			};
 		}
 
@@ -54,28 +57,20 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 				Description = source.Description
 			};
 		}
-
-		private static OrderedProduct Translate(OrderedProductEntity source)
-		{
-			return new OrderedProduct
-			{
-				Id = source.Id,
-				Options = source.Options.Select(Translate)
-			};
-		}
-
+		
 		private static Option Translate(OptionEntity source)
 		{
 			return new Option
 			{
+				Id = source.Id,
 				Name = source.Name,
 				Description = source.Description
 			};
 		}
 
-		private static OrderedProductEntity Translate(OrderedProduct source)
+		private static ProductEntity Translate(Product source)
 		{
-			return new OrderedProductEntity
+			return new ProductEntity
 			{
 				Id = source.Id,
 				Options = source.Options.Select(Translate)
@@ -86,6 +81,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 		{
 			return new OptionEntity
 			{
+				Id = source.Id,
 				Name = source.Name,
 				Description = source.Description
 			};

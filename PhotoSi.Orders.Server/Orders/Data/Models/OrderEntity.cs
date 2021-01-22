@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Orders.Server.Orders.Data.Models
 {
-	public class OrderEntity
+	internal class OrderEntity : TimeTrackedEntity
 	{
 		public Guid Id { get; set; }
 		public CategoryEntity Category { get; set; }
-		public IEnumerable<OrderedProductEntity> Products { get; set; }
+		public IEnumerable<ProductEntity> Products { get; set; }
+		public DateTimeOffset CreatedOn { get; set; }
 	}
 }
