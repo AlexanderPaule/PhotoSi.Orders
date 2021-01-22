@@ -44,7 +44,8 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 				.Entity<OrderedOptionEntity>()
 				.HasOne(p => p.OrderedProduct)
 				.WithMany(b => b.Options)
-				.HasForeignKey(p => p.OrderedProductId);
+				.HasForeignKey(p => p.OrderedProductId)
+				.OnDelete(DeleteBehavior.NoAction);
 			
 			modelBuilder
 				.Entity<OrderedOptionEntity>()

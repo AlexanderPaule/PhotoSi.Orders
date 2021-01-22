@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using PhotoSi.Orders.Server.Orders.Controllers.Translation;
 using PhotoSi.Orders.Server.Orders.Controllers.Validation;
 using PhotoSi.Orders.Server.Orders.Core;
@@ -22,6 +23,7 @@ namespace PhotoSi.Orders.Server.Orders.Setup
 			services.AddScoped<ISalesPersistence, SalesPersistence>();
 			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(dbConnectionString));
 			services.AddScoped<IDbLayerTranslator, DbLayerTranslator>();
+			services.AddDbContext<SalesDbContext>(o => o.UseSqlServer(dbConnectionString));
 
 			return services;
 		}
