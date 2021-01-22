@@ -23,8 +23,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			
@@ -63,8 +63,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -83,8 +83,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid() },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -103,8 +103,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid(), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid(), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -142,7 +142,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 					new OrderedProductModel
 					{
 						Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
-						Options = new [] { new OptionModel { Id = new Guid() } }
+						CustomOptions = new [] { new OptionModel { Id = new Guid() } }
 					}
 				}
 			};
@@ -162,8 +162,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			
@@ -190,8 +190,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			
@@ -230,8 +230,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			
@@ -269,8 +269,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
 				}
 			};
 			
@@ -311,7 +311,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 					new OrderedProductModel
 					{
 						Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), 
-						Options = new []
+						CustomOptions = new []
 						{
 							new OptionModel { Id = new Guid("777174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
 							new OptionModel { Id = new Guid("888174E4-37B7-44EE-A8A2-EE920C6FAB9D") }

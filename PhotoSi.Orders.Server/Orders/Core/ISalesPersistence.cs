@@ -12,5 +12,7 @@ namespace PhotoSi.Orders.Server.Orders.Core
 		Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> ids);
 		Task<bool> ExistsCategoryAsync(Guid id);
 		Task<bool> ExistsOrderAsync(Guid id);
+		Task Upsert(IEnumerable<Category> categories);
+		Task Upsert(IEnumerable<Product> products);
 	}
 }

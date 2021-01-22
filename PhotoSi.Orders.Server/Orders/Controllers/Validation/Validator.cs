@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
 using PhotoSi.Orders.Server.Orders.Core;
@@ -34,7 +33,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 			if (order.Products.Any(x => x.Id == Guid.Empty))
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
 
-			if (order.Products.SelectMany(x => x.Options).Any(x => x.Id == Guid.Empty))
+			if (order.Products.SelectMany(x => x.CustomOptions).Any(x => x.Id == Guid.Empty))
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
 
 			if (!validationResult.IsValid)
@@ -94,13 +93,13 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 				.First(x => x.Id == product.Id);
 
 			var notExistingOptions = product
-				.Options
+				.CustomOptions
 				.Select(x => x.Id)
 				.Except(storedProduct.Options.Select(x => x.Id))
 				.ToList();
 
 			if (notExistingOptions.Any())
-				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Options)} product [{product.Id}] has associated [{notExistingOptions.JoinStrings()}] options that does not exists");
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.CustomOptions)} product [{product.Id}] has associated [{notExistingOptions.JoinStrings()}] options that does not exists");
 		}
 	}
 }

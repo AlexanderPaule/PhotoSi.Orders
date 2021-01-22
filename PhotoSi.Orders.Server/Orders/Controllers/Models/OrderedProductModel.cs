@@ -9,6 +9,6 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Models
 		[Required]
 		public Guid Id { get; set; }
 		[Required]
-		public IEnumerable<OptionModel> Options { get; set; }
+		public IEnumerable<OptionModel> CustomOptions { get; set; }
 	}
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PhotoSi.Orders.Server.Demo.Setup;
 using PhotoSi.Orders.Server.Orders.Data.Context;
 using PhotoSi.Orders.Server.Orders.Setup;
 using PhotoSi.Orders.Server.Services.ApiDocumentation;
@@ -22,7 +23,8 @@ namespace PhotoSi.Orders.Server
 		{
 			services
 				.AddApiDocumentation()
-				.AddPhotoSiOrders(_configuration.GetConnectionString("Sales"));
+				.AddPhotoSiOrders(_configuration.GetConnectionString("Sales"))
+				.AddPhotoSiDemo();
 			
 			services
 				.AddControllers();

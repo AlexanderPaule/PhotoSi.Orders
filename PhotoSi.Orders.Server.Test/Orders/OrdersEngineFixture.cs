@@ -74,7 +74,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		}
 
 		[Test]
-		public async Task ExistsCategoryAsync()
+		public async Task ExistsCategory()
 		{
 			var categoryId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
 			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
@@ -91,7 +91,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		}
 
 		[Test]
-		public async Task ExistsOrderAsync()
+		public async Task ExistsOrder()
 		{
 			var orderId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
 			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
@@ -104,6 +104,44 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var exists = await ordersEngine.ExistsOrderAsync(orderId);
 
 			Assert.That(exists, Is.True);
+			persistence.Verify();
+		}
+
+		[Test]
+		public async Task UpsertCategories()
+		{
+			var categories = new[]
+			{
+				new Category()
+			};
+			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			persistence
+				.Setup(x => x.Upsert(categories))
+				.Returns(Task.CompletedTask)
+				.Verifiable("Upsert operation was not been performed");
+			var ordersEngine = new SalesPortal(persistence.Object);
+
+			await ordersEngine.UpsertAsync(categories);
+
+			persistence.Verify();
+		}
+
+		[Test]
+		public async Task UpsertProducts()
+		{
+			var products = new[]
+			{
+				new Product()
+			};
+			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			persistence
+				.Setup(x => x.Upsert(products))
+				.Returns(Task.CompletedTask)
+				.Verifiable("Upsert operation was not been performed");
+			var ordersEngine = new SalesPortal(persistence.Object);
+
+			await ordersEngine.UpsertAsync(products);
+
 			persistence.Verify();
 		}
 	}

@@ -2,8 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhotoSi.Orders.Server.Orders.Data.Context;
 
 namespace PhotoSi.Orders.Server.Migrations
@@ -169,6 +167,9 @@ namespace PhotoSi.Orders.Server.Migrations
                     b.Property<DateTimeOffset>("DbUpdated")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -207,7 +208,7 @@ namespace PhotoSi.Orders.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("PhotoSi.Orders.Server.Orders.Data.Models.OrderedProductEntity", "OrderedProduct")
-                        .WithMany("Options")
+                        .WithMany("CustomOptions")
                         .HasForeignKey("OrderedProductId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -262,7 +263,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderedProductEntity", b =>
                 {
-                    b.Navigation("Options");
+                    b.Navigation("CustomOptions");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.ProductEntity", b =>

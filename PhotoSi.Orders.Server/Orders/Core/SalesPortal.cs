@@ -5,7 +5,7 @@ using PhotoSi.Orders.Server.Orders.Core.Dto;
 
 namespace PhotoSi.Orders.Server.Orders.Core
 {
-	internal class SalesPortal : IOrdersEngine, ICheckGateway
+	internal class SalesPortal : IOrdersEngine, ICheckGateway, ISalesCatalog
 	{
 		private readonly ISalesPersistence _persistence;
 
@@ -42,6 +42,18 @@ namespace PhotoSi.Orders.Server.Orders.Core
 		{
 			return _persistence
 				.ExistsOrderAsync(id);
+		}
+
+		public Task UpsertAsync(IEnumerable<Category> categories)
+		{
+			return _persistence
+				.Upsert(categories);
+		}
+
+		public Task UpsertAsync(IEnumerable<Product> categories)
+		{
+			return _persistence
+				.Upsert(categories);
 		}
 	}
 }

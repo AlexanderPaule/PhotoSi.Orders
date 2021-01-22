@@ -6,6 +6,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Models
 	internal class ProductEntity : TimeTrackedEntity
 	{
 		public Guid Id { get; set; }
+		public string Description { get; set; }
 		public IEnumerable<OptionEntity> Options { get; set; }
 
 		public Guid CategoryId { get; set; }

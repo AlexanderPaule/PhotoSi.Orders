@@ -14,7 +14,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			{
 				Id = source.Id,
 				Category = Translate(source.Category),
-				Products = source.Products.Select(x => Translate(x, existingProducts.First(e => e.Id == x.Id))),
+				Products = source.Products.Select(x => TranslateOrdered(x, existingProducts.First(e => e.Id == x.Id))),
 				CreatedOn = source.CreatedOn
 			};
 		}
@@ -35,8 +35,19 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			return new Product
 			{
 				Id = source.Id,
+				Description = source.Description,
 				Category = Translate(source.Category),
 				Options = source.Options.Select(Translate)
+			};
+		}
+
+		public ProductEntity Translate(Product source)
+		{
+			return new ProductEntity
+			{
+				Id = source.Id,
+				CategoryId = source.Category.Id,
+				Description = source.Description
 			};
 		}
 
@@ -53,7 +64,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 		private static Product Translate(OrderedProductEntity source)
 		{
 			var customOptions = source
-				.Options
+				.CustomOptions
 				.Select(Translate)
 				.ToList();
 
@@ -74,7 +85,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			};
 		}
 
-		private static CategoryEntity Translate(Category source)
+		public CategoryEntity Translate(Category source)
 		{
 			return new CategoryEntity
 			{
@@ -94,6 +105,17 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			};
 		}
 
+		public OptionEntity Translate(Option source, Guid referencedProductId)
+		{
+			return new OptionEntity
+			{
+				Id = source.Id,
+				Name = source.Name,
+				Content = source.Content,
+				ProductId = referencedProductId
+			};
+		}
+
 		private static Option Translate(OrderedOptionEntity source)
 		{
 			return new Option
@@ -104,22 +126,22 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			};
 		}
 
-		private static OrderedProductEntity Translate(Product source, ProductEntity existingProduct)
+		private static OrderedProductEntity TranslateOrdered(Product source, ProductEntity existingProduct)
 		{
-			var orderedOptionEntities = source
+			var customOptions = source
 				.Options
 				.Where(x => existingProduct.Options.All(e => e.Id != x.Id && e.Content != x.Content))
-				.Select(x => Translate(x, source.Id));
+				.Select(x => TranslateOrdered(x, source.Id));
 			
 			return new OrderedProductEntity
 			{
 				Id = source.Id,
 				ProductId = source.Id,
-				Options = orderedOptionEntities
+				CustomOptions = customOptions
 			};
 		}
 
-		private static OrderedOptionEntity Translate(Option source, Guid productId)
+		private static OrderedOptionEntity TranslateOrdered(Option source, Guid productId)
 		{
 			return new OrderedOptionEntity
 			{

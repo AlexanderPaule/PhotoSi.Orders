@@ -46,7 +46,7 @@ namespace PhotoSi.Orders.Server.Orders.Data
 				.Include(x => x.Category)
 				.Include(x => x.Products).ThenInclude(x => x.ReferencedProduct).ThenInclude(x => x.Category)
 				.Include(x => x.Products).ThenInclude(x => x.ReferencedProduct).ThenInclude(x => x.Options)
-				.Include(x => x.Products).ThenInclude(x => x.Options).ThenInclude(x => x.ReferencedOption)
+				.Include(x => x.Products).ThenInclude(x => x.CustomOptions).ThenInclude(x => x.ReferencedOption)
 				.Where(x => x.Id == id)
 				.ToListAsync();
 			
@@ -57,10 +57,10 @@ namespace PhotoSi.Orders.Server.Orders.Data
 
 		public async Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> ids)
 		{
-			var order = await GetProductEntities(ids);
+			var productEntities = await GetProductEntities(ids);
 
 			return RequestResult<Product, Guid>.New(
-				requestedObjects: order.Select(x => _dbLayerTranslator.Translate(x)),
+				requestedObjects: productEntities.Select(x => _dbLayerTranslator.Translate(x)),
 				searchedIds: ids);
 		}
 
@@ -82,6 +82,46 @@ namespace PhotoSi.Orders.Server.Orders.Data
 			return await salesDbContext
 				.Orders
 				.AnyAsync(x => x.Id == id);
+		}
+
+		public async Task Upsert(IEnumerable<Category> categories)
+		{
+			var categoryEntities = categories
+				.Select(_dbLayerTranslator.Translate)
+				.ToList();
+			
+			await using var salesDbContext = _dbContextFactory
+				.CreateDbContext();
+
+			await salesDbContext.Categories.UpsertBulkAsync(
+				entities: categoryEntities,
+				dbFilter: e => categoryEntities.Select(x => x.Id).Contains(e.Id));
+			
+			await salesDbContext.SaveChangesAsync();
+		}
+
+		public async Task Upsert(IEnumerable<Product> products)
+		{
+			var productEntities = products
+				.Select(_dbLayerTranslator.Translate)
+				.ToList();
+
+			var optionEntities = products
+				.SelectMany(x => x.Options.Select(o => _dbLayerTranslator.Translate(o, x.Id)))
+				.ToList();
+
+			await using var salesDbContext = _dbContextFactory
+				.CreateDbContext();
+
+			await salesDbContext.Products.UpsertBulkAsync(
+				entities: productEntities,
+				dbFilter: e => productEntities.Select(x => x.Id).Contains(e.Id));
+
+			await salesDbContext.Options.UpsertBulkAsync(
+				entities: optionEntities,
+				dbFilter: e => optionEntities.Select(x => x.Id).Contains(e.Id));
+
+			await salesDbContext.SaveChangesAsync();
 		}
 
 		private async Task<List<ProductEntity>> GetProductEntities(IEnumerable<Guid> ids)

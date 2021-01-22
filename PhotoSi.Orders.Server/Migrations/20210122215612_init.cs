@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PhotoSi.Orders.Server.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,7 @@ namespace PhotoSi.Orders.Server.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DbCreated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     DbUpdated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)

@@ -46,7 +46,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 			{
 				Id = source.Id,
 				Category = category,
-				Options = source.Options.Select(Translate)
+				Options = source.CustomOptions.Select(Translate)
 			};
 		}
 
@@ -65,7 +65,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 			return new OrderedProductModel
 			{
 				Id = source.Id,
-				Options = source.Options.Select(Translate)
+				CustomOptions = source.Options.Select(Translate)
 			};
 		}
 

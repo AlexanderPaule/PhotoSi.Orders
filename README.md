@@ -11,7 +11,9 @@ Database: Entity Framework Core - per il progetto serve gestire pochi dati, in p
 
 # TODO
 prodotti preconfezionati
+table namespace
 test
+refactor
 documentation
 notification
 Rileggere la consegna

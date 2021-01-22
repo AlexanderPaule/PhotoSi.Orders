@@ -1,5 +1,7 @@
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PhotoSi.Orders.Server.Orders.Data.Models;
 
@@ -43,7 +45,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 			modelBuilder
 				.Entity<OrderedOptionEntity>()
 				.HasOne(p => p.OrderedProduct)
-				.WithMany(b => b.Options)
+				.WithMany(b => b.CustomOptions)
 				.HasForeignKey(p => p.OrderedProductId)
 				.OnDelete(DeleteBehavior.NoAction);
 			
@@ -62,6 +64,11 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 		public DbSet<OptionEntity> Options { get; set; }
 
 		public override int SaveChanges()
+		{
+			return SaveChangesAsync().Result;
+		}
+
+		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
 		{
 			ChangeTracker
 				.Entries()
@@ -83,7 +90,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 					}
 				});
 			
-			return base.SaveChanges();
+			return base.SaveChangesAsync(cancellationToken);
 		}
 	}
 }

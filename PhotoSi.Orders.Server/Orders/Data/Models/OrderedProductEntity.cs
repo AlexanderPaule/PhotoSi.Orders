@@ -8,7 +8,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Models
 	{
 		[Key]
 		public Guid Id { get; set; }
-		public IEnumerable<OrderedOptionEntity> Options { get; set; }
+		public IEnumerable<OrderedOptionEntity> CustomOptions { get; set; }
 		
 		public Guid ProductId { get; set; }
 		public ProductEntity ReferencedProduct { get; set; }
