@@ -37,5 +37,11 @@ namespace PhotoSi.Orders.Server.Orders.Core
 			return _persistence
 				.ExistsCategoryAsync(id);
 		}
+
+		public Task<bool> ExistsOrderAsync(Guid id)
+		{
+			return _persistence
+				.ExistsOrderAsync(id);
+		}
 	}
 }

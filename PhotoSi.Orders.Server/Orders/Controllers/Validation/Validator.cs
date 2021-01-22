@@ -35,6 +35,12 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 			if (!validationResult.IsValid)
 				return validationResult;
 
+			if (await _checkGateway.ExistsOrderAsync(order.Id))
+			{
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Id)} order with identifier [{order.Category.Id}] already exists");
+				return validationResult;
+			}
+
 			if (!await _checkGateway.ExistsCategoryAsync(order.Category.Id))
 			{
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Category)}.{nameof(CategoryModel.Id)} specified category does not exists [{order.Category.Id}] ");

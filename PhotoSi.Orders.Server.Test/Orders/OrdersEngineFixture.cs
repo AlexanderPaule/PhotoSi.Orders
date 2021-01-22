@@ -89,5 +89,22 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			Assert.That(exists, Is.True);
 			persistence.Verify();
 		}
+
+		[Test]
+		public async Task ExistsOrderAsync()
+		{
+			var orderId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
+			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			persistence
+				.Setup(x => x.ExistsOrderAsync(orderId))
+				.ReturnsAsync(true)
+				.Verifiable("Exists operation was not been performed");
+			var ordersEngine = new SalesPortal(persistence.Object);
+
+			var exists = await ordersEngine.ExistsOrderAsync(orderId);
+
+			Assert.That(exists, Is.True);
+			persistence.Verify();
+		}
 	}
 }

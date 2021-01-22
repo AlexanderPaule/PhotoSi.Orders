@@ -9,9 +9,7 @@ API Documentation: Swagger
 Database: Entity Framework Core - per il progetto serve gestire pochi dati, in più si risparmia tempo nel realizzare l'infratruttura
 
 # TODO
-options
-validate if order already exists
-validate if option Id is empty?
+validate if option Id is empty
 database
 prodotti
 test

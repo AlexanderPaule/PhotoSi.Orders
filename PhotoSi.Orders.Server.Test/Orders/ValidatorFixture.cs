@@ -38,6 +38,9 @@ namespace PhotoSi.Orders.Server.Test.Orders
 
 			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
 			checkGateway
+				.Setup(x => x.ExistsOrderAsync(orderModel.Id))
+				.ReturnsAsync(false);
+			checkGateway
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(requestResult);
 			checkGateway
@@ -130,6 +133,34 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		}
 
 		[Test]
+		public async Task NotValidOrderAlreadyExists()
+		{
+			var orderModel = new OrderModel
+			{
+				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Products = new[]
+				{
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+				}
+			};
+			
+			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
+			checkGateway
+				.Setup(x => x.ExistsOrderAsync(orderModel.Id))
+				.ReturnsAsync(true);
+			
+			var validator = new Validator(checkGateway.Object);
+
+			
+			var validationResult = await validator.ValidateAsync(orderModel);
+
+			
+			Assert.That(validationResult.IsValid, Is.False);
+		}
+
+		[Test]
 		public async Task NotValidMissingCategory()
 		{
 			var orderModel = new OrderModel
@@ -152,6 +183,9 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var requestResult = RequestResult<Product, Guid>.New(products, products.Select(x => x.Id));
 
 			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
+			checkGateway
+				.Setup(x => x.ExistsOrderAsync(orderModel.Id))
+				.ReturnsAsync(false);
 			checkGateway
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(requestResult);
@@ -192,6 +226,9 @@ namespace PhotoSi.Orders.Server.Test.Orders
 
 			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
 			checkGateway
+				.Setup(x => x.ExistsOrderAsync(orderModel.Id))
+				.ReturnsAsync(false);
+			checkGateway
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(requestResult);
 			checkGateway
@@ -228,6 +265,9 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			var requestResult = RequestResult<Product, Guid>.New(products, products.Select(x => x.Id));
 
 			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
+			checkGateway
+				.Setup(x => x.ExistsOrderAsync(orderModel.Id))
+				.ReturnsAsync(false);
 			checkGateway
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(requestResult);

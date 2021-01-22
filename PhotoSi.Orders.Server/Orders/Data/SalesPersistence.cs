@@ -76,5 +76,15 @@ namespace PhotoSi.Orders.Server.Orders.Data
 				.Categories
 				.AnyAsync(x => x.Id == id);
 		}
+
+		public async Task<bool> ExistsOrderAsync(Guid id)
+		{
+			await using var salesDbContext = _dbContextFactory
+				.CreateDbContext();
+
+			return await salesDbContext
+				.Orders
+				.AnyAsync(x => x.Id == id);
+		}
 	}
 }
