@@ -20,7 +20,7 @@ namespace PhotoSi.Orders.Server.Orders.Setup
 			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
 			
 			services.AddScoped<ISalesPersistence, SalesPersistence>();
-			services.AddScoped<IDbContextFactory, DbContextFactory>();
+			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(""));// TODO: add connection string
 			services.AddScoped<IDbLayerTranslator, DbLayerTranslator>();
 
 			return services;
