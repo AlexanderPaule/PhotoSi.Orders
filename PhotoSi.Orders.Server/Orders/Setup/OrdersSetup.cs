@@ -17,7 +17,7 @@ namespace PhotoSi.Orders.Server.Orders.Setup
 			
 			services.AddScoped<SalesPortal>();
 			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
-			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
+			services.AddScoped<ICheckGateway>(x => x.GetService<SalesPortal>());
 			
 			services.AddScoped<ISalesPersistence, SalesPersistence>();
 			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(dbConnectionString));
