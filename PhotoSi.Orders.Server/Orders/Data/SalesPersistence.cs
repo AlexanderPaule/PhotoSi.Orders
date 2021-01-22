@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using PhotoSi.Orders.Server.Orders.Core;
 using PhotoSi.Orders.Server.Orders.Core.Dto;
 using PhotoSi.Orders.Server.Orders.Data.Context;
+using PhotoSi.Orders.Server.Orders.Data.Models;
 using PhotoSi.Orders.Server.Orders.Data.Translation;
 
 namespace PhotoSi.Orders.Server.Orders.Data
@@ -23,7 +24,10 @@ namespace PhotoSi.Orders.Server.Orders.Data
 		
 		public async Task SaveAsync(Order order)
 		{
-			var entityOrder = _dbLayerTranslator.Translate(order);
+			var existingProducts = await GetProductEntities(order.Products.Select(x => x.Id));
+			
+			var entityOrder = _dbLayerTranslator
+				.Translate(order, existingProducts);
 
 			await using var salesDbContext = _dbContextFactory
 				.CreateDbContext();
@@ -53,15 +57,7 @@ namespace PhotoSi.Orders.Server.Orders.Data
 
 		public async Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> ids)
 		{
-			await using var salesDbContext = _dbContextFactory
-				.CreateDbContext();
-
-			var order = await salesDbContext
-				.Products
-				.Include(x =>  x.Category)
-				.Include(x => x.Options)
-				.Where(x => ids.Contains(x.Id))
-				.ToListAsync();
+			var order = await GetProductEntities(ids);
 
 			return RequestResult<Product, Guid>.New(
 				requestedObjects: order.Select(x => _dbLayerTranslator.Translate(x)),
@@ -86,6 +82,19 @@ namespace PhotoSi.Orders.Server.Orders.Data
 			return await salesDbContext
 				.Orders
 				.AnyAsync(x => x.Id == id);
+		}
+
+		private async Task<List<ProductEntity>> GetProductEntities(IEnumerable<Guid> ids)
+		{
+			await using var salesDbContext = _dbContextFactory
+				.CreateDbContext();
+
+			return await salesDbContext
+				.Products
+				.Include(x => x.Category)
+				.Include(x => x.Options)
+				.Where(x => ids.Contains(x.Id))
+				.ToListAsync();
 		}
 	}
 }

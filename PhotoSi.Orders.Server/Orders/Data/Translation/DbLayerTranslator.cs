@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PhotoSi.Orders.Server.Orders.Core.Dto;
 using PhotoSi.Orders.Server.Orders.Data.Models;
@@ -7,13 +8,13 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 {
 	internal class DbLayerTranslator : IDbLayerTranslator
 	{
-		public OrderEntity Translate(Order source)
+		public OrderEntity Translate(Order source, IEnumerable<ProductEntity> existingProducts)
 		{
 			return new OrderEntity
 			{
 				Id = source.Id,
 				Category = Translate(source.Category),
-				Products = source.Products.Select(Translate),
+				Products = source.Products.Select(x => Translate(x, existingProducts.First(e => e.Id == x.Id))),
 				CreatedOn = source.CreatedOn
 			};
 		}
@@ -103,13 +104,18 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			};
 		}
 
-		private static OrderedProductEntity Translate(Product source)
+		private static OrderedProductEntity Translate(Product source, ProductEntity existingProduct)
 		{
+			var orderedOptionEntities = source
+				.Options
+				.Where(x => existingProduct.Options.All(e => e.Id != x.Id && e.Content != x.Content))
+				.Select(x => Translate(x, source.Id));
+			
 			return new OrderedProductEntity
 			{
 				Id = source.Id,
 				ProductId = source.Id,
-				Options = source.Options.Select(x => Translate(x, source.Id))
+				Options = orderedOptionEntities
 			};
 		}
 
