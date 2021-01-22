@@ -23,8 +23,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
 				}
 			};
 			
@@ -65,8 +65,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -85,8 +85,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid() },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -105,8 +105,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid(), Options = new List<OptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -133,6 +133,29 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		}
 
 		[Test]
+		public async Task NotValidEmptyOptionId()
+		{
+			var orderModel = new OrderModel
+			{
+				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
+				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Products = new[]
+				{
+					new OrderedProductModel
+					{
+						Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
+						Options = new [] { new OptionModel { Id = new Guid() } }
+					}
+				}
+			};
+			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
+
+			var validationResult = await validator.ValidateAsync(orderModel);
+
+			Assert.That(validationResult.IsValid, Is.False);
+		}
+
+		[Test]
 		public async Task NotValidOrderAlreadyExists()
 		{
 			var orderModel = new OrderModel
@@ -141,8 +164,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
 				}
 			};
 			
@@ -169,8 +192,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
 				}
 			};
 			
@@ -211,8 +234,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
 				}
 			};
 			
@@ -252,8 +275,8 @@ namespace PhotoSi.Orders.Server.Test.Orders
 				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E") }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Options = new List<OptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), Options = new List<OptionModel>() }
 				}
 			};
 			

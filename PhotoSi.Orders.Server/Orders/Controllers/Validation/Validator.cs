@@ -32,6 +32,9 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 			if (order.Products.Any(x => x.Id == Guid.Empty))
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
 
+			if (order.Products.SelectMany(x => x.Options).Any(x => x.Id == Guid.Empty))
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
+
 			if (!validationResult.IsValid)
 				return validationResult;
 
