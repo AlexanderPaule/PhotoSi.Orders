@@ -59,6 +59,7 @@ namespace PhotoSi.Orders.Server.Orders.Data
 			var order = await salesDbContext
 				.Products
 				.Include(x =>  x.Category)
+				.Include(x => x.Options)
 				.Where(x => ids.Contains(x.Id))
 				.ToListAsync();
 
