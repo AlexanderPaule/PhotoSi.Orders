@@ -13,9 +13,49 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 		
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			// Orders
+			modelBuilder
+				.Entity<OrderEntity>()
+				.HasOne(p => p.Category)
+				.WithMany(b => b.Orders)
+				.HasForeignKey(p => p.CategoryId);
+			
+			// Products
+			modelBuilder
+				.Entity<ProductEntity>()
+				.HasOne(p => p.Category)
+				.WithMany(b => b.Products)
+				.HasForeignKey(p => p.CategoryId);
+			
+			modelBuilder
+				.Entity<OrderedProductEntity>()
+				.HasOne(p => p.ReferencedProduct)
+				.WithMany(b => b.OrderedProducts)
+				.HasForeignKey(p => p.ProductId);
+			
+			// Options
+			modelBuilder
+				.Entity<OptionEntity>()
+				.HasOne(p => p.Product)
+				.WithMany(b => b.Options)
+				.HasForeignKey(p => p.ProductId);
+			
+			modelBuilder
+				.Entity<OrderedOptionEntity>()
+				.HasOne(p => p.OrderedProduct)
+				.WithMany(b => b.Options)
+				.HasForeignKey(p => p.OrderedProductId);
+			
+			modelBuilder
+				.Entity<OrderedOptionEntity>()
+				.HasOne(p => p.ReferencedOption)
+				.WithMany(b => b.CustomizedOptions)
+				.HasForeignKey(p => p.OptionId);
 		}
 
 		public DbSet<OrderEntity> Orders { get; set; }
+		public DbSet<OrderedProductEntity> OrderedProducts { get; set; }
+		public DbSet<OrderedOptionEntity> OrderedOptions { get; set; }
 		public DbSet<ProductEntity> Products { get; set; }
 		public DbSet<CategoryEntity> Categories { get; set; }
 		public DbSet<OptionEntity> Options { get; set; }

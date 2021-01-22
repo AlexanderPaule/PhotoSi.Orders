@@ -40,11 +40,12 @@ namespace PhotoSi.Orders.Server.Orders.Data
 			var order = await salesDbContext
 				.Orders
 				.Include(x => x.Category)
-				.Include(x => x.Products).ThenInclude(x => x.Category)
-				.Include(x => x.Products).ThenInclude(x => x.Options)
+				.Include(x => x.Products).ThenInclude(x => x.ReferencedProduct).ThenInclude(x => x.Category)
+				.Include(x => x.Products).ThenInclude(x => x.ReferencedProduct).ThenInclude(x => x.Options)
+				.Include(x => x.Products).ThenInclude(x => x.Options).ThenInclude(x => x.ReferencedOption)
 				.Where(x => x.Id == id)
 				.ToListAsync();
-
+			
 			return RequestResult<Order, Guid>.New(
 				requestedObjects: order.Select(x => _dbLayerTranslator.Translate(x)),
 				searchedIds: new [] { id });

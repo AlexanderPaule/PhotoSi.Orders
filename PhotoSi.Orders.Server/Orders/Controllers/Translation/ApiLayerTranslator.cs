@@ -56,7 +56,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 			{
 				Id = source.Id,
 				Name = source.Name,
-				Description = source.Description
+				Content = source.Content
 			};
 		}
 
@@ -75,7 +75,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 			{
 				Id = source.Id,
 				Name = source.Name,
-				Description = source.Description
+				Content = source.Content
 			};
 		}
 	}

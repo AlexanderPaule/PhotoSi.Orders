@@ -8,10 +8,9 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Models
 	{
 		[Required]
 		public Guid Id { get; set; }
-		[Required]
-		[StringLength(OptionEntity.NameLength)]
+		[Required, StringLength(OptionEntity.NameLength)]
 		public string Name { get; set; }
 		[Required]
-		public string Description { get; set; }
+		public string Content { get; set; }
 	}
 }
