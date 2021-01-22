@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
 using PhotoSi.Orders.Server.Orders.Core;
+using PhotoSi.Orders.Server.Orders.Core.Dto;
 using PhotoSi.Orders.Server.Services.Extensions;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
@@ -75,7 +77,30 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
 			if (missingProducts.Any())
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)} [{missingProducts.JoinStrings()}] does not exists");
 
+			if (!validationResult.IsValid)
+				return validationResult;
+
+			order.Products
+				.ToList()
+				.ForEach(product => ValidateOptions(storedProducts, product, validationResult));
+			
 			return validationResult;
+		}
+
+		private static void ValidateOptions(RequestResult<Product, Guid> storedProducts, OrderedProductModel product, ValidationResult validationResult)
+		{
+			var storedProduct = storedProducts
+				.GetList()
+				.First(x => x.Id == product.Id);
+
+			var notExistingOptions = product
+				.Options
+				.Select(x => x.Id)
+				.Except(storedProduct.Options.Select(x => x.Id))
+				.ToList();
+
+			if (notExistingOptions.Any())
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Options)} product [{product.Id}] has associated [{notExistingOptions.JoinStrings()}] options that does not exists");
 		}
 	}
 }
