@@ -4,15 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Models
 {
-	public class OrderModel
+	public class OrderedProductModel
 	{
 		[Required]
 		public Guid Id { get; set; }
 		[Required]
-		public DateTimeOffset CreatedOn { get; set; }
-		[Required]
-		public CategoryModel Category { get; set; }
-		[Required]
-		public IEnumerable<OrderedProductModel> Products { get; set; }
+		public IEnumerable<OptionModel> Options { get; set; }
 	}
 }
