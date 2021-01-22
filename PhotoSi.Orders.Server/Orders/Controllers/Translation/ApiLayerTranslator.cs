@@ -35,6 +35,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 					Name = source.Category.Name,
 					Description = source.Category.Description
 				},
+				CreatedOn = source.CreatedOn,
 				Products = source.Products.Select(Translate)
 			};
 		}

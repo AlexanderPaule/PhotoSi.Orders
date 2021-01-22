@@ -73,6 +73,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Translation
 			return new ProductEntity
 			{
 				Id = source.Id,
+				Category = Translate(source.Category),
 				Options = source.Options.Select(Translate)
 			};
 		}
