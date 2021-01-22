@@ -10,7 +10,7 @@ using PhotoSi.Orders.Server.Orders.Data.Context;
 namespace PhotoSi.Orders.Server.Migrations
 {
     [DbContext(typeof(SalesDbContext))]
-    [Migration("20210122215612_init")]
+    [Migration("20210122231004_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("CategoryEntity", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OptionEntity", b =>
@@ -71,7 +71,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Options");
+                    b.ToTable("OptionEntity", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderEntity", b =>
@@ -96,7 +96,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("OrderEntity", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderedOptionEntity", b =>
@@ -126,7 +126,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("OrderedProductId");
 
-                    b.ToTable("OrderedOptions");
+                    b.ToTable("OrderedOptionEntity", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderedProductEntity", b =>
@@ -153,7 +153,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderedProducts");
+                    b.ToTable("OrderedProductEntity", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.ProductEntity", b =>
@@ -178,7 +178,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("ProductEntity", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OptionEntity", b =>

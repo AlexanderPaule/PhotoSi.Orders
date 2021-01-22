@@ -7,8 +7,12 @@ namespace PhotoSi.Orders.Server.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "sales");
+
             migrationBuilder.CreateTable(
-                name: "Categories",
+                name: "CategoryEntity",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -19,11 +23,12 @@ namespace PhotoSi.Orders.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_CategoryEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "OrderEntity",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -34,17 +39,19 @@ namespace PhotoSi.Orders.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_OrderEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Categories_CategoryId",
+                        name: "FK_OrderEntity_CategoryEntity_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        principalSchema: "sales",
+                        principalTable: "CategoryEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "ProductEntity",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -55,17 +62,19 @@ namespace PhotoSi.Orders.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_ProductEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
+                        name: "FK_ProductEntity_CategoryEntity_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        principalSchema: "sales",
+                        principalTable: "CategoryEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Options",
+                name: "OptionEntity",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -77,17 +86,19 @@ namespace PhotoSi.Orders.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Options", x => x.Id);
+                    table.PrimaryKey("PK_OptionEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Options_Products_ProductId",
+                        name: "FK_OptionEntity_ProductEntity_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Products",
+                        principalSchema: "sales",
+                        principalTable: "ProductEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderedProducts",
+                name: "OrderedProductEntity",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -98,23 +109,26 @@ namespace PhotoSi.Orders.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderedProducts", x => x.Id);
+                    table.PrimaryKey("PK_OrderedProductEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderedProducts_Orders_OrderEntityId",
+                        name: "FK_OrderedProductEntity_OrderEntity_OrderEntityId",
                         column: x => x.OrderEntityId,
-                        principalTable: "Orders",
+                        principalSchema: "sales",
+                        principalTable: "OrderEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrderedProducts_Products_ProductId",
+                        name: "FK_OrderedProductEntity_ProductEntity_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Products",
+                        principalSchema: "sales",
+                        principalTable: "ProductEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderedOptions",
+                name: "OrderedOptionEntity",
+                schema: "sales",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -126,75 +140,90 @@ namespace PhotoSi.Orders.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderedOptions", x => x.Id);
+                    table.PrimaryKey("PK_OrderedOptionEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderedOptions_Options_OptionId",
+                        name: "FK_OrderedOptionEntity_OptionEntity_OptionId",
                         column: x => x.OptionId,
-                        principalTable: "Options",
+                        principalSchema: "sales",
+                        principalTable: "OptionEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderedOptions_OrderedProducts_OrderedProductId",
+                        name: "FK_OrderedOptionEntity_OrderedProductEntity_OrderedProductId",
                         column: x => x.OrderedProductId,
-                        principalTable: "OrderedProducts",
+                        principalSchema: "sales",
+                        principalTable: "OrderedProductEntity",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Options_ProductId",
-                table: "Options",
+                name: "IX_OptionEntity_ProductId",
+                schema: "sales",
+                table: "OptionEntity",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderedOptions_OptionId",
-                table: "OrderedOptions",
+                name: "IX_OrderedOptionEntity_OptionId",
+                schema: "sales",
+                table: "OrderedOptionEntity",
                 column: "OptionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderedOptions_OrderedProductId",
-                table: "OrderedOptions",
+                name: "IX_OrderedOptionEntity_OrderedProductId",
+                schema: "sales",
+                table: "OrderedOptionEntity",
                 column: "OrderedProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderedProducts_OrderEntityId",
-                table: "OrderedProducts",
+                name: "IX_OrderedProductEntity_OrderEntityId",
+                schema: "sales",
+                table: "OrderedProductEntity",
                 column: "OrderEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderedProducts_ProductId",
-                table: "OrderedProducts",
+                name: "IX_OrderedProductEntity_ProductId",
+                schema: "sales",
+                table: "OrderedProductEntity",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_CategoryId",
-                table: "Orders",
+                name: "IX_OrderEntity_CategoryId",
+                schema: "sales",
+                table: "OrderEntity",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryId",
-                table: "Products",
+                name: "IX_ProductEntity_CategoryId",
+                schema: "sales",
+                table: "ProductEntity",
                 column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "OrderedOptions");
+                name: "OrderedOptionEntity",
+                schema: "sales");
 
             migrationBuilder.DropTable(
-                name: "Options");
+                name: "OptionEntity",
+                schema: "sales");
 
             migrationBuilder.DropTable(
-                name: "OrderedProducts");
+                name: "OrderedProductEntity",
+                schema: "sales");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "OrderEntity",
+                schema: "sales");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductEntity",
+                schema: "sales");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "CategoryEntity",
+                schema: "sales");
         }
     }
 }

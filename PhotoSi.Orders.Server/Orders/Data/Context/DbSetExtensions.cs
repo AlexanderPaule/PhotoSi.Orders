@@ -17,7 +17,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 			var toRemoveEntities = await source
 				.Where(dbFilter)
 				.ToListAsync();
-			
+
 			if (toRemoveEntities.Any())
 				source.RemoveRange(toRemoveEntities);
 

@@ -10,8 +10,6 @@ API Documentation: Swagger
 Database: Entity Framework Core - per il progetto serve gestire pochi dati, in più si risparmia tempo nel realizzare l'infratruttura
 
 # TODO
-prodotti preconfezionati
-table namespace
 test
 refactor
 documentation
