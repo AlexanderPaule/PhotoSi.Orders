@@ -10,7 +10,7 @@ namespace PhotoSi.Orders.Server.Orders.Setup
 {
 	internal static class OrdersSetup
 	{
-		public static IServiceCollection AddPhotoSiOrders(this IServiceCollection services)
+		public static IServiceCollection AddPhotoSiOrders(this IServiceCollection services, string dbConnectionString)
 		{
 			services.AddScoped<IValidator, Validator>();
 			services.AddScoped<IApiLayerTranslator, ApiLayerTranslator>();
@@ -20,7 +20,7 @@ namespace PhotoSi.Orders.Server.Orders.Setup
 			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
 			
 			services.AddScoped<ISalesPersistence, SalesPersistence>();
-			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(""));// TODO: add connection string
+			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(dbConnectionString));
 			services.AddScoped<IDbLayerTranslator, DbLayerTranslator>();
 
 			return services;

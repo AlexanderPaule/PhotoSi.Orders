@@ -10,7 +10,7 @@ namespace PhotoSi.Orders.Server
 {
 	public class Startup
 	{
-		private IConfiguration _configuration;
+		private readonly IConfiguration _configuration;
 
 		public Startup(IConfiguration configuration)
 		{
@@ -19,9 +19,12 @@ namespace PhotoSi.Orders.Server
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddApiDocumentation();
-			services.AddPhotoSiOrders();
-			services.AddControllers();
+			services
+				.AddApiDocumentation()
+				.AddPhotoSiOrders(_configuration.GetSection("ConnectionStrings")["Orders"]);
+			
+			services
+				.AddControllers();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
