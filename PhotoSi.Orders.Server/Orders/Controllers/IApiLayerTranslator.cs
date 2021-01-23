@@ -1,7 +1,7 @@
-﻿using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+﻿using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Orders.Controllers
+namespace PhotoSi.Sales.Orders.Controllers
 {
 	public interface IApiLayerTranslator
 	{

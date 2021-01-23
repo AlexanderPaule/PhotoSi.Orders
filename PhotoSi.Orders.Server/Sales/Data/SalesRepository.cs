@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PhotoSi.Orders.Server.Sales.Core;
-using PhotoSi.Orders.Server.Sales.Core.Models;
-using PhotoSi.Orders.Server.Sales.Data.Context;
-using PhotoSi.Orders.Server.Sales.Data.Models;
-using PhotoSi.Orders.Server.Sales.Data.Translation;
+using PhotoSi.Sales.Sales.Core;
+using PhotoSi.Sales.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Data.Context;
+using PhotoSi.Sales.Sales.Data.Models;
+using PhotoSi.Sales.Sales.Data.Translation;
 
-namespace PhotoSi.Orders.Server.Sales.Data
+namespace PhotoSi.Sales.Sales.Data
 {
 	internal class SalesRepository : ISalesRepository
 	{

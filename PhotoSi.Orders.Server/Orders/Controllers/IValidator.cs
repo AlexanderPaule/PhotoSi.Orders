@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Orders.Validation;
+using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Orders.Validation;
 
-namespace PhotoSi.Orders.Server.Orders.Controllers
+namespace PhotoSi.Sales.Orders.Controllers
 {
 	public interface IValidator
 	{

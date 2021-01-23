@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PhotoSi.Orders.Server.Demo.Models
+namespace PhotoSi.Sales.Demo.Models
 {
 	public class OptionModel
 	{

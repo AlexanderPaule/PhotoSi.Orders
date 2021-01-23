@@ -4,12 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Orders.Validation;
-using PhotoSi.Orders.Server.Sales.Core;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Sales.Core;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Test.Orders
+namespace PhotoSi.Sales.Test.Orders
 {
 	[TestFixture]
 	internal class ValidatorFixture

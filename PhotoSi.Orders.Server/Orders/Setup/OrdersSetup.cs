@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PhotoSi.Orders.Server.Orders.Controllers;
-using PhotoSi.Orders.Server.Orders.Translation;
-using PhotoSi.Orders.Server.Orders.Validation;
+using PhotoSi.Sales.Orders.Controllers;
+using PhotoSi.Sales.Orders.Translation;
+using PhotoSi.Sales.Orders.Validation;
 
-namespace PhotoSi.Orders.Server.Orders.Setup
+namespace PhotoSi.Sales.Orders.Setup
 {
 	internal static class OrdersSetup
 	{

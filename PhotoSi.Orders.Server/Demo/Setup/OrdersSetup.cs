@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PhotoSi.Orders.Server.Demo.Controllers;
-using PhotoSi.Orders.Server.Demo.Data;
-using PhotoSi.Orders.Server.Demo.Translation;
+using PhotoSi.Sales.Demo.Controllers;
+using PhotoSi.Sales.Demo.Data;
+using PhotoSi.Sales.Demo.Translation;
 
-namespace PhotoSi.Orders.Server.Demo.Setup
+namespace PhotoSi.Sales.Demo.Setup
 {
 	internal static class DemoSetup
 	{

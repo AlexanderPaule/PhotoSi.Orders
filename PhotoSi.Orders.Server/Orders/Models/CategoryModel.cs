@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using PhotoSi.Orders.Server.Sales.Data.Models;
+using PhotoSi.Sales.Sales.Data.Models;
 
-namespace PhotoSi.Orders.Server.Orders.Models
+namespace PhotoSi.Sales.Orders.Models
 {
 	public class CategoryModel
 	{

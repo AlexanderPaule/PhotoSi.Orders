@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using PhotoSi.Orders.Server.Sales.Core;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Core;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Test.Sales
+namespace PhotoSi.Sales.Test.Sales
 {
 	[TestFixture]
 	internal class SalesPortalFixture

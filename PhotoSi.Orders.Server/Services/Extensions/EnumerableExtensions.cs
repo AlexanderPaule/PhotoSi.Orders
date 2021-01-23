@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PhotoSi.Orders.Server.Services.Extensions
+namespace PhotoSi.Sales.Services.Extensions
 {
 	public static class EnumerableExtensions
 	{

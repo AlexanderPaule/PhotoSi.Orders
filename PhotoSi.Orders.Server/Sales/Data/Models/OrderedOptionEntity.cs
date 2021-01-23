@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PhotoSi.Orders.Server.Sales.Data.Models
+namespace PhotoSi.Sales.Sales.Data.Models
 {
 	internal class OrderedOptionEntity : TimeTrackedEntity
 	{

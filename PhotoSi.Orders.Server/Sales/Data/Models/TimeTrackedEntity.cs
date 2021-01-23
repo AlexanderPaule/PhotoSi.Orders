@@ -1,6 +1,6 @@
 using System;
 
-namespace PhotoSi.Orders.Server.Sales.Data.Models
+namespace PhotoSi.Sales.Sales.Data.Models
 {
 	public class TimeTrackedEntity
 	{

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Sales.Core;
+using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Sales.Core;
 
-namespace PhotoSi.Orders.Server.Orders.Controllers
+namespace PhotoSi.Sales.Orders.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]

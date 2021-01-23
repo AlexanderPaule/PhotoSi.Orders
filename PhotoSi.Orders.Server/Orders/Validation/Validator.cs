@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PhotoSi.Orders.Server.Orders.Controllers;
-using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Sales.Core;
-using PhotoSi.Orders.Server.Sales.Core.Models;
-using PhotoSi.Orders.Server.Services.Extensions;
+using PhotoSi.Sales.Orders.Controllers;
+using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Sales.Core;
+using PhotoSi.Sales.Sales.Core.Models;
+using PhotoSi.Sales.Services.Extensions;
 
-namespace PhotoSi.Orders.Server.Orders.Validation
+namespace PhotoSi.Sales.Orders.Validation
 {
 	internal class Validator : IValidator
 	{

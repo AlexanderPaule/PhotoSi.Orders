@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PhotoSi.Orders.Server.Sales.Core;
+using PhotoSi.Sales.Sales.Core;
 
-namespace PhotoSi.Orders.Server.Demo.Controllers
+namespace PhotoSi.Sales.Demo.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]

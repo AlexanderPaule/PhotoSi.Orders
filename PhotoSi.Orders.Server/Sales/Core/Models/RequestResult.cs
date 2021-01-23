@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PhotoSi.Orders.Server.Sales.Core.Models
+namespace PhotoSi.Sales.Sales.Core.Models
 {
 	public class RequestResult<TObj, TId> where TObj : class
 	{

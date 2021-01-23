@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PhotoSi.Orders.Server.Demo.Setup;
-using PhotoSi.Orders.Server.Orders.Setup;
-using PhotoSi.Orders.Server.Sales.Data.Context;
-using PhotoSi.Orders.Server.Sales.Setup;
-using PhotoSi.Orders.Server.Services.ApiDocumentation;
+using PhotoSi.Sales.Demo.Setup;
+using PhotoSi.Sales.Orders.Setup;
+using PhotoSi.Sales.Sales.Data.Context;
+using PhotoSi.Sales.Sales.Setup;
+using PhotoSi.Sales.Services.ApiDocumentation;
 
-namespace PhotoSi.Orders.Server
+namespace PhotoSi.Sales
 {
 	internal class Startup
 	{
