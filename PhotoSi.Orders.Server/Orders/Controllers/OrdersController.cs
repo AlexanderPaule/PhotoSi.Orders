@@ -60,7 +60,7 @@ namespace PhotoSi.Sales.Orders.Controllers
 		{
 			_logger.LogInformation($"Order get start [{nameof(id)}:{id}]");
 
-			var requestResult = await _ordersEngine.GetAsync(id);
+			var requestResult = await _ordersEngine.GetOrderAsync(id);
 			if (!requestResult.FoundAll())
 			{
 				_logger.LogInformation($"Order not found [{nameof(id)}:{id}]");
@@ -76,7 +76,7 @@ namespace PhotoSi.Sales.Orders.Controllers
 		public async Task<IActionResult> GetAll()
 		{
 			_logger.LogInformation("Order get all start");
-			var requestResult = await _ordersEngine.GetAllAsync();
+			var requestResult = await _ordersEngine.GetAllOrdersAsync();
 			_logger.LogInformation("Order get all end");
 
 			var orders = requestResult

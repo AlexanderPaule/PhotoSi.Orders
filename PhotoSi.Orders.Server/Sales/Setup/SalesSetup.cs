@@ -14,7 +14,8 @@ namespace PhotoSi.Sales.Sales.Setup
 			services.AddScoped<SalesPortal>();
 			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
 			services.AddScoped<ICheckGateway>(x => x.GetService<SalesPortal>());
-			services.AddScoped<ISalesPortal>(x => x.GetService<SalesPortal>());
+			services.AddScoped<IProductsPortal>(x => x.GetService<SalesPortal>());
+			services.AddScoped<IDemoPortal>(x => x.GetService<SalesPortal>());
 			
 			services.AddScoped<ISalesRepository, SalesRepository>();
 			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(dbConnectionString));

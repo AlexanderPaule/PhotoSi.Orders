@@ -100,7 +100,7 @@ namespace PhotoSi.Sales.Test.Orders
 			
 			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
-				.Setup(x => x.GetAsync(id))
+				.Setup(x => x.GetOrderAsync(id))
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new[] { id }))
 				.Verifiable("Request operation not performed");
 
@@ -132,7 +132,7 @@ namespace PhotoSi.Sales.Test.Orders
 			
 			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
-				.Setup(x => x.GetAsync(id))
+				.Setup(x => x.GetOrderAsync(id))
 				.ReturnsAsync(RequestResult<Order, Guid>.NewNotFound(new [] { id }))
 				.Verifiable("Request operation not performed");
 
@@ -157,7 +157,7 @@ namespace PhotoSi.Sales.Test.Orders
 		    var orderModel = new OrderModel();
 		    var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 		    orderEngine
-				.Setup(x => x.GetAllAsync())
+				.Setup(x => x.GetAllOrdersAsync())
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] {order}, new [] { new Guid() }))
 				.Verifiable("Request operation not performed");
 

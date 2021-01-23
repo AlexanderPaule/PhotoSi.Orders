@@ -112,6 +112,15 @@ namespace PhotoSi.Sales.Sales.Data
 				searchedIds: ids);
 		}
 
+		public async Task<RequestResult<Product, Guid>> GetAllProductsAsync()
+		{
+			var productEntities = await GetProductEntities(Enumerable.Empty<Guid>());
+
+			return RequestResult<Product, Guid>.New(
+				requestedObjects: productEntities.Select(x => _dbLayerTranslator.Translate(x)),
+				searchedIds: productEntities.Select(x => x.Id));
+		}
+
 		public async Task<bool> ExistsCategoryAsync(Guid id)
 		{
 			await using var salesDbContext = _dbContextFactory
@@ -132,7 +141,7 @@ namespace PhotoSi.Sales.Sales.Data
 				.AnyAsync(x => x.Id == id);
 		}
 
-		public async Task Upsert(IEnumerable<Category> categories)
+		public async Task UpsertAsync(IEnumerable<Category> categories)
 		{
 			var categoryEntities = categories
 				.Select(_dbLayerTranslator.Translate)
@@ -148,7 +157,7 @@ namespace PhotoSi.Sales.Sales.Data
 			await salesDbContext.SaveChangesAsync();
 		}
 
-		public async Task Upsert(IEnumerable<Product> products)
+		public async Task UpsertAsync(IEnumerable<Product> products)
 		{
 			var productEntities = products
 				.Select(_dbLayerTranslator.Translate)
@@ -181,7 +190,7 @@ namespace PhotoSi.Sales.Sales.Data
 				.Products
 				.Include(x => x.Category)
 				.Include(x => x.Options)
-				.Where(x => ids.Contains(x.Id))
+				.Where(x => ids.Any() || ids.Contains(x.Id))
 				.ToListAsync();
 		}
 	}

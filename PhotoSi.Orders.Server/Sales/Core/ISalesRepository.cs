@@ -11,9 +11,10 @@ namespace PhotoSi.Sales.Sales.Core
 		Task<RequestResult<Order, Guid>> GetOrderAsync(Guid id);
 		Task<RequestResult<Order, Guid>> GetAllOrdersAsync();
 		Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> ids);
+		Task<RequestResult<Product, Guid>> GetAllProductsAsync();
 		Task<bool> ExistsCategoryAsync(Guid id);
 		Task<bool> ExistsOrderAsync(Guid id);
-		Task Upsert(IEnumerable<Category> categories);
-		Task Upsert(IEnumerable<Product> products);
+		Task UpsertAsync(IEnumerable<Category> categories);
+		Task UpsertAsync(IEnumerable<Product> products);
 	}
 }

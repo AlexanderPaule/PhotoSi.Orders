@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
@@ -19,9 +20,9 @@ namespace PhotoSi.Sales.Test.Sales
 				.Setup(x => x.SaveAsync(order))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Save operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			await ordersEngine.ProcessAsync(order);
+			await salesPortal.ProcessAsync(order);
 			
 			repository.Verify();
 		}
@@ -36,9 +37,9 @@ namespace PhotoSi.Sales.Test.Sales
 				.Setup(x => x.GetOrderAsync(orderId))
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new [] { orderId }))
 				.Verifiable("Get operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			var requestResult = await ordersEngine.GetAsync(orderId);
+			var requestResult = await salesPortal.GetOrderAsync(orderId);
 
 			Assert.That(requestResult, Is.Not.Null);
 			Assert.That(requestResult.FoundAll(), Is.True);
@@ -56,9 +57,9 @@ namespace PhotoSi.Sales.Test.Sales
 				.Setup(x => x.GetAllOrdersAsync())
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new [] { orderId }))
 				.Verifiable("Get operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			var requestResult = await ordersEngine.GetAllAsync();
+			var requestResult = await salesPortal.GetAllOrdersAsync();
 
 			Assert.That(requestResult, Is.Not.Null);
 			Assert.That(requestResult.FoundAll(), Is.True);
@@ -84,9 +85,9 @@ namespace PhotoSi.Sales.Test.Sales
 				.Setup(x => x.GetProductsAsync(productsIds))
 				.ReturnsAsync(expectedRequestResult)
 				.Verifiable("Get operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			var actualRequestResult = await ordersEngine.GetProductsAsync(productsIds);
+			var actualRequestResult = await salesPortal.GetProductsAsync(productsIds);
 
 			Assert.That(actualRequestResult, Is.Not.Null);
 			Assert.That(actualRequestResult, Is.EqualTo(expectedRequestResult));
@@ -102,9 +103,9 @@ namespace PhotoSi.Sales.Test.Sales
 				.Setup(x => x.ExistsCategoryAsync(categoryId))
 				.ReturnsAsync(true)
 				.Verifiable("Exists operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			var exists = await ordersEngine.ExistsCategoryAsync(categoryId);
+			var exists = await salesPortal.ExistsCategoryAsync(categoryId);
 
 			Assert.That(exists, Is.True);
 			repository.Verify();
@@ -119,9 +120,9 @@ namespace PhotoSi.Sales.Test.Sales
 				.Setup(x => x.ExistsOrderAsync(orderId))
 				.ReturnsAsync(true)
 				.Verifiable("Exists operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			var exists = await ordersEngine.ExistsOrderAsync(orderId);
+			var exists = await salesPortal.ExistsOrderAsync(orderId);
 
 			Assert.That(exists, Is.True);
 			repository.Verify();
@@ -136,12 +137,12 @@ namespace PhotoSi.Sales.Test.Sales
 			};
 			var repository = new Mock<ISalesRepository>(MockBehavior.Strict);
 			repository
-				.Setup(x => x.Upsert(categories))
+				.Setup(x => x.UpsertAsync(categories))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Upsert operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			await ordersEngine.UpsertAsync(categories);
+			await salesPortal.UpsertAsync(categories);
 
 			repository.Verify();
 		}
@@ -155,13 +156,35 @@ namespace PhotoSi.Sales.Test.Sales
 			};
 			var repository = new Mock<ISalesRepository>(MockBehavior.Strict);
 			repository
-				.Setup(x => x.Upsert(products))
+				.Setup(x => x.UpsertAsync(products))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Upsert operation was not been performed");
-			var ordersEngine = new SalesPortal(repository.Object);
+			var salesPortal = new SalesPortal(repository.Object);
 
-			await ordersEngine.UpsertAsync(products);
+			await salesPortal.UpsertAsync(products);
 
+			repository.Verify();
+		}
+
+		[Test]
+		public async Task GetAllProducts()
+		{
+			var products = new[]
+			{
+				new Product()
+			};
+			var expectedRequestResult = RequestResult<Product, Guid>.New(products, new List<Guid>());
+			var repository = new Mock<ISalesRepository>(MockBehavior.Strict);
+			repository
+				.Setup(x => x.GetAllProductsAsync())
+				.ReturnsAsync(expectedRequestResult)
+				.Verifiable("Get operation was not been performed");
+			var salesPortal = new SalesPortal(repository.Object);
+
+			var actualRequestResult = await salesPortal.GetAllProductsAsync();
+
+			Assert.That(actualRequestResult, Is.Not.Null);
+			Assert.That(actualRequestResult, Is.EqualTo(expectedRequestResult));
 			repository.Verify();
 		}
 	}
