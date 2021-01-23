@@ -5,7 +5,7 @@ using PhotoSi.Orders.Server.Sales.Core.Models;
 
 namespace PhotoSi.Orders.Server.Sales.Core
 {
-	internal interface ISalesPersistence
+	internal interface ISalesRepository
 	{
 		Task SaveAsync(Order order);
 		Task<RequestResult<Order, Guid>> GetOrderAsync(Guid id);

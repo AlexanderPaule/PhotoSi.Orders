@@ -14,12 +14,12 @@ namespace PhotoSi.Orders.Server.Test.Sales
 		public async Task ProcessOrder()
 		{
 			var order = new Order();
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			var persistence = new Mock<ISalesRepository>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.SaveAsync(order))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Save operation was not been performed");
-			var ordersEngine = new SalesCatalog(persistence.Object);
+			var ordersEngine = new SalesPortal(persistence.Object);
 
 			await ordersEngine.ProcessAsync(order);
 			
@@ -31,12 +31,12 @@ namespace PhotoSi.Orders.Server.Test.Sales
 		{
 			var orderId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
 			var order = new Order();
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			var persistence = new Mock<ISalesRepository>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.GetOrderAsync(orderId))
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new [] { orderId }))
 				.Verifiable("Get operation was not been performed");
-			var ordersEngine = new SalesCatalog(persistence.Object);
+			var ordersEngine = new SalesPortal(persistence.Object);
 
 			var requestResult = await ordersEngine.GetAsync(orderId);
 
@@ -59,12 +59,12 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				new Product()
 			};
 			var expectedRequestResult = RequestResult<Product, Guid>.New(products, productsIds);
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			var persistence = new Mock<ISalesRepository>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.GetProductsAsync(productsIds))
 				.ReturnsAsync(expectedRequestResult)
 				.Verifiable("Get operation was not been performed");
-			var ordersEngine = new SalesCatalog(persistence.Object);
+			var ordersEngine = new SalesPortal(persistence.Object);
 
 			var actualRequestResult = await ordersEngine.GetProductsAsync(productsIds);
 
@@ -77,12 +77,12 @@ namespace PhotoSi.Orders.Server.Test.Sales
 		public async Task ExistsCategory()
 		{
 			var categoryId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			var persistence = new Mock<ISalesRepository>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.ExistsCategoryAsync(categoryId))
 				.ReturnsAsync(true)
 				.Verifiable("Exists operation was not been performed");
-			var ordersEngine = new SalesCatalog(persistence.Object);
+			var ordersEngine = new SalesPortal(persistence.Object);
 
 			var exists = await ordersEngine.ExistsCategoryAsync(categoryId);
 
@@ -94,12 +94,12 @@ namespace PhotoSi.Orders.Server.Test.Sales
 		public async Task ExistsOrder()
 		{
 			var orderId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			var persistence = new Mock<ISalesRepository>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.ExistsOrderAsync(orderId))
 				.ReturnsAsync(true)
 				.Verifiable("Exists operation was not been performed");
-			var ordersEngine = new SalesCatalog(persistence.Object);
+			var ordersEngine = new SalesPortal(persistence.Object);
 
 			var exists = await ordersEngine.ExistsOrderAsync(orderId);
 
@@ -114,12 +114,12 @@ namespace PhotoSi.Orders.Server.Test.Sales
 			{
 				new Category()
 			};
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			var persistence = new Mock<ISalesRepository>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.Upsert(categories))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Upsert operation was not been performed");
-			var ordersEngine = new SalesCatalog(persistence.Object);
+			var ordersEngine = new SalesPortal(persistence.Object);
 
 			await ordersEngine.UpsertAsync(categories);
 
@@ -133,12 +133,12 @@ namespace PhotoSi.Orders.Server.Test.Sales
 			{
 				new Product()
 			};
-			var persistence = new Mock<ISalesPersistence>(MockBehavior.Strict);
+			var persistence = new Mock<ISalesRepository>(MockBehavior.Strict);
 			persistence
 				.Setup(x => x.Upsert(products))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Upsert operation was not been performed");
-			var ordersEngine = new SalesCatalog(persistence.Object);
+			var ordersEngine = new SalesPortal(persistence.Object);
 
 			await ordersEngine.UpsertAsync(products);
 

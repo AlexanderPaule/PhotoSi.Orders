@@ -11,12 +11,12 @@ namespace PhotoSi.Orders.Server.Sales.Setup
 	{
 		public static IServiceCollection AddPhotoSiSales(this IServiceCollection services, string dbConnectionString)
 		{
-			services.AddScoped<SalesCatalog>();
-			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesCatalog>());
-			services.AddScoped<ICheckGateway>(x => x.GetService<SalesCatalog>());
-			services.AddScoped<ISalesPortal>(x => x.GetService<SalesCatalog>());
+			services.AddScoped<SalesPortal>();
+			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
+			services.AddScoped<ICheckGateway>(x => x.GetService<SalesPortal>());
+			services.AddScoped<ISalesPortal>(x => x.GetService<SalesPortal>());
 			
-			services.AddScoped<ISalesPersistence, SalesPersistence>();
+			services.AddScoped<ISalesRepository, SalesRepository>();
 			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(dbConnectionString));
 			services.AddScoped<IDbLayerTranslator, DbLayerTranslator>();
 			services.AddDbContext<SalesDbContext>(o => o.UseSqlServer(dbConnectionString));

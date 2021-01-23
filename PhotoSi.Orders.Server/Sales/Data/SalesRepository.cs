@@ -11,12 +11,12 @@ using PhotoSi.Orders.Server.Sales.Data.Translation;
 
 namespace PhotoSi.Orders.Server.Sales.Data
 {
-	internal class SalesPersistence : ISalesPersistence
+	internal class SalesRepository : ISalesRepository
 	{
 		private readonly IDbContextFactory _dbContextFactory;
 		private readonly IDbLayerTranslator _dbLayerTranslator;
 
-		public SalesPersistence(IDbContextFactory dbContextFactory, IDbLayerTranslator dbLayerTranslator)
+		public SalesRepository(IDbContextFactory dbContextFactory, IDbLayerTranslator dbLayerTranslator)
 		{
 			_dbContextFactory = dbContextFactory;
 			_dbLayerTranslator = dbLayerTranslator;
