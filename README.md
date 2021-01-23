@@ -83,3 +83,13 @@ Per facilitare l'operazione di creazione degli ordini, trovate di seguito 2 json
   ]
 }
 ```
+
+## Notifica Nuovo Ordine
+Per notificare l'evento di ordini creati ad altri servizi in ascolto, la scelta verso cui andrei sarebbe
+quella di istanziare un servizio basato sulla gestione di messaggi a code. Questa scelta permetterebbe di
+avere una soluzione asincrona che consentirebbe ad altri servizi di agganciarsi alla coda della notifica
+degli ordini e restare in ascolto. I vantaggi sarebbero di disaccoppiare il funzionamento dei flussi e di
+rendere modulare l'infrastruttura. Modulare perché un eventuale nuovo servizio interessato a tale evento può
+agganciarsi in un tempo imprecisato alla coda e questo non richiederebbe modifiche al software che si occupa degli
+ordini. Il disaccoppiamento è altrettanto importante perché in caso di down di uno dei servizi interessati al
+messaggio di creazione dell'ordine il software degli ordini non ne verrebbe impattato.
