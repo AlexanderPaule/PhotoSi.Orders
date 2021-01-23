@@ -2,14 +2,17 @@
 
 ## Prerequisiti
 Avere a disposizione un DBMS Sql Server (ex: SqlExpress).
+
 Configurare la connection string al Database nel file 'appsettings.json', sotto la sezione 'ConnectionStrings.Sales'.
+
 Creare manualmente un database vuoto NON è richiesto.
 
 ## Scelte Tecnologiche
 - Testing: *NUnit*
 - API Documentation: *Swagger*
-- Database: SqlServer
+- Database: *SqlServer*
 - Interazione Database: *Entity Framework Core*
+
   Ho scelto l'ORM Entity Framework perché per il progetto serve gestire pochi dati e per abbassare il tempo della realizzare l'infratruttura.
 
 ## Start
