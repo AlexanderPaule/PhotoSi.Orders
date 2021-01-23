@@ -1,5 +1,5 @@
 ﻿using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Core.Dto;
+using PhotoSi.Orders.Server.Sales.Core.Models;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 {
@@ -7,7 +7,5 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 	{
 		Order Translate(OrderModel source);
 		OrderModel Translate(Order source);
-		ProductModel Translate(Product source);
-		CategoryModel Translate(Category source);
 	}
 }

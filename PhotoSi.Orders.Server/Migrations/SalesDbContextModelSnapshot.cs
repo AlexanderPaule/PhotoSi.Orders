@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PhotoSi.Orders.Server.Orders.Data.Context;
+using PhotoSi.Orders.Server.Sales.Data.Context;
 
 namespace PhotoSi.Orders.Server.Migrations
 {

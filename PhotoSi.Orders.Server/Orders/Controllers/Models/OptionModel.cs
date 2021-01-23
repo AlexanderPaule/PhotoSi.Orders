@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using PhotoSi.Orders.Server.Orders.Data.Models;
+using PhotoSi.Orders.Server.Sales.Data.Models;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Models
 {

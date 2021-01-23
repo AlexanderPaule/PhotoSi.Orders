@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Core.Dto;
+using PhotoSi.Orders.Server.Sales.Core.Models;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 {
@@ -35,18 +35,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 			};
 		}
 
-		public ProductModel Translate(Product source)
-		{
-			return new ProductModel
-			{
-				Id = source.Id,
-				Category = Translate(source.Category),
-				Description = source.Description,
-				Options = source.Options.Select(Translate)
-			};
-		}
-
-		public CategoryModel Translate(Category source)
+		private static CategoryModel Translate(Category source)
 		{
 			return new CategoryModel
 			{

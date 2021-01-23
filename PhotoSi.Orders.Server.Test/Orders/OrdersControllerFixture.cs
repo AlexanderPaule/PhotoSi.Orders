@@ -8,8 +8,8 @@ using PhotoSi.Orders.Server.Orders.Controllers;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
 using PhotoSi.Orders.Server.Orders.Controllers.Translation;
 using PhotoSi.Orders.Server.Orders.Controllers.Validation;
-using PhotoSi.Orders.Server.Orders.Core;
-using PhotoSi.Orders.Server.Orders.Core.Dto;
+using PhotoSi.Orders.Server.Sales.Core;
+using PhotoSi.Orders.Server.Sales.Core.Models;
 
 namespace PhotoSi.Orders.Server.Test.Orders
 {

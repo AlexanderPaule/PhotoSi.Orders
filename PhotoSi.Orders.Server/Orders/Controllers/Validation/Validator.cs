@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Core;
-using PhotoSi.Orders.Server.Orders.Core.Dto;
+using PhotoSi.Orders.Server.Sales.Core;
+using PhotoSi.Orders.Server.Sales.Core.Models;
 using PhotoSi.Orders.Server.Services.Extensions;
 
 namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
