@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace PhotoSi.Orders.Server
+namespace PhotoSi.Sales
 {
-	public static class Program
+	internal static class Program
 	{
 		public static void Main(string[] args)
 		{
