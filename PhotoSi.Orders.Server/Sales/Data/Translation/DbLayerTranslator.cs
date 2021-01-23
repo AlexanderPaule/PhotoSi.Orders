@@ -120,8 +120,9 @@ namespace PhotoSi.Orders.Server.Sales.Data.Translation
 
 			return new Product
 			{
-				Id = source.Id,
+				Id = source.ReferencedProduct.Id,
 				Category = Translate(source.ReferencedProduct.Category),
+				Description = source.ReferencedProduct.Description,
 				Options = customOptions.Union(originalFilteredOptions)
 			};
 		}
@@ -140,7 +141,7 @@ namespace PhotoSi.Orders.Server.Sales.Data.Translation
 		{
 			return new Option
 			{
-				Id = source.Id,
+				Id = source.ReferencedOption.Id,
 				Name = source.ReferencedOption.Name,
 				Content = source.Content
 			};

@@ -16,6 +16,3 @@ documentation
 notification
 documentation
 Rileggere la consegna
-
-mancano test traslaters
-mancano test aggiunte
