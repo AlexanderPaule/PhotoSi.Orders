@@ -14,9 +14,8 @@ mettere dei Json per facilitare la creazione degli ordini
 # TODO
 documentation
 notification
+documentation
 Rileggere la consegna
 
-distinct id validation
 mancano test traslaters
 mancano test aggiunte
-sganciare la parte demo dalla parte ordini

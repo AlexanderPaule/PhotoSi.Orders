@@ -32,10 +32,28 @@ namespace PhotoSi.Orders.Server.Orders.Validation
 				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)} Orders without products are not allowed");
 
 			if (order.Products.Any(x => x.Id == Guid.Empty))
-				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(ProductModel.Id)} property is required");
 
 			if (order.Products.SelectMany(x => x.CustomOptions).Any(x => x.Id == Guid.Empty))
-				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.Id)} property is required");
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(ProductModel.CustomOptions)}.{nameof(Option.Id)} property is required");
+
+			var productsWithDuplicatedOptions = order
+				.Products
+				.Where(product =>
+				{
+					var duplicatedOptions = product
+						.CustomOptions
+						.Select(x => x.Id)
+						.GroupBy(o => o)
+						.Count(o => o.ToList().Count > 1);
+
+					return duplicatedOptions > 0;
+				})
+				.Select(x => x.Id)
+				.ToList();
+			
+			if (productsWithDuplicatedOptions.Any())
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(ProductModel.CustomOptions)} products [{productsWithDuplicatedOptions.JoinStrings()}] contains duplicated options");
 
 			if (!validationResult.IsValid)
 				return validationResult;
@@ -87,7 +105,7 @@ namespace PhotoSi.Orders.Server.Orders.Validation
 			return validationResult;
 		}
 
-		private static void ValidateOptions(RequestResult<Product, Guid> storedProducts, OrderedProductModel product, ValidationResult validationResult)
+		private static void ValidateOptions(RequestResult<Product, Guid> storedProducts, ProductModel product, ValidationResult validationResult)
 		{
 			var storedProduct = storedProducts
 				.GetList()
@@ -100,7 +118,7 @@ namespace PhotoSi.Orders.Server.Orders.Validation
 				.ToList();
 
 			if (notExistingOptions.Any())
-				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(OrderedProductModel.CustomOptions)} product [{product.Id}] has associated [{notExistingOptions.JoinStrings()}] options that does not exists");
+				validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.Products)}.{nameof(ProductModel.CustomOptions)} product [{product.Id}] has associated [{notExistingOptions.JoinStrings()}] options that does not exists");
 		}
 	}
 }

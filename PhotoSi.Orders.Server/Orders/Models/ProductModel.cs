@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Orders.Server.Orders.Models
 {
-	public class OrderedProductModel
+	public class ProductModel
 	{
 		[Required]
 		public Guid Id { get; set; }

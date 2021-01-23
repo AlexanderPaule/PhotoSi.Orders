@@ -46,7 +46,7 @@ namespace PhotoSi.Orders.Server.Orders.Translation
 			};
 		}
 		
-		private static Product Translate(OrderedProductModel source, Category category)
+		private static Product Translate(ProductModel source, Category category)
 		{
 			return new Product
 			{
@@ -66,9 +66,9 @@ namespace PhotoSi.Orders.Server.Orders.Translation
 			};
 		}
 
-		private static OrderedProductModel TranslateOrdered(Product source)
+		private static ProductModel TranslateOrdered(Product source)
 		{
-			return new OrderedProductModel
+			return new ProductModel
 			{
 				Id = source.Id,
 				CustomOptions = source.Options.Select(Translate)

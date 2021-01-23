@@ -13,6 +13,6 @@ namespace PhotoSi.Orders.Server.Orders.Models
 		[Required]
 		public CategoryModel Category { get; set; }
 		[Required]
-		public IEnumerable<OrderedProductModel> Products { get; set; }
+		public IEnumerable<ProductModel> Products { get; set; }
 	}
 }
