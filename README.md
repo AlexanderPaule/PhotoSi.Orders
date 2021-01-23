@@ -20,9 +20,9 @@
   Creare manualmente un database vuoto NON è richiesto.
 
 - Avviare il servizio premendo F5 o ctrl+F5. Questa azione comporterà le seguenti operazioni:
--- Il servizio API verrà avviato.
--- Un Database conforme al modello definito via EF Core verrà generato nell'istanza specificata al punto precedente se non è già presente.
--- Il browser di default si avvierà puntanto all'indirizzo 'https://localhost:44354/swagger/index.html'
+ - Il servizio API verrà avviato.
+ - Un Database conforme al modello definito via EF Core verrà generato nell'istanza specificata al punto precedente se non è già presente.
+ - Il browser di default si avvierà puntanto all'indirizzo 'https://localhost:44354/swagger/index.html'
 
    La libreria swagger integrata nel progetto faciliterà l'iterazione con il servizio
 
