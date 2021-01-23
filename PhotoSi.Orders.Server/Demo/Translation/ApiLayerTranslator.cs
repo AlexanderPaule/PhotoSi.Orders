@@ -1,8 +1,9 @@
 ﻿using System.Linq;
-using PhotoSi.Orders.Server.Demo.Controllers.Models;
+using PhotoSi.Orders.Server.Demo.Controllers;
+using PhotoSi.Orders.Server.Demo.Models;
 using PhotoSi.Orders.Server.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Demo.Controllers.Translation
+namespace PhotoSi.Orders.Server.Demo.Translation
 {
 	internal class ApiLayerTranslator : IApiLayerTranslator
 	{

@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PhotoSi.Orders.Server.Demo.Controllers.Data;
-using PhotoSi.Orders.Server.Demo.Controllers.Translation;
+using PhotoSi.Orders.Server.Demo.Data;
 using PhotoSi.Orders.Server.Sales.Core;
 
 namespace PhotoSi.Orders.Server.Demo.Controllers

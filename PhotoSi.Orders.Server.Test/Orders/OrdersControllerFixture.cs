@@ -5,9 +5,8 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using PhotoSi.Orders.Server.Orders.Controllers;
-using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Controllers.Translation;
-using PhotoSi.Orders.Server.Orders.Controllers.Validation;
+using PhotoSi.Orders.Server.Orders.Models;
+using PhotoSi.Orders.Server.Orders.Validation;
 using PhotoSi.Orders.Server.Sales.Core;
 using PhotoSi.Orders.Server.Sales.Core.Models;
 

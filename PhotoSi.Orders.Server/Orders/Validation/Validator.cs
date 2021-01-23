@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using PhotoSi.Orders.Server.Orders.Controllers.Models;
+using PhotoSi.Orders.Server.Orders.Controllers;
+using PhotoSi.Orders.Server.Orders.Models;
 using PhotoSi.Orders.Server.Sales.Core;
 using PhotoSi.Orders.Server.Sales.Core.Models;
 using PhotoSi.Orders.Server.Services.Extensions;
 
-namespace PhotoSi.Orders.Server.Orders.Controllers.Validation
+namespace PhotoSi.Orders.Server.Orders.Validation
 {
 	internal class Validator : IValidator
 	{

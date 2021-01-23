@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PhotoSi.Orders.Server.Demo.Controllers.Models
+namespace PhotoSi.Orders.Server.Demo.Models
 {
 	public class CategoryModel
 	{

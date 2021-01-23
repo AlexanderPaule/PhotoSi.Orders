@@ -5,7 +5,7 @@ using NUnit.Framework;
 using PhotoSi.Orders.Server.Sales.Core;
 using PhotoSi.Orders.Server.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Test.Orders
+namespace PhotoSi.Orders.Server.Test.Sales
 {
 	[TestFixture]
 	internal class SalesPortalFixture

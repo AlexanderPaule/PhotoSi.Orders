@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Controllers.Validation;
+using PhotoSi.Orders.Server.Orders.Models;
+using PhotoSi.Orders.Server.Orders.Validation;
 using PhotoSi.Orders.Server.Sales.Core;
 using PhotoSi.Orders.Server.Sales.Core.Models;
 

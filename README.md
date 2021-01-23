@@ -12,11 +12,9 @@ Database: Entity Framework Core - per il progetto serve gestire pochi dati, in p
 mettere dei Json per facilitare la creazione degli ordini
 
 # TODO
-refactor
 documentation
 notification
 Rileggere la consegna
-
 
 distinct id validation
 mancano test traslaters

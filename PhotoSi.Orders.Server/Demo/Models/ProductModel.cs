@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PhotoSi.Orders.Server.Demo.Controllers.Models
+namespace PhotoSi.Orders.Server.Demo.Models
 {
 	public class ProductModel
 	{

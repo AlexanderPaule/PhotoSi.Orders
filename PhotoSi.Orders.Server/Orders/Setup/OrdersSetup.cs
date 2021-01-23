@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PhotoSi.Orders.Server.Orders.Controllers.Translation;
-using PhotoSi.Orders.Server.Orders.Controllers.Validation;
+using PhotoSi.Orders.Server.Orders.Controllers;
+using PhotoSi.Orders.Server.Orders.Translation;
+using PhotoSi.Orders.Server.Orders.Validation;
 
 namespace PhotoSi.Orders.Server.Orders.Setup
 {

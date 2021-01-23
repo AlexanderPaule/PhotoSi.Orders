@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using PhotoSi.Orders.Server.Demo.Controllers;
 using PhotoSi.Orders.Server.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Demo.Controllers.Data
+namespace PhotoSi.Orders.Server.Demo.Data
 {
 	internal class DemoDataCatalog : IDemoDataCatalog
 	{

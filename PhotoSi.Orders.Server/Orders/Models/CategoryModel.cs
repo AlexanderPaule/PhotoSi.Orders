@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using PhotoSi.Orders.Server.Sales.Data.Models;
 
-namespace PhotoSi.Orders.Server.Orders.Controllers.Models
+namespace PhotoSi.Orders.Server.Orders.Models
 {
 	public class CategoryModel
 	{

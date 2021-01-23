@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PhotoSi.Orders.Server.Orders.Controllers.Models
+namespace PhotoSi.Orders.Server.Orders.Models
 {
 	public class OrderModel
 	{
