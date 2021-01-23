@@ -45,6 +45,26 @@ namespace PhotoSi.Orders.Server.Test.Sales
 			Assert.That(requestResult.GetScalar(), Is.EqualTo(order));
 			repository.Verify();
 		}
+		
+		[Test]
+		public async Task GetAllOrders()
+		{
+			var orderId = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C");
+			var order = new Order();
+			var repository = new Mock<ISalesRepository>(MockBehavior.Strict);
+			repository
+				.Setup(x => x.GetAllOrdersAsync())
+				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new [] { orderId }))
+				.Verifiable("Get operation was not been performed");
+			var ordersEngine = new SalesPortal(repository.Object);
+
+			var requestResult = await ordersEngine.GetAllAsync();
+
+			Assert.That(requestResult, Is.Not.Null);
+			Assert.That(requestResult.FoundAll(), Is.True);
+			Assert.That(requestResult.GetScalar(), Is.EqualTo(order));
+			repository.Verify();
+		}
 
 		[Test]
 		public async Task GetProducts()
