@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace PhotoSi.Sales.Demo.Models
 {
-	public class ProductModel
+	public class DemoProductModel
 	{
 		public Guid Id { get; set; }
-		public CategoryModel Category { get; set; }
+		public DemoCategoryModel DemoCategory { get; set; }
 		public string Description { get; set; }
-		public IEnumerable<OptionModel> Options { get; set; }
+		public IEnumerable<DemoOptionModel> Options { get; set; }
 	}
 }

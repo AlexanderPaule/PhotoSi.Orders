@@ -29,7 +29,7 @@ namespace PhotoSi.Sales.Products.Controllers
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		public async Task<IActionResult> Upsert([FromBody, Required] ProductModel product)
+		public async Task<IActionResult> Create([FromBody, Required] ProductModel product)
 		{
 			_logger.LogInformation($"Product creation requested [{nameof(ProductModel.Id)}:{product.Id}]");
 			_logger.LogInformation($"Product validation start [{nameof(ProductModel.Id)}:{product.Id}]");
@@ -45,7 +45,7 @@ namespace PhotoSi.Sales.Products.Controllers
 			_logger.LogInformation($"Product process start [{nameof(ProductModel.Id)}:{product.Id}]");
 
 			await _productsPortal
-				.UpsertAsync(new [] { _apiLayerTranslator.Translate(product) });
+				.UpsertAsync(new[] { _apiLayerTranslator.Translate(product) });
 
 			_logger.LogInformation($"Product process end [{nameof(ProductModel.Id)}:{product.Id}]");
 

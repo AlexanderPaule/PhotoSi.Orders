@@ -22,7 +22,7 @@ namespace PhotoSi.Sales.Test.Products
 		{
 			_logger = Mock.Of<ILogger<ProductsController>>(MockBehavior.Loose);
 		}
-		
+
 		[Test]
 		public async Task CreateSuccess()
 		{
@@ -43,7 +43,7 @@ namespace PhotoSi.Sales.Test.Products
 
 			var productsPortal = new Mock<IProductsPortal>(MockBehavior.Strict);
 			productsPortal
-				.Setup(x => x.UpsertAsync(new [] { product }))
+				.Setup(x => x.UpsertAsync(new[] { product }))
 				.Returns(Task.CompletedTask)
 				.Verifiable("process operation not performed");
 
@@ -54,7 +54,7 @@ namespace PhotoSi.Sales.Test.Products
 				validator: validator.Object);
 
 
-			var result = await controller.Upsert(productModel);
+			var result = await controller.Create(productModel);
 
 
 			Assert.That(result, Is.TypeOf<OkObjectResult>());
@@ -84,7 +84,7 @@ namespace PhotoSi.Sales.Test.Products
 				validator: validator.Object);
 
 
-			var result = await controller.Upsert(productModel);
+			var result = await controller.Create(productModel);
 
 
 			Assert.That(result, Is.TypeOf<BadRequestObjectResult>());

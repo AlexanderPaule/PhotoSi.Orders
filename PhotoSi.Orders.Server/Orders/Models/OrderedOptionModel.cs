@@ -4,7 +4,7 @@ using PhotoSi.Sales.Sales.Data.Models;
 
 namespace PhotoSi.Sales.Orders.Models
 {
-	public class OptionModel
+	public class OrderedOptionModel
 	{
 		[Required]
 		public Guid Id { get; set; }

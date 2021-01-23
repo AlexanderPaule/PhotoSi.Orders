@@ -2,10 +2,10 @@
 
 namespace PhotoSi.Sales.Demo.Models
 {
-	public class OptionModel
+	public class DemoCategoryModel
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }
-		public string Content { get; set; }
+		public string Description { get; set; }
 	}
 }

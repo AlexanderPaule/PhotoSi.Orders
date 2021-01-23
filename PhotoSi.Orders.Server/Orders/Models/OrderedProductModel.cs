@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Sales.Orders.Models
 {
-	public class ProductModel
+	public class OrderedProductModel
 	{
 		[Required]
 		public Guid Id { get; set; }
 		[Required]
-		public IEnumerable<OptionModel> CustomOptions { get; set; }
+		public IEnumerable<OrderedOptionModel> CustomOptions { get; set; }
 	}
 }

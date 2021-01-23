@@ -19,17 +19,17 @@ namespace PhotoSi.Sales.Test.Orders
 		{
 			var existingOptions = new []
 			{
-				new OptionModel { Id = new Guid("B885C0E8-23B2-482C-8D59-8BD96EF58AA3") },
-				new OptionModel { Id = new Guid("05FC5BD3-BC16-4EAD-8A1E-1D92C2060D8E") }
+				new OrderedOptionModel { Id = new Guid("B885C0E8-23B2-482C-8D59-8BD96EF58AA3") },
+				new OrderedOptionModel { Id = new Guid("05FC5BD3-BC16-4EAD-8A1E-1D92C2060D8E") }
 			};
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = existingOptions }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = existingOptions }
 				}
 			};
 			
@@ -38,13 +38,13 @@ namespace PhotoSi.Sales.Test.Orders
 				new Product
 				{
 					Id = orderModel.Products.First().Id,
-					Category = new Category { Id = orderModel.Category.Id },
+					Category = new Category { Id = orderModel.OrderCategory.Id },
 					Options = new List<Option>()
 				},
 				new Product
 				{
 					Id = orderModel.Products.Last().Id,
-					Category = new Category { Id = orderModel.Category.Id },
+					Category = new Category { Id = orderModel.OrderCategory.Id },
 					Options = new [] { new Option { Id = existingOptions.First().Id }, new Option { Id = existingOptions.Last().Id } }
 				}
 			};
@@ -57,7 +57,7 @@ namespace PhotoSi.Sales.Test.Orders
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(RequestResult<Product, Guid>.New(products, products.Select(x => x.Id)));
 			checkGateway
-				.Setup(x => x.ExistsCategoryAsync(orderModel.Category.Id))
+				.Setup(x => x.ExistsCategoryAsync(orderModel.OrderCategory.Id))
 				.ReturnsAsync(true);
 			
 			var validator = new Validator(checkGateway.Object);
@@ -75,11 +75,11 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid(),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new []
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OrderedOptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -95,11 +95,11 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid() },
+				OrderCategory = new OrderCategoryModel { Id = new Guid() },
 				Products = new[]
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OrderedOptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -115,11 +115,11 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid(), CustomOptions = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid(), CustomOptions = new List<OrderedOptionModel>() }
 				}
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
@@ -135,8 +135,8 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
-				Products = new List<ProductModel>()
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				Products = new List<OrderedProductModel>()
 			};
 			var validator = new Validator(Mock.Of<ICheckGateway>(MockBehavior.Strict));
 
@@ -151,13 +151,13 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel
+					new OrderedProductModel
 					{
 						Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
-						CustomOptions = new [] { new OptionModel { Id = new Guid() } }
+						CustomOptions = new [] { new OrderedOptionModel { Id = new Guid() } }
 					}
 				}
 			};
@@ -175,16 +175,16 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel
+					new OrderedProductModel
 					{
 						Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
 						CustomOptions = new []
 						{
-							new OptionModel { Id = optionId },
-							new OptionModel { Id = optionId }
+							new OrderedOptionModel { Id = optionId },
+							new OrderedOptionModel { Id = optionId }
 						}
 					}
 				}
@@ -202,11 +202,11 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OrderedOptionModel>() }
 				}
 			};
 			
@@ -230,18 +230,18 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OrderedOptionModel>() }
 				}
 			};
 			
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } },
-				new Product { Id = orderModel.Products.Last().Id, Category = new Category { Id = orderModel.Category.Id } }
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.OrderCategory.Id } },
+				new Product { Id = orderModel.Products.Last().Id, Category = new Category { Id = orderModel.OrderCategory.Id } }
 			};
 
 			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
@@ -252,7 +252,7 @@ namespace PhotoSi.Sales.Test.Orders
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(RequestResult<Product, Guid>.New(products, products.Select(x => x.Id)));
 			checkGateway
-				.Setup(x => x.ExistsCategoryAsync(orderModel.Category.Id))
+				.Setup(x => x.ExistsCategoryAsync(orderModel.OrderCategory.Id))
 				.ReturnsAsync(false);
 			
 			var validator = new Validator(checkGateway.Object);
@@ -270,17 +270,17 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OrderedOptionModel>() }
 				}
 			};
 			
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id } },
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.OrderCategory.Id } },
 				new Product { Id = orderModel.Products.Last().Id, Category = new Category { Id = new Guid("995174E4-37B7-44EE-A8A2-EE920C6FAB9C") } }
 			};
 
@@ -292,7 +292,7 @@ namespace PhotoSi.Sales.Test.Orders
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(RequestResult<Product, Guid>.New(products, products.Select(x => x.Id)));
 			checkGateway
-				.Setup(x => x.ExistsCategoryAsync(orderModel.Category.Id))
+				.Setup(x => x.ExistsCategoryAsync(orderModel.OrderCategory.Id))
 				.ReturnsAsync(true);
 			var validator = new Validator(checkGateway.Object);
 
@@ -309,17 +309,17 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OptionModel>() },
-					new ProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OptionModel>() }
+					new OrderedProductModel { Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), CustomOptions = new List<OrderedOptionModel>() },
+					new OrderedProductModel { Id = new Guid("4B5174E4-37B7-44EE-A8A2-EE920C6FAB9E"), CustomOptions = new List<OrderedOptionModel>() }
 				}
 			};
 			
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.Category.Id }, Options = new List<Option>() }
+				new Product { Id = orderModel.Products.First().Id, Category = new Category { Id = orderModel.OrderCategory.Id }, Options = new List<Option>() }
 			};
 
 			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
@@ -330,7 +330,7 @@ namespace PhotoSi.Sales.Test.Orders
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(RequestResult<Product, Guid>.New(products, products.Select(x => x.Id)));
 			checkGateway
-				.Setup(x => x.ExistsCategoryAsync(orderModel.Category.Id))
+				.Setup(x => x.ExistsCategoryAsync(orderModel.OrderCategory.Id))
 				.ReturnsAsync(true);
 			
 			var validator = new Validator(checkGateway.Object);
@@ -348,16 +348,16 @@ namespace PhotoSi.Sales.Test.Orders
 			var orderModel = new OrderModel
 			{
 				Id = new Guid("2B5174E4-37B7-44EE-A8A2-EE920C6FAB9C"),
-				Category = new CategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
+				OrderCategory = new OrderCategoryModel { Id = new Guid("885174E4-37B7-44EE-A8A2-EE920C6FAB9C") },
 				Products = new[]
 				{
-					new ProductModel
+					new OrderedProductModel
 					{
 						Id = new Guid("3B5174E4-37B7-44EE-A8A2-EE920C6FAB9D"), 
 						CustomOptions = new []
 						{
-							new OptionModel { Id = new Guid("777174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
-							new OptionModel { Id = new Guid("888174E4-37B7-44EE-A8A2-EE920C6FAB9D") }
+							new OrderedOptionModel { Id = new Guid("777174E4-37B7-44EE-A8A2-EE920C6FAB9D") },
+							new OrderedOptionModel { Id = new Guid("888174E4-37B7-44EE-A8A2-EE920C6FAB9D") }
 						}
 					}
 				}
@@ -365,7 +365,7 @@ namespace PhotoSi.Sales.Test.Orders
 
 			var products = new List<Product>
 			{
-				new Product { Id = orderModel.Products.Single().Id, Category = new Category { Id = orderModel.Category.Id }, Options = new List<Option>() }
+				new Product { Id = orderModel.Products.Single().Id, Category = new Category { Id = orderModel.OrderCategory.Id }, Options = new List<Option>() }
 			};
 			
 			var checkGateway = new Mock<ICheckGateway>(MockBehavior.Strict);
@@ -376,7 +376,7 @@ namespace PhotoSi.Sales.Test.Orders
 				.Setup(x => x.GetProductsAsync(It.IsAny<IEnumerable<Guid>>()))
 				.ReturnsAsync(RequestResult<Product, Guid>.New(products, products.Select(x => x.Id)));
 			checkGateway
-				.Setup(x => x.ExistsCategoryAsync(orderModel.Category.Id))
+				.Setup(x => x.ExistsCategoryAsync(orderModel.OrderCategory.Id))
 				.ReturnsAsync(true);
 			
 			var validator = new Validator(checkGateway.Object);

@@ -8,20 +8,20 @@ namespace PhotoSi.Sales.Demo.Translation
 	internal class ApiLayerTranslator : IApiLayerTranslator
 	{
 
-		public ProductModel Translate(Product source)
+		public DemoProductModel Translate(Product source)
 		{
-			return new ProductModel
+			return new DemoProductModel
 			{
 				Id = source.Id,
-				Category = Translate(source.Category),
+				DemoCategory = Translate(source.Category),
 				Description = source.Description,
 				Options = source.Options.Select(Translate)
 			};
 		}
 
-		public CategoryModel Translate(Category source)
+		public DemoCategoryModel Translate(Category source)
 		{
-			return new CategoryModel
+			return new DemoCategoryModel
 			{
 				Id = source.Id,
 				Name = source.Name,
@@ -29,9 +29,9 @@ namespace PhotoSi.Sales.Demo.Translation
 			};
 		}
 
-		private static OptionModel Translate(Option source)
+		private static DemoOptionModel Translate(Option source)
 		{
-			return new OptionModel
+			return new DemoOptionModel
 			{
 				Id = source.Id,
 				Name = source.Name,

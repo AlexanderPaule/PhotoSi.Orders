@@ -11,8 +11,8 @@ namespace PhotoSi.Sales.Orders.Models
 		[Required]
 		public DateTimeOffset CreatedOn { get; set; }
 		[Required]
-		public CategoryModel Category { get; set; }
+		public OrderCategoryModel OrderCategory { get; set; }
 		[Required]
-		public IEnumerable<ProductModel> Products { get; set; }
+		public IEnumerable<OrderedProductModel> Products { get; set; }
 	}
 }

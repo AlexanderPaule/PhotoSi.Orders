@@ -190,7 +190,7 @@ namespace PhotoSi.Sales.Sales.Data
 				.Products
 				.Include(x => x.Category)
 				.Include(x => x.Options)
-				.Where(x => ids.Any() || ids.Contains(x.Id))
+				.Where(x => !ids.Any() || ids.Contains(x.Id))
 				.ToListAsync();
 		}
 	}

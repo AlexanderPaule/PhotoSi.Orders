@@ -5,7 +5,7 @@ namespace PhotoSi.Sales.Demo.Controllers
 {
 	public interface IApiLayerTranslator
 	{
-		ProductModel Translate(Product source);
-		CategoryModel Translate(Category source);
+		DemoProductModel Translate(Product source);
+		DemoCategoryModel Translate(Category source);
 	}
 }
