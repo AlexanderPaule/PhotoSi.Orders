@@ -5,11 +5,10 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using PhotoSi.Orders.Server.Orders.Controllers;
-using PhotoSi.Orders.Server.Orders.Controllers.Models;
-using PhotoSi.Orders.Server.Orders.Controllers.Translation;
-using PhotoSi.Orders.Server.Orders.Controllers.Validation;
-using PhotoSi.Orders.Server.Orders.Core;
-using PhotoSi.Orders.Server.Orders.Core.Dto;
+using PhotoSi.Orders.Server.Orders.Models;
+using PhotoSi.Orders.Server.Orders.Validation;
+using PhotoSi.Orders.Server.Sales.Core;
+using PhotoSi.Orders.Server.Sales.Core.Models;
 
 namespace PhotoSi.Orders.Server.Test.Orders
 {
@@ -149,6 +148,38 @@ namespace PhotoSi.Orders.Server.Test.Orders
 
 			Assert.That(result, Is.TypeOf<NotFoundObjectResult>());
 			orderEngine.VerifyAll();
+	    }
+
+	    [Test]
+	    public async Task GetAll()
+	    {
+		    var order = new Order();
+		    var orderModel = new OrderModel();
+		    var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
+		    orderEngine
+				.Setup(x => x.GetAllAsync())
+				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] {order}, new [] { new Guid() }))
+				.Verifiable("Request operation not performed");
+
+		    var apiLayerTranslator = new Mock<IApiLayerTranslator>(MockBehavior.Strict);
+		    apiLayerTranslator
+				.Setup(x => x.Translate(order))
+				.Returns(orderModel)
+				.Verifiable("Translation operation not performed");
+
+			var controller = new OrdersController(
+			    logger: _logger,
+			    validator: Mock.Of<IValidator>(MockBehavior.Strict),
+			    apiLayerTranslator: apiLayerTranslator.Object,
+			    ordersEngine: orderEngine.Object);
+
+
+			var result = await controller.GetAll();
+
+
+			Assert.That(result, Is.TypeOf<OkObjectResult>());
+			orderEngine.VerifyAll();
+			apiLayerTranslator.VerifyAll();
 	    }
     }
 }
