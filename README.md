@@ -1,6 +1,7 @@
 # PhotoSi.Orders
 
 ## Scelte Tecnologiche
+- Framework: **.Net Core 3.1**
 - Testing: **NUnit**
 - API Documentation: **Swagger**
 - Database: **SqlServer**
