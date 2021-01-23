@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhotoSi.Orders.Server.Demo.Controllers.Data;
+using PhotoSi.Orders.Server.Orders.Controllers.Translation;
 using PhotoSi.Orders.Server.Orders.Core;
 
 namespace PhotoSi.Orders.Server.Demo.Controllers
@@ -12,11 +14,13 @@ namespace PhotoSi.Orders.Server.Demo.Controllers
 	{
 		private readonly IDemoDataCatalog _demoDataCatalog;
 		private readonly ISalesCatalog _salesCatalog;
+		private readonly IApiLayerTranslator _apiLayerTranslator;
 
-		public DemoController(IDemoDataCatalog demoDataCatalog, ISalesCatalog salesCatalog)
+		public DemoController(IDemoDataCatalog demoDataCatalog, ISalesCatalog salesCatalog, IApiLayerTranslator apiLayerTranslator)
 		{
 			_demoDataCatalog = demoDataCatalog;
 			_salesCatalog = salesCatalog;
+			_apiLayerTranslator = apiLayerTranslator;
 		}
 
 		[HttpPost("SetUp")]
@@ -30,6 +34,28 @@ namespace PhotoSi.Orders.Server.Demo.Controllers
 			await _salesCatalog.UpsertAsync(products);
 			
 			return Ok();
+		}
+
+		[HttpGet("ConfiguredProducts")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public IActionResult GetConfiguredProducts()
+		{
+			var products = _demoDataCatalog
+				.GetProducts()
+				.Select(_apiLayerTranslator.Translate);
+			
+			return Ok(products);
+		}
+
+		[HttpGet("ConfiguredCategories")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public IActionResult GetConfiguredCategories()
+		{
+			var products = _demoDataCatalog
+				.GetCategories()
+				.Select(_apiLayerTranslator.Translate);
+			
+			return Ok(products);
 		}
 	}
 }

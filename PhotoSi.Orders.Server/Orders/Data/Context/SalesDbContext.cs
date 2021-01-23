@@ -16,19 +16,26 @@ namespace PhotoSi.Orders.Server.Orders.Data.Context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			// Names and Schema
-			modelBuilder.Entity<OrderEntity>(entity => entity.ToTable("OrderEntity", "sales"));
-			modelBuilder.Entity<OrderedProductEntity>(entity => entity.ToTable("OrderedProductEntity", "sales"));
-			modelBuilder.Entity<OrderedOptionEntity>(entity => entity.ToTable("OrderedOptionEntity", "sales"));
-			modelBuilder.Entity<ProductEntity>(entity => entity.ToTable("ProductEntity", "sales"));
-			modelBuilder.Entity<CategoryEntity>(entity => entity.ToTable("CategoryEntity", "sales"));
-			modelBuilder.Entity<OptionEntity>(entity => entity.ToTable("OptionEntity", "sales"));
+			modelBuilder.Entity<OrderEntity>(entity => entity.ToTable("Orders", "sales"));
+			modelBuilder.Entity<OrderedProductEntity>(entity => entity.ToTable("OrderedProducts", "sales"));
+			modelBuilder.Entity<OrderedOptionEntity>(entity => entity.ToTable("OrderedOptions", "sales"));
+			modelBuilder.Entity<ProductEntity>(entity => entity.ToTable("Products", "sales"));
+			modelBuilder.Entity<CategoryEntity>(entity => entity.ToTable("Categories", "sales"));
+			modelBuilder.Entity<OptionEntity>(entity => entity.ToTable("Options", "sales"));
 
 			// Orders
 			modelBuilder
-					.Entity<OrderEntity>()
-					.HasOne(p => p.Category)
-					.WithMany(b => b.Orders)
-					.HasForeignKey(p => p.CategoryId);
+				.Entity<OrderEntity>()
+				.HasOne(p => p.Category)
+				.WithMany(b => b.Orders)
+				.HasForeignKey(p => p.CategoryId)
+				.OnDelete(DeleteBehavior.NoAction);
+
+			modelBuilder
+				.Entity<OrderedProductEntity>()
+				.HasOne(p => p.ReferencedOrder)
+				.WithMany(b => b.Products)
+				.HasForeignKey(p => p.OrderId);
 
 			// Products
 			modelBuilder

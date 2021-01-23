@@ -8,5 +8,6 @@ namespace PhotoSi.Orders.Server.Orders.Core
 	{
 		Task ProcessAsync(Order order);
 		Task<RequestResult<Order, Guid>> GetAsync(Guid id);
+		Task<RequestResult<Order, Guid>> GetAllAsync();
 	}
 }

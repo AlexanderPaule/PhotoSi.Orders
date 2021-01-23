@@ -40,7 +40,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoryEntity", "sales");
+                    b.ToTable("Categories", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OptionEntity", b =>
@@ -69,7 +69,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OptionEntity", "sales");
+                    b.ToTable("Options", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderEntity", b =>
@@ -94,7 +94,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("OrderEntity", "sales");
+                    b.ToTable("Orders", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderedOptionEntity", b =>
@@ -124,7 +124,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("OrderedProductId");
 
-                    b.ToTable("OrderedOptionEntity", "sales");
+                    b.ToTable("OrderedOptions", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderedProductEntity", b =>
@@ -139,7 +139,7 @@ namespace PhotoSi.Orders.Server.Migrations
                     b.Property<DateTimeOffset>("DbUpdated")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<Guid?>("OrderEntityId")
+                    b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProductId")
@@ -147,11 +147,11 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderEntityId");
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderedProductEntity", "sales");
+                    b.ToTable("OrderedProducts", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.ProductEntity", b =>
@@ -176,7 +176,7 @@ namespace PhotoSi.Orders.Server.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductEntity", "sales");
+                    b.ToTable("Products", "sales");
                 });
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OptionEntity", b =>
@@ -195,7 +195,7 @@ namespace PhotoSi.Orders.Server.Migrations
                     b.HasOne("PhotoSi.Orders.Server.Orders.Data.Models.CategoryEntity", "Category")
                         .WithMany("Orders")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -222,15 +222,19 @@ namespace PhotoSi.Orders.Server.Migrations
 
             modelBuilder.Entity("PhotoSi.Orders.Server.Orders.Data.Models.OrderedProductEntity", b =>
                 {
-                    b.HasOne("PhotoSi.Orders.Server.Orders.Data.Models.OrderEntity", null)
+                    b.HasOne("PhotoSi.Orders.Server.Orders.Data.Models.OrderEntity", "ReferencedOrder")
                         .WithMany("Products")
-                        .HasForeignKey("OrderEntityId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PhotoSi.Orders.Server.Orders.Data.Models.ProductEntity", "ReferencedProduct")
                         .WithMany("OrderedProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ReferencedOrder");
 
                     b.Navigation("ReferencedProduct");
                 });

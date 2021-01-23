@@ -14,6 +14,7 @@ namespace PhotoSi.Orders.Server.Orders.Data.Models
 		public string Name { get; set; }
 		public string Content { get; set; }
 
+		[Required]
 		public Guid ProductId { get; set; }
 		public ProductEntity Product { get; set; }
 		public IEnumerable<OrderedOptionEntity> CustomizedOptions { get; set; }

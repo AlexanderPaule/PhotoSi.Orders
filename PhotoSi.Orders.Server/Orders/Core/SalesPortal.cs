@@ -26,6 +26,12 @@ namespace PhotoSi.Orders.Server.Orders.Core
 				.GetOrderAsync(id);
 		}
 
+		public Task<RequestResult<Order, Guid>> GetAllAsync()
+		{
+			return _persistence
+				.GetAllOrdersAsync();
+		}
+
 		public Task<RequestResult<Product, Guid>> GetProductsAsync(IEnumerable<Guid> productsIds)
 		{
 			return _persistence

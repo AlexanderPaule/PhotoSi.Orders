@@ -7,5 +7,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 	{
 		Order Translate(OrderModel source);
 		OrderModel Translate(Order source);
+		ProductModel Translate(Product source);
+		CategoryModel Translate(Category source);
 	}
 }

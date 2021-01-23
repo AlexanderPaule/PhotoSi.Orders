@@ -29,17 +29,33 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 			return new OrderModel
 			{
 				Id = source.Id,
-				Category = new CategoryModel
-				{
-					Id = source.Category.Id,
-					Name = source.Category.Name,
-					Description = source.Category.Description
-				},
+				Category = Translate(source.Category),
 				CreatedOn = source.CreatedOn,
-				Products = source.Products.Select(Translate)
+				Products = source.Products.Select(TranslateOrdered)
 			};
 		}
 
+		public ProductModel Translate(Product source)
+		{
+			return new ProductModel
+			{
+				Id = source.Id,
+				Category = Translate(source.Category),
+				Description = source.Description,
+				Options = source.Options.Select(Translate)
+			};
+		}
+
+		public CategoryModel Translate(Category source)
+		{
+			return new CategoryModel
+			{
+				Id = source.Id,
+				Name = source.Name,
+				Description = source.Description
+			};
+		}
+		
 		private static Product Translate(OrderedProductModel source, Category category)
 		{
 			return new Product
@@ -60,7 +76,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers.Translation
 			};
 		}
 
-		private static OrderedProductModel Translate(Product source)
+		private static OrderedProductModel TranslateOrdered(Product source)
 		{
 			return new OrderedProductModel
 			{

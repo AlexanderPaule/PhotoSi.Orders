@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -70,6 +71,17 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 
 			_logger.LogInformation($"Order get end [{nameof(id)}:{id}]");
 			return Ok(_apiLayerTranslator.Translate(requestResult.GetScalar()));
+		}
+
+		[HttpGet("All")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public async Task<IActionResult> GetAll()
+		{
+			_logger.LogInformation("Order get all start");
+			var requestResult = await _ordersEngine.GetAllAsync();
+			_logger.LogInformation("Order get all end");
+			
+			return Ok(requestResult.GetList().Select(_apiLayerTranslator.Translate));
 		}
 	}
 }
