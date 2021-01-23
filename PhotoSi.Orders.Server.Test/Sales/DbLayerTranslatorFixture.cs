@@ -3,6 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using PhotoSi.Sales.Sales.Core.Models;
 using PhotoSi.Sales.Sales.Data.Models;
+using PhotoSi.Sales.Sales.Data.Translation;
 
 namespace PhotoSi.Sales.Test.Sales
 {

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PhotoSi.Sales.Demo.Setup;
 using PhotoSi.Sales.Orders.Setup;
+using PhotoSi.Sales.Products.Setup;
 using PhotoSi.Sales.Sales.Data.Context;
 using PhotoSi.Sales.Sales.Setup;
 using PhotoSi.Sales.Services.ApiDocumentation;
@@ -26,6 +27,7 @@ namespace PhotoSi.Sales
 				.AddApiDocumentation()
 				.AddPhotoSiSales(_configuration.GetConnectionString("Sales"))
 				.AddPhotoSiOrders()
+				.AddPhotoSiProducts()
 				.AddPhotoSiDemo();
 			
 			services

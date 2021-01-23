@@ -7,6 +7,7 @@ using PhotoSi.Sales.Orders.Models;
 using PhotoSi.Sales.Sales.Core;
 using PhotoSi.Sales.Sales.Core.Models;
 using PhotoSi.Sales.Services.Extensions;
+using PhotoSi.Sales.Utils;
 
 namespace PhotoSi.Sales.Orders.Validation
 {

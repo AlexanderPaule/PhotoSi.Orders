@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using PhotoSi.Sales.Orders.Models;
-using PhotoSi.Sales.Orders.Validation;
+using PhotoSi.Sales.Utils;
 
 namespace PhotoSi.Sales.Orders.Controllers
 {

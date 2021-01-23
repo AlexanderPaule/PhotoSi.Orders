@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PhotoSi.Sales.Orders.Validation
+namespace PhotoSi.Sales.Utils
 {
 	public class ValidationResult
 	{

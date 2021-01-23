@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Orders.Validation;
 using PhotoSi.Sales.Sales.Core;
 using PhotoSi.Sales.Sales.Core.Models;
 
