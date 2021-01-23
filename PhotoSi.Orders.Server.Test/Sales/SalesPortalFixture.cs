@@ -19,7 +19,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				.Setup(x => x.SaveAsync(order))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Save operation was not been performed");
-			var ordersEngine = new SalesPortal(persistence.Object);
+			var ordersEngine = new SalesCatalog(persistence.Object);
 
 			await ordersEngine.ProcessAsync(order);
 			
@@ -36,7 +36,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				.Setup(x => x.GetOrderAsync(orderId))
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new [] { orderId }))
 				.Verifiable("Get operation was not been performed");
-			var ordersEngine = new SalesPortal(persistence.Object);
+			var ordersEngine = new SalesCatalog(persistence.Object);
 
 			var requestResult = await ordersEngine.GetAsync(orderId);
 
@@ -64,7 +64,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				.Setup(x => x.GetProductsAsync(productsIds))
 				.ReturnsAsync(expectedRequestResult)
 				.Verifiable("Get operation was not been performed");
-			var ordersEngine = new SalesPortal(persistence.Object);
+			var ordersEngine = new SalesCatalog(persistence.Object);
 
 			var actualRequestResult = await ordersEngine.GetProductsAsync(productsIds);
 
@@ -82,7 +82,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				.Setup(x => x.ExistsCategoryAsync(categoryId))
 				.ReturnsAsync(true)
 				.Verifiable("Exists operation was not been performed");
-			var ordersEngine = new SalesPortal(persistence.Object);
+			var ordersEngine = new SalesCatalog(persistence.Object);
 
 			var exists = await ordersEngine.ExistsCategoryAsync(categoryId);
 
@@ -99,7 +99,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				.Setup(x => x.ExistsOrderAsync(orderId))
 				.ReturnsAsync(true)
 				.Verifiable("Exists operation was not been performed");
-			var ordersEngine = new SalesPortal(persistence.Object);
+			var ordersEngine = new SalesCatalog(persistence.Object);
 
 			var exists = await ordersEngine.ExistsOrderAsync(orderId);
 
@@ -119,7 +119,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				.Setup(x => x.Upsert(categories))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Upsert operation was not been performed");
-			var ordersEngine = new SalesPortal(persistence.Object);
+			var ordersEngine = new SalesCatalog(persistence.Object);
 
 			await ordersEngine.UpsertAsync(categories);
 
@@ -138,7 +138,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 				.Setup(x => x.Upsert(products))
 				.Returns(Task.CompletedTask)
 				.Verifiable("Upsert operation was not been performed");
-			var ordersEngine = new SalesPortal(persistence.Object);
+			var ordersEngine = new SalesCatalog(persistence.Object);
 
 			await ordersEngine.UpsertAsync(products);
 

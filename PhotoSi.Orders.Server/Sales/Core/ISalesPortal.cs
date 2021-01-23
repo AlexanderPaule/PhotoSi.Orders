@@ -4,7 +4,7 @@ using PhotoSi.Orders.Server.Sales.Core.Models;
 
 namespace PhotoSi.Orders.Server.Sales.Core
 {
-	public interface ISalesCatalog
+	public interface ISalesPortal
 	{
 		Task UpsertAsync(IEnumerable<Category> categories);
 		Task UpsertAsync(IEnumerable<Product> categories);

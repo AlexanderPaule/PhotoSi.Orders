@@ -12,13 +12,13 @@ namespace PhotoSi.Orders.Server.Demo.Controllers
 	public class DemoController : ControllerBase
 	{
 		private readonly IDemoDataCatalog _demoDataCatalog;
-		private readonly ISalesCatalog _salesCatalog;
+		private readonly ISalesPortal _salesPortal;
 		private readonly IApiLayerTranslator _apiLayerTranslator;
 
-		public DemoController(IDemoDataCatalog demoDataCatalog, ISalesCatalog salesCatalog, IApiLayerTranslator apiLayerTranslator)
+		public DemoController(IDemoDataCatalog demoDataCatalog, ISalesPortal salesPortal, IApiLayerTranslator apiLayerTranslator)
 		{
 			_demoDataCatalog = demoDataCatalog;
-			_salesCatalog = salesCatalog;
+			_salesPortal = salesPortal;
 			_apiLayerTranslator = apiLayerTranslator;
 		}
 
@@ -29,8 +29,8 @@ namespace PhotoSi.Orders.Server.Demo.Controllers
 			var categories = _demoDataCatalog.GetCategories();
 			var products = _demoDataCatalog.GetProducts();
 			
-			await _salesCatalog.UpsertAsync(categories);
-			await _salesCatalog.UpsertAsync(products);
+			await _salesPortal.UpsertAsync(categories);
+			await _salesPortal.UpsertAsync(products);
 			
 			return Ok();
 		}

@@ -5,11 +5,11 @@ using PhotoSi.Orders.Server.Sales.Core.Models;
 
 namespace PhotoSi.Orders.Server.Sales.Core
 {
-	internal class SalesPortal : IOrdersEngine, ICheckGateway, ISalesCatalog
+	internal class SalesCatalog : IOrdersEngine, ICheckGateway, ISalesPortal
 	{
 		private readonly ISalesPersistence _persistence;
 
-		public SalesPortal(ISalesPersistence persistence)
+		public SalesCatalog(ISalesPersistence persistence)
 		{
 			_persistence = persistence;
 		}
