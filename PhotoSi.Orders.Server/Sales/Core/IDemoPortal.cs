@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Sales.Core
+namespace PhotoSi.Sales.Sales.Core
 {
-	public interface ISalesPortal
+	public interface IDemoPortal
 	{
 		Task UpsertAsync(IEnumerable<Category> categories);
 		Task UpsertAsync(IEnumerable<Product> categories);

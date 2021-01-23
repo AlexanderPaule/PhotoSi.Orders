@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace PhotoSi.Orders.Server.Sales.Data.Context
+namespace PhotoSi.Sales.Sales.Data.Context
 {
 	internal static class DbSetExtensions
 	{

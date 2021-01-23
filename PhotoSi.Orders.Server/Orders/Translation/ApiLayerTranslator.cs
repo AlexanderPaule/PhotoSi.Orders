@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using PhotoSi.Orders.Server.Orders.Controllers;
-using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Orders.Controllers;
+using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Orders.Translation
+namespace PhotoSi.Sales.Orders.Translation
 {
 	public class ApiLayerTranslator : IApiLayerTranslator
 	{
@@ -11,9 +11,9 @@ namespace PhotoSi.Orders.Server.Orders.Translation
 		{
 			var category = new Category
 			{
-				Id = source.Category.Id,
-				Name = source.Category.Name,
-				Description = source.Category.Description
+				Id = source.OrderCategory.Id,
+				Name = source.OrderCategory.Name,
+				Description = source.OrderCategory.Description
 			};
 			
 			return new Order
@@ -30,15 +30,15 @@ namespace PhotoSi.Orders.Server.Orders.Translation
 			return new OrderModel
 			{
 				Id = source.Id,
-				Category = Translate(source.Category),
+				OrderCategory = Translate(source.Category),
 				CreatedOn = source.CreatedOn,
 				Products = source.Products.Select(TranslateOrdered)
 			};
 		}
 
-		private static CategoryModel Translate(Category source)
+		private static OrderCategoryModel Translate(Category source)
 		{
-			return new CategoryModel
+			return new OrderCategoryModel
 			{
 				Id = source.Id,
 				Name = source.Name,
@@ -46,7 +46,7 @@ namespace PhotoSi.Orders.Server.Orders.Translation
 			};
 		}
 		
-		private static Product Translate(ProductModel source, Category category)
+		private static Product Translate(OrderedProductModel source, Category category)
 		{
 			return new Product
 			{
@@ -56,7 +56,7 @@ namespace PhotoSi.Orders.Server.Orders.Translation
 			};
 		}
 
-		private static Option Translate(OptionModel source)
+		private static Option Translate(OrderedOptionModel source)
 		{
 			return new Option
 			{
@@ -66,18 +66,18 @@ namespace PhotoSi.Orders.Server.Orders.Translation
 			};
 		}
 
-		private static ProductModel TranslateOrdered(Product source)
+		private static OrderedProductModel TranslateOrdered(Product source)
 		{
-			return new ProductModel
+			return new OrderedProductModel
 			{
 				Id = source.Id,
 				CustomOptions = source.Options.Select(Translate)
 			};
 		}
 
-		private static OptionModel Translate(Option source)
+		private static OrderedOptionModel Translate(Option source)
 		{
-			return new OptionModel
+			return new OrderedOptionModel
 			{
 				Id = source.Id,
 				Name = source.Name,

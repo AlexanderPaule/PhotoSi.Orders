@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Demo.Controllers
+namespace PhotoSi.Sales.Demo.Controllers
 {
 	public interface IDemoDataCatalog
 	{

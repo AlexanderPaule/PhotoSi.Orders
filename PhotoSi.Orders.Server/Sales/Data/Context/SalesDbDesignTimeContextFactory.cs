@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace PhotoSi.Orders.Server.Sales.Data.Context
+namespace PhotoSi.Sales.Sales.Data.Context
 {
 	internal class SalesDbDesignTimeContextFactory : IDesignTimeDbContextFactory<SalesDbContext>
 	{

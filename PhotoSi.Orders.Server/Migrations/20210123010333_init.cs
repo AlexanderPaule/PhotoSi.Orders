@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PhotoSi.Orders.Server.Migrations
+namespace PhotoSi.Sales.Migrations
 {
     public partial class init : Migration
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PhotoSi.Orders.Server.Demo.Models
+namespace PhotoSi.Sales.Demo.Models
 {
-	public class CategoryModel
+	public class DemoCategoryModel
 	{
 		public Guid Id { get; set; }
 		public string Name { get; set; }

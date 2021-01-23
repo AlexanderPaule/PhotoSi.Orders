@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace PhotoSi.Orders.Server
+namespace PhotoSi.Sales
 {
 	internal static class Program
 	{

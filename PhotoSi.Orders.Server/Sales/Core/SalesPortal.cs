@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Sales.Core
+namespace PhotoSi.Sales.Sales.Core
 {
-	internal class SalesPortal : IOrdersEngine, ICheckGateway, ISalesPortal
+	internal class SalesPortal : IOrdersEngine, ICheckGateway, IProductsPortal, IDemoPortal
 	{
 		private readonly ISalesRepository _repository;
 
@@ -20,13 +20,13 @@ namespace PhotoSi.Orders.Server.Sales.Core
 				.SaveAsync(order);
 		}
 
-		public Task<RequestResult<Order, Guid>> GetAsync(Guid id)
+		public Task<RequestResult<Order, Guid>> GetOrderAsync(Guid id)
 		{
 			return _repository
 				.GetOrderAsync(id);
 		}
 
-		public Task<RequestResult<Order, Guid>> GetAllAsync()
+		public Task<RequestResult<Order, Guid>> GetAllOrdersAsync()
 		{
 			return _repository
 				.GetAllOrdersAsync();
@@ -53,13 +53,19 @@ namespace PhotoSi.Orders.Server.Sales.Core
 		public Task UpsertAsync(IEnumerable<Category> categories)
 		{
 			return _repository
-				.Upsert(categories);
+				.UpsertAsync(categories);
 		}
 
 		public Task UpsertAsync(IEnumerable<Product> categories)
 		{
 			return _repository
-				.Upsert(categories);
+				.UpsertAsync(categories);
+		}
+
+		public Task<RequestResult<Product, Guid>> GetAllProductsAsync()
+		{
+			return _repository
+				.GetAllProductsAsync();
 		}
 	}
 }

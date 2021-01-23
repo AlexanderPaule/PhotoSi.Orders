@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PhotoSi.Orders.Server.Sales.Core;
-using PhotoSi.Orders.Server.Sales.Data;
-using PhotoSi.Orders.Server.Sales.Data.Context;
-using PhotoSi.Orders.Server.Sales.Data.Translation;
+using PhotoSi.Sales.Sales.Core;
+using PhotoSi.Sales.Sales.Data;
+using PhotoSi.Sales.Sales.Data.Context;
+using PhotoSi.Sales.Sales.Data.Translation;
 
-namespace PhotoSi.Orders.Server.Sales.Setup
+namespace PhotoSi.Sales.Sales.Setup
 {
 	internal static class SalesSetup
 	{
@@ -14,7 +14,8 @@ namespace PhotoSi.Orders.Server.Sales.Setup
 			services.AddScoped<SalesPortal>();
 			services.AddScoped<IOrdersEngine>(x => x.GetService<SalesPortal>());
 			services.AddScoped<ICheckGateway>(x => x.GetService<SalesPortal>());
-			services.AddScoped<ISalesPortal>(x => x.GetService<SalesPortal>());
+			services.AddScoped<IProductsPortal>(x => x.GetService<SalesPortal>());
+			services.AddScoped<IDemoPortal>(x => x.GetService<SalesPortal>());
 			
 			services.AddScoped<ISalesRepository, SalesRepository>();
 			services.AddScoped<IDbContextFactory>(x => new DbContextFactory(dbConnectionString));

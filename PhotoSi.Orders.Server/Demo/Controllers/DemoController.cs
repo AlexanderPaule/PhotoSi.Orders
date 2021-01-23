@@ -2,22 +2,22 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PhotoSi.Orders.Server.Sales.Core;
+using PhotoSi.Sales.Sales.Core;
 
-namespace PhotoSi.Orders.Server.Demo.Controllers
+namespace PhotoSi.Sales.Demo.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
 	public class DemoController : ControllerBase
 	{
 		private readonly IDemoDataCatalog _demoDataCatalog;
-		private readonly ISalesPortal _salesPortal;
+		private readonly IDemoPortal _demoPortal;
 		private readonly IApiLayerTranslator _apiLayerTranslator;
 
-		public DemoController(IDemoDataCatalog demoDataCatalog, ISalesPortal salesPortal, IApiLayerTranslator apiLayerTranslator)
+		public DemoController(IDemoDataCatalog demoDataCatalog, IDemoPortal demoPortal, IApiLayerTranslator apiLayerTranslator)
 		{
 			_demoDataCatalog = demoDataCatalog;
-			_salesPortal = salesPortal;
+			_demoPortal = demoPortal;
 			_apiLayerTranslator = apiLayerTranslator;
 		}
 
@@ -28,8 +28,8 @@ namespace PhotoSi.Orders.Server.Demo.Controllers
 			var categories = _demoDataCatalog.GetCategories();
 			var products = _demoDataCatalog.GetProducts();
 			
-			await _salesPortal.UpsertAsync(categories);
-			await _salesPortal.UpsertAsync(products);
+			await _demoPortal.UpsertAsync(categories);
+			await _demoPortal.UpsertAsync(products);
 			
 			return Ok();
 		}

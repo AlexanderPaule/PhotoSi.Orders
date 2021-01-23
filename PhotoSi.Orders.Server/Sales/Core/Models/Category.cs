@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PhotoSi.Orders.Server.Sales.Core.Models
+namespace PhotoSi.Sales.Sales.Core.Models
 {
 	public class Category
 	{

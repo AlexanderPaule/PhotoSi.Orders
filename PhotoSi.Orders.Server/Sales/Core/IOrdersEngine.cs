@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Sales.Core
+namespace PhotoSi.Sales.Sales.Core
 {
 	public interface IOrdersEngine
 	{
 		Task ProcessAsync(Order order);
-		Task<RequestResult<Order, Guid>> GetAsync(Guid id);
-		Task<RequestResult<Order, Guid>> GetAllAsync();
+		Task<RequestResult<Order, Guid>> GetOrderAsync(Guid id);
+		Task<RequestResult<Order, Guid>> GetAllOrdersAsync();
 	}
 }

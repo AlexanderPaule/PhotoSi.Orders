@@ -27,18 +27,20 @@
 
 La libreria swagger integrata nel progetto faciliterà l'iterazione con il servizio.
 
-Il progetto mette a disposizione 2 controller, **Demo** e **Orders**.
-Il controller **Demo** permette di generare un setup base per poter testare il comportamento degli ordini, inoltre permette di visualizzare i dati utilizzati nel setup.
+Il progetto mette a disposizione 3 controller **Orders**, **Products** e **Demo**.
+Il controller **Demo** permette di generare un setup base per poter testare il comportamento degli ordini e dei prodotti, inoltre permette di visualizzare i dati utilizzati nel setup.
 
 - Effettuare la chiamata alla rotta **[POST:/Demo/SetUp]**
 
 A questo punto il servizio è in condizioni di procedere con il test della generazione e lettura degli ordini.
 
 ### Testare Il servizio
-Utilizzare le rotte disponibili per verificare il comportamento del controller **Orders**.
+Utilizzare le rotte disponibili per verificare il comportamento dei controller **Orders** e **Products**.
 - **[POST:/Orders]**
 - **[GET:/Orders]**
 - **[GET:/Orders/All]**
+- **[POST:/Products]**
+- **[GET:/Products/All]**
 
 Per facilitare l'operazione di creazione degli ordini, trovate di seguito 2 json compatibili con i dati generati nel setup.
 

@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using PhotoSi.Orders.Server.Orders.Controllers;
-using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Orders.Validation;
-using PhotoSi.Orders.Server.Sales.Core;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Orders.Controllers;
+using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Sales.Core;
+using PhotoSi.Sales.Sales.Core.Models;
+using PhotoSi.Sales.Utils;
 
-namespace PhotoSi.Orders.Server.Test.Orders
+namespace PhotoSi.Sales.Test.Orders
 {
 	[TestFixture]
 	internal class OrdersControllerFixture
@@ -100,7 +100,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			
 			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
-				.Setup(x => x.GetAsync(id))
+				.Setup(x => x.GetOrderAsync(id))
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] { order }, new[] { id }))
 				.Verifiable("Request operation not performed");
 
@@ -132,7 +132,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 			
 			var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 			orderEngine
-				.Setup(x => x.GetAsync(id))
+				.Setup(x => x.GetOrderAsync(id))
 				.ReturnsAsync(RequestResult<Order, Guid>.NewNotFound(new [] { id }))
 				.Verifiable("Request operation not performed");
 
@@ -157,7 +157,7 @@ namespace PhotoSi.Orders.Server.Test.Orders
 		    var orderModel = new OrderModel();
 		    var orderEngine = new Mock<IOrdersEngine>(MockBehavior.Strict);
 		    orderEngine
-				.Setup(x => x.GetAllAsync())
+				.Setup(x => x.GetAllOrdersAsync())
 				.ReturnsAsync(RequestResult<Order, Guid>.New(new [] {order}, new [] { new Guid() }))
 				.Verifiable("Request operation not performed");
 

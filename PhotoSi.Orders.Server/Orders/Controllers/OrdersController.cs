@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PhotoSi.Orders.Server.Orders.Models;
-using PhotoSi.Orders.Server.Sales.Core;
+using PhotoSi.Sales.Orders.Models;
+using PhotoSi.Sales.Sales.Core;
 
-namespace PhotoSi.Orders.Server.Orders.Controllers
+namespace PhotoSi.Sales.Orders.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
@@ -60,7 +60,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 		{
 			_logger.LogInformation($"Order get start [{nameof(id)}:{id}]");
 
-			var requestResult = await _ordersEngine.GetAsync(id);
+			var requestResult = await _ordersEngine.GetOrderAsync(id);
 			if (!requestResult.FoundAll())
 			{
 				_logger.LogInformation($"Order not found [{nameof(id)}:{id}]");
@@ -76,7 +76,7 @@ namespace PhotoSi.Orders.Server.Orders.Controllers
 		public async Task<IActionResult> GetAll()
 		{
 			_logger.LogInformation("Order get all start");
-			var requestResult = await _ordersEngine.GetAllAsync();
+			var requestResult = await _ordersEngine.GetAllOrdersAsync();
 			_logger.LogInformation("Order get all end");
 
 			var orders = requestResult

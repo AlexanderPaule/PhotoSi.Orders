@@ -1,4 +1,4 @@
-﻿namespace PhotoSi.Orders.Server.Sales.Data.Context
+﻿namespace PhotoSi.Sales.Sales.Data.Context
 {
 	internal interface IDbContextFactory
 	{

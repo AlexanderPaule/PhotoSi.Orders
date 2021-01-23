@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace PhotoSi.Orders.Server.Services.ApiDocumentation
+namespace PhotoSi.Sales.Services.ApiDocumentation
 {
 	internal static class SwaggerExtensions
 	{

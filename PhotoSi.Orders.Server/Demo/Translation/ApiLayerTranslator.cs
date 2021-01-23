@@ -1,27 +1,27 @@
 ﻿using System.Linq;
-using PhotoSi.Orders.Server.Demo.Controllers;
-using PhotoSi.Orders.Server.Demo.Models;
-using PhotoSi.Orders.Server.Sales.Core.Models;
+using PhotoSi.Sales.Demo.Controllers;
+using PhotoSi.Sales.Demo.Models;
+using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Orders.Server.Demo.Translation
+namespace PhotoSi.Sales.Demo.Translation
 {
 	internal class ApiLayerTranslator : IApiLayerTranslator
 	{
 
-		public ProductModel Translate(Product source)
+		public DemoProductModel Translate(Product source)
 		{
-			return new ProductModel
+			return new DemoProductModel
 			{
 				Id = source.Id,
-				Category = Translate(source.Category),
+				DemoCategory = Translate(source.Category),
 				Description = source.Description,
 				Options = source.Options.Select(Translate)
 			};
 		}
 
-		public CategoryModel Translate(Category source)
+		public DemoCategoryModel Translate(Category source)
 		{
-			return new CategoryModel
+			return new DemoCategoryModel
 			{
 				Id = source.Id,
 				Name = source.Name,
@@ -29,9 +29,9 @@ namespace PhotoSi.Orders.Server.Demo.Translation
 			};
 		}
 
-		private static OptionModel Translate(Option source)
+		private static DemoOptionModel Translate(Option source)
 		{
-			return new OptionModel
+			return new DemoOptionModel
 			{
 				Id = source.Id,
 				Name = source.Name,

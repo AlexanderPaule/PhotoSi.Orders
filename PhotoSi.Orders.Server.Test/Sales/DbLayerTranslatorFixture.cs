@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using PhotoSi.Orders.Server.Sales.Data.Models;
-using PhotoSi.Orders.Server.Sales.Data.Translation;
+using PhotoSi.Sales.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Data.Models;
+using PhotoSi.Sales.Sales.Data.Translation;
 
-namespace PhotoSi.Orders.Server.Test.Sales
+namespace PhotoSi.Sales.Test.Sales
 {
 	[TestFixture]
 	internal class DbLayerTranslatorFixture
@@ -50,7 +51,7 @@ namespace PhotoSi.Orders.Server.Test.Sales
 					{
 						Id = new Guid("9096310E-D3A3-4927-BB0A-987D501156FF"),
 						Content = "100cm x 100cm",
-						OptionId = dbCatalogOrder.Options.First().Id,
+						OptionId = dbCatalogOrder.Options.First<OptionEntity>().Id,
 						ReferencedOption = dbCatalogOrder.Options.First()
 					}
 				},
@@ -82,8 +83,8 @@ namespace PhotoSi.Orders.Server.Test.Sales
 			Assert.That(coreOrder.Category.Name, Is.EqualTo(category.Name));
 			Assert.That(coreOrder.Category.Description, Is.EqualTo(category.Description));
 			
-			Assert.That(coreOrder.Products.Count(), Is.EqualTo(1));
-			var coreOrderProduct = coreOrder.Products.Single();
+			Assert.That(Enumerable.Count<Product>(coreOrder.Products), Is.EqualTo(1));
+			var coreOrderProduct = Enumerable.Single<Product>(coreOrder.Products);
 			Assert.That(coreOrderProduct.Id, Is.EqualTo(dbCatalogOrder.Id));
 			Assert.That(coreOrderProduct.Category.Id, Is.EqualTo(category.Id));
 			Assert.That(coreOrderProduct.Category.Name, Is.EqualTo(category.Name));

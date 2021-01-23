@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using PhotoSi.Orders.Server.Sales.Core.Models;
-using PhotoSi.Orders.Server.Sales.Data.Models;
+using PhotoSi.Sales.Sales.Core.Models;
+using PhotoSi.Sales.Sales.Data.Models;
 
-namespace PhotoSi.Orders.Server.Sales.Data.Translation
+namespace PhotoSi.Sales.Sales.Data.Translation
 {
 	internal class DbLayerTranslator : IDbLayerTranslator
 	{

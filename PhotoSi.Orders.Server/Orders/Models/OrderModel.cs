@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PhotoSi.Orders.Server.Orders.Models
+namespace PhotoSi.Sales.Orders.Models
 {
 	public class OrderModel
 	{
@@ -11,8 +11,8 @@ namespace PhotoSi.Orders.Server.Orders.Models
 		[Required]
 		public DateTimeOffset CreatedOn { get; set; }
 		[Required]
-		public CategoryModel Category { get; set; }
+		public OrderCategoryModel OrderCategory { get; set; }
 		[Required]
-		public IEnumerable<ProductModel> Products { get; set; }
+		public IEnumerable<OrderedProductModel> Products { get; set; }
 	}
 }

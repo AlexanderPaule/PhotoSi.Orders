@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PhotoSi.Orders.Server.Sales.Data.Models;
+using PhotoSi.Sales.Sales.Data.Models;
 
-namespace PhotoSi.Orders.Server.Sales.Data.Context
+namespace PhotoSi.Sales.Sales.Data.Context
 {
 	internal class SalesDbContext : DbContext
 	{

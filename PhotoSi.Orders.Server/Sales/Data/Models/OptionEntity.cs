@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PhotoSi.Orders.Server.Sales.Data.Models
+namespace PhotoSi.Sales.Sales.Data.Models
 {
 	internal class OptionEntity : TimeTrackedEntity
 	{
