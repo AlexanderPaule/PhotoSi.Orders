@@ -1,18 +1,83 @@
 # PhotoSi.Orders
 
-## Prerequisiti
-SqlExpress
-Impostare la connection string nel file appsettings.json
+## Scelte Tecnologiche
+- Framework: **.Net Core 3.1**
+- Testing: **NUnit**
+- API Documentation: **Swagger**
+- Database: **SqlServer**
+- Interazione Database: **Entity Framework Core**
 
-# Scelte Tecnologiche
-Testing: NUnit
-API Documentation: Swagger
-Database: Entity Framework Core - per il progetto serve gestire pochi dati, in più si risparmia tempo nel realizzare l'infratruttura
+  Ho scelto l'ORM Entity Framework perché per il progetto serve gestire pochi dati e per abbassare il tempo della realizzare l'infratruttura.
 
-mettere dei Json per facilitare la creazione degli ordini
+## Demo
+### Prerequisiti
+- Avere a disposizione un DBMS Sql Server (ex: SqlExpress).
 
-# TODO
-documentation
-notification
-documentation
-Rileggere la consegna
+### Setup
+- Clonare il reository
+- Aprire la solution utilizzando visual studio Visual Studio
+- Configurare la connection string al Database nel file 'appsettings.json', sotto la sezione 'ConnectionStrings.Sales'.
+
+  Creare manualmente un database vuoto NON è richiesto.
+
+- Avviare il servizio premendo F5 o ctrl+F5. Questa azione comporterà le seguenti operazioni:
+  - Il servizio API verrà avviato.
+  - Se non è già presente, un Database conforme al modello definito via EF Core verrà generato nell'istanza specificata al punto precedente.
+  - Il browser di default si avvierà puntanto all'indirizzo 'https://localhost:44354/swagger/index.html'.
+
+La libreria swagger integrata nel progetto faciliterà l'iterazione con il servizio.
+
+Il progetto mette a disposizione 2 controller, **Demo** e **Orders**.
+Il controller **Demo** permette di generare un setup base per poter testare il comportamento degli ordini, inoltre permette di visualizzare i dati utilizzati nel setup.
+
+- Effettuare la chiamata alla rotta **[POST:/Demo/SetUp]**
+
+A questo punto il servizio è in condizioni di procedere con il test della generazione e lettura degli ordini.
+
+### Testare Il servizio
+Utilizzare le rotte disponibili per verificare il comportamento del controller **Orders**.
+- **[POST:/Orders]**
+- **[GET:/Orders]**
+- **[GET:/Orders/All]**
+
+Per facilitare l'operazione di creazione degli ordini, trovate di seguito 2 json compatibili con i dati generati nel setup.
+
+#### Order1
+```json
+{
+  "id": "44485f64-5717-4562-b3fc-2c963f66a444",
+  "createdOn": "2021-01-22T23:42:54.573Z",
+  "category": {
+      "id": "222174e4-37b7-44ee-a8a2-ee920c6fab9d"
+    },
+  "products": [
+    {
+      "id": "211174e4-37b7-44ee-a8a2-ee920c6fab9d",
+      "customOptions": [
+        {
+          "id": "311174e4-37b7-44ee-a8a2-ee920c6fab9d",
+          "name": "Dimensioni",
+          "content": "21cm x 21cm"
+        }
+      ]
+    }
+  ]
+}
+```
+
+#### Order1
+```json
+{
+  "id": "55585f64-5717-4562-b3fc-2c963f66a555",
+  "createdOn": "2021-01-22T23:42:54.573Z",
+  "category": {
+      "id": "222174e4-37b7-44ee-a8a2-ee920c6fab9d"
+    },
+  "products": [
+    {
+      "id": "211174e4-37b7-44ee-a8a2-ee920c6fab9d",
+      "customOptions": []
+    }
+  ]
+}
+```
