@@ -2,14 +2,13 @@
 using System.ComponentModel.DataAnnotations;
 using PhotoSi.Sales.Sales.Data.Models;
 
-namespace PhotoSi.Sales.Products.Models
+namespace PhotoSi.Sales.Products.Models;
+
+public class CategoryModel
 {
-	public class CategoryModel
-	{
-		[Required]
-		public Guid Id { get; set; }
-		[StringLength(CategoryEntity.NameLength)]
-		public string Name { get; set; }
-		public string Description { get; set; }
-	}
+	[Required]
+	public Guid Id { get; set; }
+	[StringLength(CategoryEntity.NameLength)]
+	public string Name { get; set; }
+	public string Description { get; set; }
 }

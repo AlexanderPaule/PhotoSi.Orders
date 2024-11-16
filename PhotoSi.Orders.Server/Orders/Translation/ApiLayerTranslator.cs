@@ -3,86 +3,85 @@ using PhotoSi.Sales.Orders.Controllers;
 using PhotoSi.Sales.Orders.Models;
 using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Sales.Orders.Translation
+namespace PhotoSi.Sales.Orders.Translation;
+
+public class ApiLayerTranslator : IApiLayerTranslator
 {
-	public class ApiLayerTranslator : IApiLayerTranslator
+	public Order Translate(OrderModel source)
 	{
-		public Order Translate(OrderModel source)
+		var category = new Category
 		{
-			var category = new Category
-			{
-				Id = source.OrderCategory.Id,
-				Name = source.OrderCategory.Name,
-				Description = source.OrderCategory.Description
-			};
-			
-			return new Order
-			{
-				Id = source.Id,
-				Category = category,
-				CreatedOn = source.CreatedOn,
-				Products = source.Products.Select(x => Translate(x, category))
-			};
-		}
-
-		public OrderModel Translate(Order source)
-		{
-			return new OrderModel
-			{
-				Id = source.Id,
-				OrderCategory = Translate(source.Category),
-				CreatedOn = source.CreatedOn,
-				Products = source.Products.Select(TranslateOrdered)
-			};
-		}
-
-		private static OrderCategoryModel Translate(Category source)
-		{
-			return new OrderCategoryModel
-			{
-				Id = source.Id,
-				Name = source.Name,
-				Description = source.Description
-			};
-		}
+			Id = source.OrderCategory.Id,
+			Name = source.OrderCategory.Name,
+			Description = source.OrderCategory.Description
+		};
 		
-		private static Product Translate(OrderedProductModel source, Category category)
+		return new Order
 		{
-			return new Product
-			{
-				Id = source.Id,
-				Category = category,
-				Options = source.CustomOptions.Select(Translate)
-			};
-		}
+			Id = source.Id,
+			Category = category,
+			CreatedOn = source.CreatedOn,
+			Products = source.Products.Select(x => Translate(x, category))
+		};
+	}
 
-		private static Option Translate(OrderedOptionModel source)
+	public OrderModel Translate(Order source)
+	{
+		return new OrderModel
 		{
-			return new Option
-			{
-				Id = source.Id,
-				Name = source.Name,
-				Content = source.Content
-			};
-		}
+			Id = source.Id,
+			OrderCategory = Translate(source.Category),
+			CreatedOn = source.CreatedOn,
+			Products = source.Products.Select(TranslateOrdered)
+		};
+	}
 
-		private static OrderedProductModel TranslateOrdered(Product source)
+	private static OrderCategoryModel Translate(Category source)
+	{
+		return new OrderCategoryModel
 		{
-			return new OrderedProductModel
-			{
-				Id = source.Id,
-				CustomOptions = source.Options.Select(Translate)
-			};
-		}
+			Id = source.Id,
+			Name = source.Name,
+			Description = source.Description
+		};
+	}
+	
+	private static Product Translate(OrderedProductModel source, Category category)
+	{
+		return new Product
+		{
+			Id = source.Id,
+			Category = category,
+			Options = source.CustomOptions.Select(Translate)
+		};
+	}
 
-		private static OrderedOptionModel Translate(Option source)
+	private static Option Translate(OrderedOptionModel source)
+	{
+		return new Option
 		{
-			return new OrderedOptionModel
-			{
-				Id = source.Id,
-				Name = source.Name,
-				Content = source.Content
-			};
-		}
+			Id = source.Id,
+			Name = source.Name,
+			Content = source.Content
+		};
+	}
+
+	private static OrderedProductModel TranslateOrdered(Product source)
+	{
+		return new OrderedProductModel
+		{
+			Id = source.Id,
+			CustomOptions = source.Options.Select(Translate)
+		};
+	}
+
+	private static OrderedOptionModel Translate(Option source)
+	{
+		return new OrderedOptionModel
+		{
+			Id = source.Id,
+			Name = source.Name,
+			Content = source.Content
+		};
 	}
 }

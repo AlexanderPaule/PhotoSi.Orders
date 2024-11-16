@@ -2,11 +2,10 @@
 using System.Threading.Tasks;
 using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Sales.Sales.Core
+namespace PhotoSi.Sales.Sales.Core;
+
+public interface IDemoPortal
 {
-	public interface IDemoPortal
-	{
-		Task UpsertAsync(IEnumerable<Category> categories);
-		Task UpsertAsync(IEnumerable<Product> categories);
-	}
+	Task UpsertAsync(IEnumerable<Category> categories);
+	Task UpsertAsync(IEnumerable<Product> categories);
 }

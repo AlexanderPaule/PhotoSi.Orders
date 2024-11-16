@@ -1,7 +1,6 @@
-﻿namespace PhotoSi.Sales.Sales.Data.Context
+﻿namespace PhotoSi.Sales.Sales.Data.Context;
+
+internal interface IDbContextFactory
 {
-	internal interface IDbContextFactory
-	{
-		SalesDbContext CreateDbContext();
-	}
+	SalesDbContext CreateDbContext();
 }

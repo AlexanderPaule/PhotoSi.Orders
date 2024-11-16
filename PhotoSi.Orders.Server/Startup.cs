@@ -10,48 +10,47 @@ using PhotoSi.Sales.Sales.Data.Context;
 using PhotoSi.Sales.Sales.Setup;
 using PhotoSi.Sales.Services.ApiDocumentation;
 
-namespace PhotoSi.Sales
+namespace PhotoSi.Sales;
+
+internal class Startup
 {
-	internal class Startup
+	private readonly IConfiguration _configuration;
+
+	public Startup(IConfiguration configuration)
 	{
-		private readonly IConfiguration _configuration;
+		_configuration = configuration;
+	}
 
-		public Startup(IConfiguration configuration)
+	public void ConfigureServices(IServiceCollection services)
+	{
+		services
+			.AddApiDocumentation()
+			.AddPhotoSiSales(_configuration.GetConnectionString("Sales"))
+			.AddPhotoSiOrders()
+			.AddPhotoSiProducts()
+			.AddPhotoSiDemo();
+		
+		services
+			.AddControllers();
+	}
+
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SalesDbContext salesDbContext)
+	{
+		if (env.IsDevelopment())
 		{
-			_configuration = configuration;
+			app.UseDeveloperExceptionPage();
 		}
 
-		public void ConfigureServices(IServiceCollection services)
+		salesDbContext.Database.EnsureCreated();
+
+		app.UseHttpsRedirection();
+		app.UseRouting();
+		app.UseAuthorization();
+		app.UseApiDocumentation();
+
+		app.UseEndpoints(endpoints =>
 		{
-			services
-				.AddApiDocumentation()
-				.AddPhotoSiSales(_configuration.GetConnectionString("Sales"))
-				.AddPhotoSiOrders()
-				.AddPhotoSiProducts()
-				.AddPhotoSiDemo();
-			
-			services
-				.AddControllers();
-		}
-
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SalesDbContext salesDbContext)
-		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
-
-			salesDbContext.Database.EnsureCreated();
-
-			app.UseHttpsRedirection();
-			app.UseRouting();
-			app.UseAuthorization();
-			app.UseApiDocumentation();
-
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
-		}
+			endpoints.MapControllers();
+		});
 	}
 }

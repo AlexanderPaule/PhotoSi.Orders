@@ -5,24 +5,23 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace PhotoSi.Sales.Sales.Data.Context
+namespace PhotoSi.Sales.Sales.Data.Context;
+
+internal static class DbSetExtensions
 {
-	internal static class DbSetExtensions
+	public static async Task UpsertBulkAsync<TEntity>(
+		this DbSet<TEntity> source,
+		IEnumerable<TEntity> entities,
+		Expression<Func<TEntity, bool>> dbFilter) where TEntity : class
 	{
-		public static async Task UpsertBulkAsync<TEntity>(
-			this DbSet<TEntity> source,
-			IEnumerable<TEntity> entities,
-			Expression<Func<TEntity, bool>> dbFilter) where TEntity : class
-		{
-			var toRemoveEntities = await source
-				.Where(dbFilter)
-				.ToListAsync();
+		var toRemoveEntities = await source
+			.Where(dbFilter)
+			.ToListAsync();
 
-			if (toRemoveEntities.Any())
-				source.RemoveRange(toRemoveEntities);
+		if (toRemoveEntities.Any())
+			source.RemoveRange(toRemoveEntities);
 
-			await source
-				.AddRangeAsync(entities);
-		}
+		await source
+			.AddRangeAsync(entities);
 	}
 }

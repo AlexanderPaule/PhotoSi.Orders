@@ -4,50 +4,49 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace PhotoSi.Sales.Services.ApiDocumentation
+namespace PhotoSi.Sales.Services.ApiDocumentation;
+
+internal static class SwaggerExtensions
 {
-	internal static class SwaggerExtensions
+	private const string BackendDoc = "BackendApiDocumentation";
+
+	public static IServiceCollection AddApiDocumentation(this IServiceCollection services)
 	{
-		private const string BackendDoc = "BackendApiDocumentation";
-
-		public static IServiceCollection AddApiDocumentation(this IServiceCollection services)
+		services.AddSwaggerGen(config =>
 		{
-			services.AddSwaggerGen(config =>
-			{
-				config.SwaggerDoc(BackendDoc, CreateApiInfo());
+			config.SwaggerDoc(BackendDoc, CreateApiInfo());
 
-				config.DocumentFilter<ServersCleanupFilter>();
-				config.SchemaFilter<EnumSchemaFilter>();
+			config.DocumentFilter<ServersCleanupFilter>();
+			config.SchemaFilter<EnumSchemaFilter>();
 
-				config.ResolveConflictingActions(apiDescriptions => apiDescriptions.Last());
-			});
+			config.ResolveConflictingActions(apiDescriptions => apiDescriptions.Last());
+		});
 
-			return services;
-		}
+		return services;
+	}
 
-		private static OpenApiInfo CreateApiInfo()
+	private static OpenApiInfo CreateApiInfo()
+	{
+		return new OpenApiInfo
 		{
-			return new OpenApiInfo
+			Title = "PhotoSi.Orders",
+			Description = "Server API Documentation",
+			Contact = new OpenApiContact
 			{
-				Title = "PhotoSi.Orders",
-				Description = "Server API Documentation",
-				Contact = new OpenApiContact
-				{
-					Name = "PhotoSi.Orders",
-					Url = new Uri("https://github.com/AlexanderPaule/PhotoSi.Orders")
-				}
-			};
-		}
+				Name = "PhotoSi.Orders",
+				Url = new Uri("https://github.com/AlexanderPaule/PhotoSi.Orders")
+			}
+		};
+	}
 
-		public static IApplicationBuilder UseApiDocumentation(this IApplicationBuilder app)
+	public static IApplicationBuilder UseApiDocumentation(this IApplicationBuilder app)
+	{
+		app.UseSwagger();
+		app.UseSwaggerUI(c =>
 		{
-			app.UseSwagger();
-			app.UseSwaggerUI(c =>
-			{
-				c.SwaggerEndpoint($"/swagger/{BackendDoc}/swagger.json", BackendDoc);
-			});
+			c.SwaggerEndpoint($"/swagger/{BackendDoc}/swagger.json", BackendDoc);
+		});
 
-			return app;
-		}
+		return app;
 	}
 }

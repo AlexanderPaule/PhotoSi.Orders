@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35507.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoSi.Orders", "PhotoSi.Orders.Server\PhotoSi.Orders.csproj", "{A654E484-B11A-4E1F-B450-268CDB037735}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0943A1CE-8E75-49C5-9E93-4ACB9F512E41}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoSi.Sales.Test", "PhotoSi.Orders.Server.Test\PhotoSi.Sales.Test.csproj", "{DA890065-8B36-4D9C-967B-1FDCB1421B8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSi.Users", "PhotoSi.Users\PhotoSi.Users.csproj", "{548E1C39-A3AC-44F4-93E3-3363E901B949}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6C83A596-D32D-B35F-00DD-F0C99B673980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSi.Products", "PhotoSi.Products\PhotoSi.Products.csproj", "{04F2256B-7CD9-49CC-8C69-E7B17C148912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSi.Address", "PhotoSi.Address\PhotoSi.Address.csproj", "{4313198A-20D0-4CA3-A09C-35DB2BB18CB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A654E484-B11A-4E1F-B450-268CDB037735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A654E484-B11A-4E1F-B450-268CDB037735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A654E484-B11A-4E1F-B450-268CDB037735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A654E484-B11A-4E1F-B450-268CDB037735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA890065-8B36-4D9C-967B-1FDCB1421B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA890065-8B36-4D9C-967B-1FDCB1421B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA890065-8B36-4D9C-967B-1FDCB1421B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA890065-8B36-4D9C-967B-1FDCB1421B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{548E1C39-A3AC-44F4-93E3-3363E901B949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{548E1C39-A3AC-44F4-93E3-3363E901B949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{548E1C39-A3AC-44F4-93E3-3363E901B949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{548E1C39-A3AC-44F4-93E3-3363E901B949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04F2256B-7CD9-49CC-8C69-E7B17C148912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04F2256B-7CD9-49CC-8C69-E7B17C148912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04F2256B-7CD9-49CC-8C69-E7B17C148912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04F2256B-7CD9-49CC-8C69-E7B17C148912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4313198A-20D0-4CA3-A09C-35DB2BB18CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4313198A-20D0-4CA3-A09C-35DB2BB18CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4313198A-20D0-4CA3-A09C-35DB2BB18CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4313198A-20D0-4CA3-A09C-35DB2BB18CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA890065-8B36-4D9C-967B-1FDCB1421B8E} = {6C83A596-D32D-B35F-00DD-F0C99B673980}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {710EDF97-AB78-4E4E-9050-F571CAD2AD52}
+	EndGlobalSection
+EndGlobal

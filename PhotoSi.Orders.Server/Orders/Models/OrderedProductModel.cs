@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PhotoSi.Sales.Orders.Models
+namespace PhotoSi.Sales.Orders.Models;
+
+public class OrderedProductModel
 {
-	public class OrderedProductModel
-	{
-		[Required]
-		public Guid Id { get; set; }
-		[Required]
-		public IEnumerable<OrderedOptionModel> CustomOptions { get; set; }
-	}
+	[Required]
+	public Guid Id { get; set; }
+	[Required]
+	public IEnumerable<OrderedOptionModel> CustomOptions { get; set; }
 }

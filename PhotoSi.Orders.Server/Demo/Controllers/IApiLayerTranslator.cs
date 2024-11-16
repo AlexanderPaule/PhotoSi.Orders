@@ -1,11 +1,10 @@
 ﻿using PhotoSi.Sales.Demo.Models;
 using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Sales.Demo.Controllers
+namespace PhotoSi.Sales.Demo.Controllers;
+
+public interface IApiLayerTranslator
 {
-	public interface IApiLayerTranslator
-	{
-		DemoProductModel Translate(Product source);
-		DemoCategoryModel Translate(Category source);
-	}
+	DemoProductModel Translate(Product source);
+	DemoCategoryModel Translate(Category source);
 }

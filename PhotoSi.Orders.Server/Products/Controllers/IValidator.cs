@@ -2,10 +2,9 @@
 using PhotoSi.Sales.Products.Models;
 using PhotoSi.Sales.Utils;
 
-namespace PhotoSi.Sales.Products.Controllers
+namespace PhotoSi.Sales.Products.Controllers;
+
+public interface IValidator
 {
-	public interface IValidator
-	{
-		Task<ValidationResult> ValidateAsync(ProductModel product);
-	}
+	Task<ValidationResult> ValidateAsync(ProductModel product);
 }

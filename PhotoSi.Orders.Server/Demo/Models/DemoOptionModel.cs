@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace PhotoSi.Sales.Demo.Models
+namespace PhotoSi.Sales.Demo.Models;
+
+public class DemoOptionModel
 {
-	public class DemoOptionModel
-	{
-		public Guid Id { get; set; }
-		public string Name { get; set; }
-		public string Content { get; set; }
-	}
+	public Guid Id { get; set; }
+	public string Name { get; set; }
+	public string Content { get; set; }
 }

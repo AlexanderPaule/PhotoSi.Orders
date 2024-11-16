@@ -3,71 +3,70 @@ using PhotoSi.Sales.Products.Controllers;
 using PhotoSi.Sales.Products.Models;
 using PhotoSi.Sales.Sales.Core.Models;
 
-namespace PhotoSi.Sales.Products.Translation
+namespace PhotoSi.Sales.Products.Translation;
+
+internal class ApiLayerTranslator : IApiLayerTranslator
 {
-	internal class ApiLayerTranslator : IApiLayerTranslator
+
+	public ProductModel Translate(Product source)
 	{
-
-		public ProductModel Translate(Product source)
+		return new ProductModel
 		{
-			return new ProductModel
-			{
-				Id = source.Id,
-				Category = Translate(source.Category),
-				Description = source.Description,
-				Options = source.Options.Select(Translate)
-			};
-		}
+			Id = source.Id,
+			Category = Translate(source.Category),
+			Description = source.Description,
+			Options = source.Options.Select(Translate)
+		};
+	}
 
-		public Product Translate(ProductModel source)
+	public Product Translate(ProductModel source)
+	{
+		return new Product
 		{
-			return new Product
-			{
-				Id = source.Id,
-				Category = Translate(source.Category),
-				Description = source.Description,
-				Options = source.Options.Select(Translate)
-			};
-		}
+			Id = source.Id,
+			Category = Translate(source.Category),
+			Description = source.Description,
+			Options = source.Options.Select(Translate)
+		};
+	}
 
-		private static Category Translate(CategoryModel source)
+	private static Category Translate(CategoryModel source)
+	{
+		return new Category
 		{
-			return new Category
-			{
-				Id = source.Id,
-				Name = source.Name,
-				Description = source.Description
-			};
-		}
+			Id = source.Id,
+			Name = source.Name,
+			Description = source.Description
+		};
+	}
 
-		private static CategoryModel Translate(Category source)
+	private static CategoryModel Translate(Category source)
+	{
+		return new CategoryModel
 		{
-			return new CategoryModel
-			{
-				Id = source.Id,
-				Name = source.Name,
-				Description = source.Description
-			};
-		}
+			Id = source.Id,
+			Name = source.Name,
+			Description = source.Description
+		};
+	}
 
-		private static OptionModel Translate(Option source)
+	private static OptionModel Translate(Option source)
+	{
+		return new OptionModel
 		{
-			return new OptionModel
-			{
-				Id = source.Id,
-				Name = source.Name,
-				Content = source.Content
-			};
-		}
+			Id = source.Id,
+			Name = source.Name,
+			Content = source.Content
+		};
+	}
 
-		private static Option Translate(OptionModel source)
+	private static Option Translate(OptionModel source)
+	{
+		return new Option
 		{
-			return new Option
-			{
-				Id = source.Id,
-				Name = source.Name,
-				Content = source.Content
-			};
-		}
+			Id = source.Id,
+			Name = source.Name,
+			Content = source.Content
+		};
 	}
 }
