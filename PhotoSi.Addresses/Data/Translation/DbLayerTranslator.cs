@@ -3,7 +3,7 @@ using PhotoSi.Addresses.Data.Models;
 
 namespace PhotoSi.Addresses.Data.Translation;
 
-internal class DbLayerTranslator : IDbLayerTranslator
+public class DbLayerTranslator : IDbLayerTranslator
 {
 	public Address Translate(AddressEntity source)
 	{

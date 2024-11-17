@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Addresses.Core;
 
-internal class CoreEngine : IAddressesGateway, IDemoGateway
+public class CoreEngine : IAddressesGateway
 {
 	private readonly IAddressesRepository _repository;
 
@@ -21,5 +21,11 @@ internal class CoreEngine : IAddressesGateway, IDemoGateway
 	{
 		return _repository
 			.GetAllAddressesAsync();
+	}
+
+	public Task<bool> ExistsAddressAsync(Guid addressId)
+	{
+		return _repository
+			.ExistsAddressAsync(addressId);
 	}
 }

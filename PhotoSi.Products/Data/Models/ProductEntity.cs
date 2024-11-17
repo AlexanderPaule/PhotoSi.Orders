@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Products.Data.Models;
 
-internal class ProductEntity : TimeTrackedEntity
+public class ProductEntity : TimeTrackedEntity
 {
 	public Guid Id { get; set; }
 	public string Description { get; set; }

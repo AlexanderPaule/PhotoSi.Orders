@@ -1,6 +1,6 @@
 ﻿namespace PhotoSi.Addresses.Data.Context;
 
-internal interface IDbContextFactory
+public interface IDbContextFactory
 {
 	AddressesDbContext CreateDbContext();
 }

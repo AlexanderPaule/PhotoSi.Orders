@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Addresses.Data.Models;
 
-internal class AddressEntity : TimeTrackedEntity
+public class AddressEntity : TimeTrackedEntity
 {
 	public const int NameLength = 100;
 

@@ -6,4 +6,5 @@ public interface IUsersGateway
 {
 	Task UpsertAsync(IEnumerable<User> categories);
 	Task<RequestResult<User, Guid>> GetAllUsersAsync();
+	Task<bool> ExistsUserAsync(Guid userId);
 }

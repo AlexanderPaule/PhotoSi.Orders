@@ -4,7 +4,7 @@ using PhotoSi.Orders.Core.Models;
 
 namespace PhotoSi.Orders.Core;
 
-internal interface IOrdersRepository
+public interface IOrdersRepository
 {
 	Task SaveAsync(Order order);
 	Task<RequestResult<Order, Guid>> GetOrderAsync(Guid id);

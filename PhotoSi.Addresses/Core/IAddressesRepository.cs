@@ -2,8 +2,9 @@
 
 namespace PhotoSi.Addresses.Core;
 
-internal interface IAddressesRepository
+public interface IAddressesRepository
 {
 	Task UpsertAsync(IEnumerable<Address> users);
 	Task<RequestResult<Address, Guid>> GetAllAddressesAsync();
+	Task<bool> ExistsAddressAsync(Guid addressId);
 }

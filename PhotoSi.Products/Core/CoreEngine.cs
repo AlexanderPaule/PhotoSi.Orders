@@ -2,19 +2,13 @@
 
 namespace PhotoSi.Products.Core;
 
-internal class CoreEngine : ICheckGateway, IProductsGateway, IDemoGateway
+internal class CoreEngine : IProductsGateway
 {
 	private readonly IProductsRepository _repository;
 
 	public CoreEngine(IProductsRepository repository)
 	{
 		_repository = repository;
-	}
-
-	public Task<bool> ExistsCategoryAsync(Guid id)
-	{
-		return _repository
-			.ExistsCategoryAsync(id);
 	}
 
 	public Task UpsertAsync(IEnumerable<Category> categories)
@@ -33,5 +27,17 @@ internal class CoreEngine : ICheckGateway, IProductsGateway, IDemoGateway
 	{
 		return _repository
 			.GetAllProductsAsync();
+	}
+
+	public Task<bool> ExistsCategoryAsync(Guid id)
+	{
+		return _repository
+			.ExistsCategoryAsync(id);
+	}
+
+	public Task<IDictionary<Guid, bool>> ExistsProductsAsync(List<Guid> productsIds)
+	{
+		return _repository
+			.ExistsProductsAsync(productsIds);
 	}
 }

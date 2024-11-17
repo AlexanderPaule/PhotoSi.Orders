@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Users.Core;
 
-internal class CoreEngine : IUsersGateway, IDemoGateway
+internal class CoreEngine : IUsersGateway
 {
 	private readonly IUsersRepository _repository;
 
@@ -21,5 +21,11 @@ internal class CoreEngine : IUsersGateway, IDemoGateway
 	{
 		return _repository
 			.GetAllUsersAsync();
+	}
+
+	public Task<bool> ExistsUserAsync(Guid userId)
+	{
+		return _repository
+			.ExistsUserAsync(userId);
 	}
 }

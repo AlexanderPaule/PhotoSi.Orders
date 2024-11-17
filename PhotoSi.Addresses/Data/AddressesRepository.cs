@@ -7,7 +7,7 @@ using PhotoSi.Addresses.Data.Translation;
 
 namespace PhotoSi.Addresses.Data;
 
-internal class AddressesRepository : IAddressesRepository
+public class AddressesRepository : IAddressesRepository
 {
 	private readonly IDbContextFactory _dbContextFactory;
 	private readonly IDbLayerTranslator _dbLayerTranslator;
@@ -16,6 +16,17 @@ internal class AddressesRepository : IAddressesRepository
 	{
 		_dbContextFactory = dbContextFactory;
 		_dbLayerTranslator = dbLayerTranslator;
+	}
+
+	public async Task<bool> ExistsAddressAsync(Guid addressId)
+	{
+		await using var salesDbContext = _dbContextFactory
+			.CreateDbContext();
+
+		return await salesDbContext
+			.Addresses
+			.Where(x => x.Id == addressId)
+			.AnyAsync();
 	}
 
 	public async Task<RequestResult<Address, Guid>> GetAllAddressesAsync()

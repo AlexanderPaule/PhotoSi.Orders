@@ -3,7 +3,7 @@ using PhotoSi.Users.Data.Models;
 
 namespace PhotoSi.Users.Data.Context;
 
-internal class UsersDbContext : DbContext
+public class UsersDbContext : DbContext
 {
 	public UsersDbContext(DbContextOptions<UsersDbContext> options)
 		: base(options)

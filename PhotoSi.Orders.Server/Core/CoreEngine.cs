@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using PhotoSi.Orders.Core.Models;
 
 namespace PhotoSi.Orders.Core;
 
-internal class CoreEngine : IOrdersEngine, ICheckGateway
+public class CoreEngine : IOrdersGateway
 {
 	private readonly IOrdersRepository _repository;
 
@@ -36,15 +35,5 @@ internal class CoreEngine : IOrdersEngine, ICheckGateway
 	{
 		return _repository
 			.ExistsOrderAsync(id);
-	}
-
-	public Task<bool> ExistsAddressAsync(Guid id)
-	{
-		throw new NotImplementedException();
-	}
-
-	public Task<IDictionary<Guid, bool>> ExistsProductsAsync(IEnumerable<Guid> id)
-	{
-		throw new NotImplementedException();
 	}
 }

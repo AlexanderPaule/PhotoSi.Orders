@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Orders.Data.Context;
 
-internal class DbContextFactory : IDbContextFactory
+public class DbContextFactory : IDbContextFactory
 {
 	private readonly string _connectionString;
 

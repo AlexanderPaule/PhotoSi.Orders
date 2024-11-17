@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSi.Products", "PhotoSi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSi.Addresses", "PhotoSi.Addresses\PhotoSi.Addresses.csproj", "{19005AA2-2604-45EC-A96F-FED1250E9F85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoSi.API", "PhotoSi.API\PhotoSi.API.csproj", "{ECE8C0CF-7337-43E8-83C9-77A1F19FEC95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{19005AA2-2604-45EC-A96F-FED1250E9F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19005AA2-2604-45EC-A96F-FED1250E9F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19005AA2-2604-45EC-A96F-FED1250E9F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE8C0CF-7337-43E8-83C9-77A1F19FEC95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE8C0CF-7337-43E8-83C9-77A1F19FEC95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE8C0CF-7337-43E8-83C9-77A1F19FEC95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE8C0CF-7337-43E8-83C9-77A1F19FEC95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

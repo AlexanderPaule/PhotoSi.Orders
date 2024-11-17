@@ -80,4 +80,20 @@ internal class ProductsRepository : IProductsRepository
 			.Where(x => !ids.Any() || ids.Contains(x.Id))
 			.ToListAsync();
 	}
+
+	public async Task<IDictionary<Guid, bool>> ExistsProductsAsync(List<Guid> productsIds)
+	{
+		await using var salesDbContext = _dbContextFactory
+			.CreateDbContext();
+
+		var products = await salesDbContext
+			.Products
+			.Include(x => x.Category)
+			.Where(x => !productsIds.Any() || productsIds.Contains(x.Id))
+			.Select(x => x.Id)
+			.ToListAsync();
+
+		return productsIds
+			.ToDictionary(x => x, x => products.Any(p => p == x));
+	}
 }

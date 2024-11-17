@@ -5,7 +5,7 @@ using PhotoSi.Orders.Data.Models;
 
 namespace PhotoSi.Orders.Data.Translation;
 
-internal class DbLayerTranslator : IDbLayerTranslator
+public class DbLayerTranslator : IDbLayerTranslator
 {
 	public OrderEntity Translate(Order source)
 	{

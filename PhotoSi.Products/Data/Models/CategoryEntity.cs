@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Products.Data.Models;
 
-internal class CategoryEntity : TimeTrackedEntity
+public class CategoryEntity : TimeTrackedEntity
 {
 	public const int NameLength = 100;
 

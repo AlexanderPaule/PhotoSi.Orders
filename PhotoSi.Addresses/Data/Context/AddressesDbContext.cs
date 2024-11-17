@@ -3,7 +3,7 @@ using PhotoSi.Addresses.Data.Models;
 
 namespace PhotoSi.Addresses.Data.Context;
 
-internal class AddressesDbContext : DbContext
+public class AddressesDbContext : DbContext
 {
 	public AddressesDbContext(DbContextOptions<AddressesDbContext> options)
 		: base(options)

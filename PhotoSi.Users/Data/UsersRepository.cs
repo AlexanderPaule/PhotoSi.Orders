@@ -18,6 +18,16 @@ internal class UsersRepository : IUsersRepository
 		_dbLayerTranslator = dbLayerTranslator;
 	}
 
+	public async Task<bool> ExistsUserAsync(Guid userId)
+	{
+		await using var salesDbContext = _dbContextFactory
+			.CreateDbContext();
+
+		return await salesDbContext
+			.Users
+			.AnyAsync(x => x.Id == userId);
+	}
+
 	public async Task<RequestResult<User, Guid>> GetAllUsersAsync()
 	{
 		var entities = await GetUsersEntities(Enumerable.Empty<Guid>());

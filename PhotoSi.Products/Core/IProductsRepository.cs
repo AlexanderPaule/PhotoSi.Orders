@@ -8,4 +8,5 @@ internal interface IProductsRepository
 	Task UpsertAsync(IEnumerable<Category> categories);
 	Task UpsertAsync(IEnumerable<Product> products);
 	Task<RequestResult<Product, Guid>> GetAllProductsAsync();
+	Task<IDictionary<Guid, bool>> ExistsProductsAsync(List<Guid> productsIds);
 }

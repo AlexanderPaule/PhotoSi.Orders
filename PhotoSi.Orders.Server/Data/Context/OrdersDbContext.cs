@@ -7,7 +7,7 @@ using PhotoSi.Orders.Data.Models;
 
 namespace PhotoSi.Orders.Data.Context;
 
-internal class OrdersDbContext : DbContext
+public class OrdersDbContext : DbContext
 {
 	public OrdersDbContext(DbContextOptions<OrdersDbContext> options)
 		: base(options)

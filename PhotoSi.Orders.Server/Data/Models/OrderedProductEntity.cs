@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Orders.Data.Models;
 
-internal class OrderedProductEntity : TimeTrackedEntity
+public class OrderedProductEntity : TimeTrackedEntity
 {
 	[Key]
 	public Guid Id { get; set; }
