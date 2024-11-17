@@ -12,9 +12,9 @@ internal class ProductsDbContext : DbContext
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		// Names and Schema
-		modelBuilder.Entity<ProductEntity>(entity => entity.ToTable("Products", "photoSi"));
-		modelBuilder.Entity<CategoryEntity>(entity => entity.ToTable("Categories", "photoSi"));
-		modelBuilder.Entity<OptionEntity>(entity => entity.ToTable("Options", "photoSi"));
+		modelBuilder.Entity<ProductEntity>(entity => entity.ToTable("Catalog", "products"));
+		modelBuilder.Entity<CategoryEntity>(entity => entity.ToTable("Categories", "products"));
+		modelBuilder.Entity<OptionEntity>(entity => entity.ToTable("Options", "products"));
 
 		// Products
 		modelBuilder

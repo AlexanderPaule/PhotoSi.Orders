@@ -18,8 +18,8 @@ internal class Startup
 	{
 		services
 			.AddApiDocumentation()
-			.AddPhotoSiProductsAPI()
-			.AddPhotoSiProductsCore(_configuration.GetConnectionString("Users")!)
+			.AddPhotoSiUsersAPI()
+			.AddPhotoSiUsersCore(_configuration.GetConnectionString("Users")!)
 			.AddPhotoSiDemo();
 		
 		services

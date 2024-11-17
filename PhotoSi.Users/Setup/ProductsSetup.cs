@@ -11,20 +11,20 @@ namespace PhotoSi.Users.Setup;
 
 internal static class ProductsSetup
 {
-	public static IServiceCollection AddPhotoSiProductsCore(this IServiceCollection services, string dbConnectionString)
+	public static IServiceCollection AddPhotoSiUsersCore(this IServiceCollection services, string dbConnectionString)
 	{
 		services.AddScoped<CoreEngine>();
 		services.AddScoped<IUsersGateway>(x => x.GetService<CoreEngine>()!);
 		services.AddScoped<IDemoGateway>(x => x.GetService<CoreEngine>()!);
 
-		services.AddScoped<IUsersRepository, ProductsRepository>();
+		services.AddScoped<IUsersRepository, UsersRepository>();
 		services.AddScoped<IDbContextFactory>(x => new DbContextFactory(dbConnectionString));
 		services.AddScoped<IDbLayerTranslator, DbLayerTranslator>();
 		services.AddDbContext<UsersDbContext>(o => o.UseSqlServer(dbConnectionString));
 
 		return services;
 	}
-	public static IServiceCollection AddPhotoSiProductsAPI(this IServiceCollection services)
+	public static IServiceCollection AddPhotoSiUsersAPI(this IServiceCollection services)
 	{
 		services.AddScoped<IValidator, Validator>();
 		services.AddScoped<IApiLayerTranslator, ApiLayerTranslator>();

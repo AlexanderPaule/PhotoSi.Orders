@@ -12,7 +12,7 @@ internal class UsersDbContext : DbContext
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		// Names and Schema
-		modelBuilder.Entity<UserEntity>(entity => entity.ToTable("Users", "photoSi"));
+		modelBuilder.Entity<UserEntity>(entity => entity.ToTable("Users", "accounts"));
 	}
 
 	public DbSet<UserEntity> Users { get; set; }

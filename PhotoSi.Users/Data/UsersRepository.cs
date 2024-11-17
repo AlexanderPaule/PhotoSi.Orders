@@ -7,12 +7,12 @@ using PhotoSi.Users.Data.Translation;
 
 namespace PhotoSi.Users.Data;
 
-internal class ProductsRepository : IUsersRepository
+internal class UsersRepository : IUsersRepository
 {
 	private readonly IDbContextFactory _dbContextFactory;
 	private readonly IDbLayerTranslator _dbLayerTranslator;
 
-	public ProductsRepository(IDbContextFactory dbContextFactory, IDbLayerTranslator dbLayerTranslator)
+	public UsersRepository(IDbContextFactory dbContextFactory, IDbLayerTranslator dbLayerTranslator)
 	{
 		_dbContextFactory = dbContextFactory;
 		_dbLayerTranslator = dbLayerTranslator;
