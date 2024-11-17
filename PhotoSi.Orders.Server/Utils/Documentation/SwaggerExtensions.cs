@@ -1,10 +1,10 @@
-using System;
-using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Linq;
 
-namespace PhotoSi.Sales.Services.ApiDocumentation;
+namespace PhotoSi.Documentation;
 
 internal static class SwaggerExtensions
 {

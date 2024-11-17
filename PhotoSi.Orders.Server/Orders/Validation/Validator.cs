@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PhotoSi.Orders.Utils;
 using PhotoSi.Sales.Orders.Controllers;
 using PhotoSi.Sales.Orders.Models;
 using PhotoSi.Sales.Sales.Core;
 using PhotoSi.Sales.Sales.Core.Models;
-using PhotoSi.Sales.Services.Extensions;
 using PhotoSi.Sales.Utils;
 
 namespace PhotoSi.Sales.Orders.Validation;

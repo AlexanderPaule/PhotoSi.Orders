@@ -1,10 +1,10 @@
-using System;
-using System.Linq;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.Linq;
 
-namespace PhotoSi.Sales.Services.ApiDocumentation;
+namespace PhotoSi.Documentation;
 
 internal class EnumSchemaFilter : ISchemaFilter
 {

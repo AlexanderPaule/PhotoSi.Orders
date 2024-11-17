@@ -1,14 +1,7 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using PhotoSi.Sales.Demo.Setup;
-using PhotoSi.Sales.Orders.Setup;
-using PhotoSi.Sales.Products.Setup;
-using PhotoSi.Sales.Sales.Data.Context;
-using PhotoSi.Sales.Sales.Setup;
 using PhotoSi.Documentation;
+using PhotoSi.Products.Data.Context;
+using PhotoSi.Products.Utils.Demo.Setup;
+using PhotoSi.Products.Setup;
 
 namespace PhotoSi.Sales;
 
@@ -25,23 +18,22 @@ internal class Startup
 	{
 		services
 			.AddApiDocumentation()
-			.AddPhotoSiSales(_configuration.GetConnectionString("Sales"))
-			.AddPhotoSiOrders()
-			.AddPhotoSiProducts()
+			.AddPhotoSiProductsAPI()
+			.AddPhotoSiProductsCore(_configuration.GetConnectionString("Products")!)
 			.AddPhotoSiDemo();
 		
 		services
 			.AddControllers();
 	}
 
-	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SalesDbContext salesDbContext)
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ProductsDbContext productDbContext)
 	{
 		if (env.IsDevelopment())
 		{
 			app.UseDeveloperExceptionPage();
 		}
 
-		salesDbContext.Database.EnsureCreated();
+		productDbContext.Database.EnsureCreated();
 
 		app.UseHttpsRedirection();
 		app.UseRouting();
