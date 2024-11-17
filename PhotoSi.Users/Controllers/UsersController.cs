@@ -14,10 +14,10 @@ public class UsersController : ControllerBase
 	private readonly IApiLayerTranslator _apiLayerTranslator;
 	private readonly IValidator _validator;
 
-	public UsersController(ILogger<UsersController> logger, IUsersGateway productsPortal, IApiLayerTranslator apiLayerTranslator, IValidator validator)
+	public UsersController(ILogger<UsersController> logger, IUsersGateway usersGateway, IApiLayerTranslator apiLayerTranslator, IValidator validator)
 	{
 		_logger = logger;
-		_usersGateway = productsPortal;
+		_usersGateway = usersGateway;
 		_apiLayerTranslator = apiLayerTranslator;
 		_validator = validator;
 	}
@@ -27,23 +27,23 @@ public class UsersController : ControllerBase
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
 	public async Task<IActionResult> Create([FromBody, Required] UserModel user)
 	{
-		_logger.LogInformation($"Product creation requested [{nameof(UserModel.Id)}:{user.Id}]");
-		_logger.LogInformation($"Product validation start [{nameof(UserModel.Id)}:{user.Id}]");
+		_logger.LogInformation($"User creation requested [{nameof(UserModel.Id)}:{user.Id}]");
+		_logger.LogInformation($"User validation start [{nameof(UserModel.Id)}:{user.Id}]");
 
 		var validationResult = await _validator.ValidateAsync(user);
 		if (!validationResult.IsValid)
 		{
-			_logger.LogInformation($"Order validation failed [{nameof(UserModel.Id)}:{user.Id}]");
+			_logger.LogInformation($"User validation failed [{nameof(UserModel.Id)}:{user.Id}]");
 			return BadRequest(validationResult.GetErrorMessage());
 		}
 
-		_logger.LogInformation($"Product validation end [{nameof(UserModel.Id)}:{user.Id}]");
-		_logger.LogInformation($"Product process start [{nameof(UserModel.Id)}:{user.Id}]");
+		_logger.LogInformation($"User validation end [{nameof(UserModel.Id)}:{user.Id}]");
+		_logger.LogInformation($"User process start [{nameof(UserModel.Id)}:{user.Id}]");
 
 		await _usersGateway
 			.UpsertAsync([_apiLayerTranslator.Translate(user)]);
 
-		_logger.LogInformation($"Product process end [{nameof(UserModel.Id)}:{user.Id}]");
+		_logger.LogInformation($"User process end [{nameof(UserModel.Id)}:{user.Id}]");
 
 		return Ok(user);
 	}
@@ -52,9 +52,9 @@ public class UsersController : ControllerBase
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	public async Task<IActionResult> GetAll()
 	{
-		_logger.LogInformation("Order get all start");
+		_logger.LogInformation("User get all start");
 		var requestResult = await _usersGateway.GetAllUsersAsync();
-		_logger.LogInformation("Order get all end");
+		_logger.LogInformation("User get all end");
 
 		var orders = requestResult
 			.GetList()

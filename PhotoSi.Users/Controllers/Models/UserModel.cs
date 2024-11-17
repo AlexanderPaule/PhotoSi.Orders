@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PhotoSi.Users.Data.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace PhotoSi.Users.Controllers.Models;
 
@@ -6,8 +7,8 @@ public class UserModel
 {
 	[Required]
 	public Guid Id { get; set; }
-	[Required]
+	[Required, StringLength(UserEntity.NameLength)]
 	public string Name { get; set; }
-	[Required]
+	[Required, StringLength(UserEntity.NameLength)]
 	public string Surname { get; set; }
 }

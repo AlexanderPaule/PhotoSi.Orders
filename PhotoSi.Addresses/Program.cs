@@ -1,6 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using Microsoft.AspNetCore.Hosting;
 
-app.MapGet("/", () => "Hello World!");
+namespace PhotoSi.Addresses;
 
-app.Run();
+internal static class Program
+{
+	public static void Main(string[] args)
+	{
+		CreateHostBuilder(args).Build().Run();
+	}
+
+	private static IHostBuilder CreateHostBuilder(string[] args)
+	{
+		return Host
+			.CreateDefaultBuilder(args)
+			.ConfigureWebHostDefaults(webBuilder =>
+			{
+				webBuilder.UseStartup<Startup>();
+			});
+	}
+}

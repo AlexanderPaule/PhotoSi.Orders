@@ -52,9 +52,9 @@ public class ProductsController : ControllerBase
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	public async Task<IActionResult> GetAll()
 	{
-		_logger.LogInformation("Order get all start");
+		_logger.LogInformation("Product get all start");
 		var requestResult = await _productsPortal.GetAllProductsAsync();
-		_logger.LogInformation("Order get all end");
+		_logger.LogInformation("Product get all end");
 
 		var products = requestResult
 			.GetList()

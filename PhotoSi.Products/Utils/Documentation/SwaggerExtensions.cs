@@ -25,11 +25,11 @@ internal static class SwaggerExtensions
 	{
 		return new OpenApiInfo
 		{
-			Title = "PhotoSi.Orders",
+			Title = "PhotoSi.Products",
 			Description = "Server API Documentation",
 			Contact = new OpenApiContact
 			{
-				Name = "PhotoSi.Orders",
+				Name = "PhotoSi.Products",
 				Url = new Uri("https://github.com/AlexanderPaule/PhotoSi.Orders")
 			}
 		};

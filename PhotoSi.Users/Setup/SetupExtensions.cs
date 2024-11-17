@@ -9,7 +9,7 @@ using PhotoSi.Users.Data.Translation;
 
 namespace PhotoSi.Users.Setup;
 
-internal static class ProductsSetup
+internal static class SetupExtensions
 {
 	public static IServiceCollection AddPhotoSiUsersCore(this IServiceCollection services, string dbConnectionString)
 	{

@@ -1,6 +1,6 @@
 using Microsoft.OpenApi.Models;
 
-namespace PhotoSi.Users.Utils.Documentation;
+namespace PhotoSi.Addresses.Utils.Documentation;
 
 internal static class SwaggerExtensions
 {
@@ -25,11 +25,11 @@ internal static class SwaggerExtensions
 	{
 		return new OpenApiInfo
 		{
-			Title = "PhotoSi.Users",
+			Title = "PhotoSi.Addresses",
 			Description = "Server API Documentation",
 			Contact = new OpenApiContact
 			{
-				Name = "PhotoSi.Users",
+				Name = "PhotoSi.Addresses",
 				Url = new Uri("https://github.com/AlexanderPaule/PhotoSi.Orders")
 			}
 		};
