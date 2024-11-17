@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PhotoSi.Users.Controllers;
 using PhotoSi.Users.Core;
 
 namespace PhotoSi.Users.Utils.Demo.Controllers;
@@ -10,13 +9,11 @@ public class DemoController : ControllerBase
 {
 	private readonly IDemoDataCatalog _demoDataCatalog;
 	private readonly IDemoGateway _demoGateway;
-	private readonly IApiLayerTranslator _apiLayerTranslator;
 
-	public DemoController(IDemoDataCatalog demoDataCatalog, IDemoGateway demoPortal, IApiLayerTranslator apiLayerTranslator)
+	public DemoController(IDemoDataCatalog demoDataCatalog, IDemoGateway demoGateway)
 	{
 		_demoDataCatalog = demoDataCatalog;
-		_demoGateway = demoPortal;
-		_apiLayerTranslator = apiLayerTranslator;
+		_demoGateway = demoGateway;
 	}
 
 	[HttpPost("SetUp")]
@@ -28,16 +25,5 @@ public class DemoController : ControllerBase
 		await _demoGateway.UpsertAsync(users);
 
 		return Ok();
-	}
-
-	[HttpGet("GetPrepared")]
-	[ProducesResponseType(StatusCodes.Status200OK)]
-	public IActionResult GetConfiguredUsers()
-	{
-		var products = _demoDataCatalog
-			.GetUsers()
-			.Select(_apiLayerTranslator.Translate);
-
-		return Ok(products);
 	}
 }
