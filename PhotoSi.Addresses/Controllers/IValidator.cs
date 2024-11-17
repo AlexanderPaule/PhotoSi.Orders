@@ -5,5 +5,5 @@ namespace PhotoSi.Addresses.Controllers;
 
 public interface IValidator
 {
-	Task<ValidationResult> ValidateAsync(AddrressModel product);
+	ValidationResult Validate(AddrressModel product);
 }

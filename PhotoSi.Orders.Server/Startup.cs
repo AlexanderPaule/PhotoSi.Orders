@@ -3,14 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PhotoSi.Sales.Demo.Setup;
-using PhotoSi.Sales.Orders.Setup;
-using PhotoSi.Sales.Products.Setup;
-using PhotoSi.Sales.Sales.Data.Context;
-using PhotoSi.Sales.Sales.Setup;
-using PhotoSi.Documentation;
+using PhotoSi.Orders.Data.Context;
+using PhotoSi.Orders.Setup;
+using PhotoSi.Orders.Utils.Documentation;
 
-namespace PhotoSi.Sales;
+namespace PhotoSi.Orders;
 
 internal class Startup
 {
@@ -25,23 +22,20 @@ internal class Startup
 	{
 		services
 			.AddApiDocumentation()
-			.AddPhotoSiSales(_configuration.GetConnectionString("Sales"))
-			.AddPhotoSiOrders()
-			.AddPhotoSiProducts()
-			.AddPhotoSiDemo();
-		
+			.AddPhotoSiOrders(_configuration.GetConnectionString("Orders"));
+
 		services
 			.AddControllers();
 	}
 
-	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SalesDbContext salesDbContext)
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, OrdersDbContext ordersDbContext)
 	{
 		if (env.IsDevelopment())
 		{
 			app.UseDeveloperExceptionPage();
 		}
 
-		salesDbContext.Database.EnsureCreated();
+		ordersDbContext.Database.EnsureCreated();
 
 		app.UseHttpsRedirection();
 		app.UseRouting();

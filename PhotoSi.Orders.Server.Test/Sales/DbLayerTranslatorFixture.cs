@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using PhotoSi.Sales.Sales.Core.Models;
+using PhotoSi.Orders.Core.Models;
+using PhotoSi.Orders.Data.Models;
 using PhotoSi.Sales.Sales.Data.Models;
 using PhotoSi.Sales.Sales.Data.Translation;
 

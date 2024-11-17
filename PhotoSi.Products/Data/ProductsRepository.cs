@@ -59,20 +59,12 @@ internal class ProductsRepository : IProductsRepository
 			.Select(_dbLayerTranslator.Translate)
 			.ToList();
 
-		var optionEntities = products
-			.SelectMany(x => x.Options.Select(o => _dbLayerTranslator.Translate(o, x.Id)))
-			.ToList();
-
 		await using var salesDbContext = _dbContextFactory
 			.CreateDbContext();
 
 		await salesDbContext.Products.UpsertBulkAsync(
 			entities: productEntities,
 			dbFilter: e => productEntities.Select(x => x.Id).Contains(e.Id));
-
-		await salesDbContext.Options.UpsertBulkAsync(
-			entities: optionEntities,
-			dbFilter: e => optionEntities.Select(x => x.Id).Contains(e.Id));
 
 		await salesDbContext.SaveChangesAsync();
 	}
@@ -85,7 +77,6 @@ internal class ProductsRepository : IProductsRepository
 		return await salesDbContext
 			.Products
 			.Include(x => x.Category)
-			.Include(x => x.Options)
 			.Where(x => !ids.Any() || ids.Contains(x.Id))
 			.ToListAsync();
 	}

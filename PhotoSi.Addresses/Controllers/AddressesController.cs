@@ -30,7 +30,7 @@ public class AddressesController : ControllerBase
 		_logger.LogInformation($"Address creation requested [{nameof(AddrressModel.Id)}:{user.Id}]");
 		_logger.LogInformation($"Address validation start [{nameof(AddrressModel.Id)}:{user.Id}]");
 
-		var validationResult = await _validator.ValidateAsync(user);
+		var validationResult = _validator.Validate(user);
 		if (!validationResult.IsValid)
 		{
 			_logger.LogInformation($"Address validation failed [{nameof(AddrressModel.Id)}:{user.Id}]");

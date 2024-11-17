@@ -4,7 +4,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Linq;
 
-namespace PhotoSi.Documentation;
+namespace PhotoSi.Orders.Utils.Documentation;
 
 internal static class SwaggerExtensions
 {

@@ -1,7 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace PhotoSi.Documentation;
+namespace PhotoSi.Orders.Utils.Documentation;
 
 internal class ServersCleanupFilter : IDocumentFilter
 {

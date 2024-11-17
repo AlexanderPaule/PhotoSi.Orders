@@ -26,77 +26,47 @@ internal class DemoDataCatalog : IDemoDataCatalog
 
 	public IEnumerable<Category> GetCategories()
 	{
-		return new[]
-		{
+		return
+		[
 			_categoryPoster,
 			_categoryPhoto
-		};
+		];
 	}
 
 	public IEnumerable<Product> GetProducts()
 	{
-		return new[]
-		{
+		return
+		[
 			new Product
 			{
 				Id = new Guid("211174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
 				Category = _categoryPhoto,
-				Description = "Parigi D'inverno",
-				Options = new []
-				{
-					new Option { Id = new Guid("311174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Dimensioni", Content = "20cm x 20cm"},
-					new Option { Id = new Guid("411174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Tipo Carta", Content = "Stoffa"},
-					new Option { Id = new Guid("511174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "CartaColore", Content = "Blu Petrolio"},
-				}
+				Description = "Parigi D'inverno"
 			},
 			new Product
 			{
 				Id = new Guid("611174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
 				Category = _categoryPhoto,
-				Description = "Sole a catinelle",
-				Options = new []
-				{
-					new Option { Id = new Guid("711174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Dimensioni", Content = "30cm x 60cm"},
-					new Option { Id = new Guid("811174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Tipo Carta", Content = "Ruvido"},
-					new Option { Id = new Guid("911174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Carta Colore", Content = "Bianco"},
-				}
+				Description = "Sole a catinelle"
 			},
 			new Product
 			{
 				Id = new Guid("121174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
 				Category = _categoryPhoto,
-				Description = "New York Skyline",
-				Options = new []
-				{
-					new Option { Id = new Guid("131174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Dimensioni", Content = "30cm x 30cm"},
-					new Option { Id = new Guid("141174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Tipo Carta", Content = "Lucido"},
-					new Option { Id = new Guid("151174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Carta Colore", Content = "Blu Petrolio"},
-				}
+				Description = "New York Skyline"
 			},
 			new Product
 			{
 				Id = new Guid("161174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
 				Category = _categoryPoster,
-				Description = "Black Sabbath",
-				Options = new []
-				{
-					new Option { Id = new Guid("171174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Dimensioni", Content = "1m x 2m"},
-					new Option { Id = new Guid("181174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Tipo Carta", Content = "Lucido"},
-					new Option { Id = new Guid("191174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Carta Colore", Content = "Nero"},
-				}
+				Description = "Black Sabbath"
 			},
 			new Product
 			{
 				Id = new Guid("112174E4-37B7-44EE-A8A2-EE920C6FAB9D"),
 				Category = _categoryPoster,
-				Description = "Miley Cyrus",
-				Options = new []
-				{
-					new Option { Id = new Guid("113174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Dimensioni", Content = "1m x 2m"},
-					new Option { Id = new Guid("114174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Tipo Carta", Content = "Lucido"},
-					new Option { Id = new Guid("115174E4-37B7-44EE-A8A2-EE920C6FAB9D"), Name = "Carta Colore", Content = "Rosa"},
-				}
+				Description = "Miley Cyrus"
 			}
-		};
+		];
 	}
 }

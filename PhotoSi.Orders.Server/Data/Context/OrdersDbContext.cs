@@ -1,30 +1,38 @@
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PhotoSi.Products.Data.Models;
+using PhotoSi.Orders.Data.Models;
 
-namespace PhotoSi.Products.Data.Context;
+namespace PhotoSi.Orders.Data.Context;
 
-internal class ProductsDbContext : DbContext
+internal class OrdersDbContext : DbContext
 {
-	public ProductsDbContext(DbContextOptions<ProductsDbContext> options)
+	public OrdersDbContext(DbContextOptions<OrdersDbContext> options)
 		: base(options)
 	{ }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		// Names and Schema
-		modelBuilder.Entity<ProductEntity>(entity => entity.ToTable("Catalog", "products"));
-		modelBuilder.Entity<CategoryEntity>(entity => entity.ToTable("Categories", "products"));
+		modelBuilder.Entity<OrderEntity>(entity => entity.ToTable("Orders", "sales"));
+		modelBuilder.Entity<OrderedProductEntity>(entity => entity.ToTable("OrderedProducts", "sales"));
 
-		// Products
+		// Orders
 		modelBuilder
-			.Entity<ProductEntity>()
-			.HasOne(p => p.Category)
+			.Entity<OrderEntity>()
+			.HasMany(p => p.Products);
+
+		modelBuilder
+			.Entity<OrderedProductEntity>()
+			.HasOne(p => p.ReferencedOrder)
 			.WithMany(b => b.Products)
-			.HasForeignKey(p => p.CategoryId);
+			.HasForeignKey(p => p.OrderId);
 	}
 
-	public DbSet<ProductEntity> Products { get; set; }
-	public DbSet<CategoryEntity> Categories { get; set; }
+	public DbSet<OrderEntity> Orders { get; set; }
+	public DbSet<OrderedProductEntity> OrderedProducts { get; set; }
 
 	public override int SaveChanges()
 	{

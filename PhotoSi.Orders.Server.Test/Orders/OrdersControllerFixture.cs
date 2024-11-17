@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using PhotoSi.Sales.Orders.Controllers;
-using PhotoSi.Sales.Orders.Models;
-using PhotoSi.Sales.Sales.Core;
-using PhotoSi.Sales.Sales.Core.Models;
-using PhotoSi.Sales.Utils;
+using PhotoSi.Orders.Controllers;
+using PhotoSi.Orders.Controllers.Models;
+using PhotoSi.Orders.Core;
+using PhotoSi.Orders.Core.Models;
+using PhotoSi.Orders.Utils;
 
 namespace PhotoSi.Sales.Test.Orders
 {

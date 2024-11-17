@@ -5,7 +5,7 @@ namespace PhotoSi.Addresses.Controllers.Validation;
 
 internal class Validator : IValidator
 {
-	public async Task<ValidationResult> ValidateAsync(AddrressModel product)
+	public ValidationResult Validate(AddrressModel product)
 	{
 		var validationResult = ValidationResult.New();
 

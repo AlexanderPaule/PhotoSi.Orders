@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
+using PhotoSi.Orders.Core;
+using PhotoSi.Orders.Core.Models;
+using PhotoSi.Orders.Utils;
 using PhotoSi.Sales.Products.Controllers;
 using PhotoSi.Sales.Products.Models;
-using PhotoSi.Sales.Sales.Core;
-using PhotoSi.Sales.Sales.Core.Models;
-using PhotoSi.Sales.Utils;
 
 namespace PhotoSi.Sales.Test.Products
 {
@@ -41,7 +41,7 @@ namespace PhotoSi.Sales.Test.Products
 				.Returns(product)
 				.Verifiable("Translation operation not performed");
 
-			var productsPortal = new Mock<IProductsPortal>(MockBehavior.Strict);
+			var productsPortal = new Mock<IProductsGateway>(MockBehavior.Strict);
 			productsPortal
 				.Setup(x => x.UpsertAsync(new[] { product }))
 				.Returns(Task.CompletedTask)
@@ -79,7 +79,7 @@ namespace PhotoSi.Sales.Test.Products
 
 			var controller = new ProductsController(
 				logger: _logger,
-				productsPortal: Mock.Of<IProductsPortal>(MockBehavior.Strict),
+				productsPortal: Mock.Of<IProductsGateway>(MockBehavior.Strict),
 				apiLayerTranslator: Mock.Of<IApiLayerTranslator>(MockBehavior.Strict),
 				validator: validator.Object);
 
@@ -96,7 +96,7 @@ namespace PhotoSi.Sales.Test.Products
 		{
 			var product = new Product();
 			var productModel = new ProductModel();
-			var productsPortal = new Mock<IProductsPortal>(MockBehavior.Strict);
+			var productsPortal = new Mock<IProductsGateway>(MockBehavior.Strict);
 			productsPortal
 				.Setup(x => x.GetAllProductsAsync())
 				.ReturnsAsync(RequestResult<Product, Guid>.New(new[] { product }, new[] { new Guid() }))

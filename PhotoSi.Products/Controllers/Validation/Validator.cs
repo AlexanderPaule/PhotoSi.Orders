@@ -23,12 +23,6 @@ internal class Validator : IValidator
 		if (product.Category.Id == Guid.Empty)
 			validationResult.AddErrorMessage<Guid>($"{nameof(ProductModel)}.{nameof(ProductModel.Category)}.{nameof(CategoryModel.Id)} property is required");
 
-		if (product.Options.Any(x => x.Id == Guid.Empty))
-			validationResult.AddErrorMessage<Guid>($"{nameof(ProductModel)}.{nameof(ProductModel.Options)}.{nameof(OptionModel.Id)} property is required");
-
-		if (ContainsDuplicatedOptions(product))
-			validationResult.AddErrorMessage<Guid>($"{nameof(ProductModel)}.{nameof(ProductModel.Options)} product {product.Id} contains duplicated options");
-
 		if (!validationResult.IsValid)
 			return validationResult;
 
@@ -36,16 +30,5 @@ internal class Validator : IValidator
 			validationResult.AddErrorMessage<Guid>($"{nameof(ProductModel)}.{nameof(ProductModel.Category)}.{nameof(CategoryModel.Id)} specified category does not exists [{product.Category.Id}] ");
 
 		return validationResult;
-	}
-
-	private static bool ContainsDuplicatedOptions(ProductModel product)
-	{
-		var duplicatedOptions = product
-			.Options
-			.Select(x => x.Id)
-			.GroupBy(o => o)
-			.Count(o => o.ToList().Count > 1);
-
-		return duplicatedOptions > 0;
 	}
 }

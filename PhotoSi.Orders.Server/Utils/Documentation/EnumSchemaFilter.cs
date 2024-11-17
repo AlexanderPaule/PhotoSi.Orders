@@ -4,7 +4,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Linq;
 
-namespace PhotoSi.Documentation;
+namespace PhotoSi.Orders.Utils.Documentation;
 
 internal class EnumSchemaFilter : ISchemaFilter
 {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using PhotoSi.Orders.Core;
 using PhotoSi.Sales.Products.Models;
 using PhotoSi.Sales.Products.Validation;
-using PhotoSi.Sales.Sales.Core;
 using PhotoSi.Sales.Sales.Core.Models;
 
 namespace PhotoSi.Sales.Test.Products

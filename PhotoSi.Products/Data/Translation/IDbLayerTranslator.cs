@@ -8,5 +8,4 @@ internal interface IDbLayerTranslator
 	Product Translate(ProductEntity source);
 	ProductEntity Translate(Product source);
 	CategoryEntity Translate(Category source);
-	OptionEntity Translate(Option source, Guid referencedProductId);
 }

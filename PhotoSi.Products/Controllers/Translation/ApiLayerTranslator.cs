@@ -12,8 +12,7 @@ internal class ApiLayerTranslator : IApiLayerTranslator
 		{
 			Id = source.Id,
 			Category = Translate(source.Category),
-			Description = source.Description,
-			Options = source.Options.Select(Translate)
+			Description = source.Description
 		};
 	}
 
@@ -23,8 +22,7 @@ internal class ApiLayerTranslator : IApiLayerTranslator
 		{
 			Id = source.Id,
 			Category = Translate(source.Category),
-			Description = source.Description,
-			Options = source.Options.Select(Translate)
+			Description = source.Description
 		};
 	}
 
@@ -45,26 +43,6 @@ internal class ApiLayerTranslator : IApiLayerTranslator
 			Id = source.Id,
 			Name = source.Name,
 			Description = source.Description
-		};
-	}
-
-	private static OptionModel Translate(Option source)
-	{
-		return new OptionModel
-		{
-			Id = source.Id,
-			Name = source.Name,
-			Content = source.Content
-		};
-	}
-
-	private static Option Translate(OptionModel source)
-	{
-		return new Option
-		{
-			Id = source.Id,
-			Name = source.Name,
-			Content = source.Content
 		};
 	}
 }

@@ -11,8 +11,7 @@ internal class DbLayerTranslator : IDbLayerTranslator
 		{
 			Id = source.Id,
 			Description = source.Description,
-			Category = Translate(source.Category),
-			Options = source.Options.Select(Translate)
+			Category = Translate(source.Category)
 		};
 	}
 
@@ -43,27 +42,6 @@ internal class DbLayerTranslator : IDbLayerTranslator
 			Id = source.Id,
 			Name = source.Name,
 			Description = source.Description
-		};
-	}
-
-	public OptionEntity Translate(Option source, Guid referencedProductId)
-	{
-		return new OptionEntity
-		{
-			Id = source.Id,
-			Name = source.Name,
-			Content = source.Content,
-			ProductId = referencedProductId
-		};
-	}
-
-	private static Option Translate(OptionEntity source)
-	{
-		return new Option
-		{
-			Id = source.Id,
-			Name = source.Name,
-			Content = source.Content
 		};
 	}
 }

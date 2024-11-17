@@ -12,8 +12,8 @@ public class AddrressModel
 	public Guid UserId { get; set; }
 
 	[Required, StringLength(AddressEntity.NameLength)]
-	public string City { get; set; }
+	public string? City { get; set; }
 
 	[Required, StringLength(AddressEntity.NameLength)]
-	public string Country { get; set; }
+	public string? Country { get; set; }
 }
