@@ -47,7 +47,7 @@ internal class Validator : IValidator
 			.ExistsProductsAsync(productsIds);
 
 		var missingProducts = checkProducts
-			.Where(p => p.Value == false)
+			.Where(p => !p.Value)
 			.Select(x => x.Key)
 			.ToList();
 
@@ -57,14 +57,14 @@ internal class Validator : IValidator
 		if (!validationResult.IsValid)
 			return validationResult;
 
-		if (await _addressGateway.ExistsAddressAsync(order.AddressId))
+		if (!await _addressGateway.ExistsAddressAsync(order.AddressId))
 		{
 			validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.AddressId)} [{order.AddressId}] does not exists");
 			return validationResult;
 		}
 		
 
-		if (await _usersGateway.ExistsUserAsync(order.UserId))
+		if (!await _usersGateway.ExistsUserAsync(order.UserId))
 		{
 			validationResult.AddErrorMessage<Guid>($"{nameof(OrderModel)}.{nameof(OrderModel.UserId)} [{order.UserId}] does not exists");
 			return validationResult;

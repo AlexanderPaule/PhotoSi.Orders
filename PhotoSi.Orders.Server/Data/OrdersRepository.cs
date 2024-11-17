@@ -29,12 +29,11 @@ public class OrdersRepository : IOrdersRepository
 			.ProductsIds
 			.Select(x => _dbLayerTranslator.TranslateOrdered(x, order.Id));
 
-		await using var salesDbContext = _dbContextFactory
+		await using var orderDbContext = _dbContextFactory
 			.CreateDbContext();
 
-		await salesDbContext.AddAsync(entityOrder);
-		await salesDbContext.AddRangeAsync(orderedProducts);
-		await salesDbContext.SaveChangesAsync();
+		await orderDbContext.AddAsync(entityOrder);
+		await orderDbContext.SaveChangesAsync();
 	}
 
 	public async Task<RequestResult<Order, Guid>> GetOrderAsync(Guid id)

@@ -21,12 +21,8 @@ public class OrdersDbContext : DbContext
 
 		// Orders
 		modelBuilder
-			.Entity<OrderEntity>()
-			.HasMany(p => p.Products);
-
-		modelBuilder
 			.Entity<OrderedProductEntity>()
-			.HasOne(p => p.ReferencedOrder)
+			.HasOne(p => p.Order)
 			.WithMany(b => b.Products)
 			.HasForeignKey(p => p.OrderId);
 	}

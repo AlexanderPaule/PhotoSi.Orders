@@ -6,7 +6,6 @@ public class CategoryEntity : TimeTrackedEntity
 {
 	public const int NameLength = 100;
 
-	[Key]
 	public Guid Id { get; set; }
 	[StringLength(NameLength)]
 	public string Name { get; set; }

@@ -31,7 +31,7 @@ internal class Startup
 			.AddPhotoSiAddressesAPI()
 			.AddPhotoSiProducts(_configuration.GetConnectionString("Products")!)
 			.AddPhotoSiProductsAPI()
-			.AddPhotoSiUsers(_configuration.GetConnectionString("Orders")!)
+			.AddPhotoSiUsers(_configuration.GetConnectionString("Users")!)
 			.AddPhotoSiUsersAPI()
 			.AddPhotoSiDemo();
 

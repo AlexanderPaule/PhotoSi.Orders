@@ -25,8 +25,7 @@ public class AddressesRepository : IAddressesRepository
 
 		return await salesDbContext
 			.Addresses
-			.Where(x => x.Id == addressId)
-			.AnyAsync();
+			.AnyAsync(x => x.Id == addressId);
 	}
 
 	public async Task<RequestResult<Address, Guid>> GetAllAddressesAsync()

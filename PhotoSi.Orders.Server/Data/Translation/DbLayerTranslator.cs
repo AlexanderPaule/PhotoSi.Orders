@@ -12,7 +12,9 @@ public class DbLayerTranslator : IDbLayerTranslator
 		return new OrderEntity
 		{
 			Id = source.Id,
-			Products = source.ProductsIds.Select(x => TranslateOrdered(x, source.Id)),
+			AddressId = source.AddressId,
+			UserId = source.UserId,
+			Products = source.ProductsIds.Select(x => TranslateOrdered(x, source.Id)).ToList(),
 			CreatedOn = source.CreatedOn
 		};
 	}
@@ -22,7 +24,9 @@ public class DbLayerTranslator : IDbLayerTranslator
 		return new Order
 		{
 			Id = source.Id,
-			ProductsIds = source.Products.Select(x => x.ProductId),
+			AddressId = source.AddressId,
+			UserId = source.UserId,
+			ProductsIds = source.Products.Select(x => x.ProductId).ToList(),
 			CreatedOn = source.CreatedOn
 		};
 	}

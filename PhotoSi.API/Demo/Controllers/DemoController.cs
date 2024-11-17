@@ -31,10 +31,12 @@ public class DemoController : ControllerBase
 		var products = _demoDataCatalog.GetProducts();
 		var users = _demoDataCatalog.GetUsers();
 
+
+		await _productsGateway.UpsertAsync(categories);
+
 		var tasks = new[]
 		{
 			_usersGateway.UpsertAsync(users),
-			_productsGateway.UpsertAsync(categories),
 			_productsGateway.UpsertAsync(products),
 			_addressesGateway.UpsertAsync(addresses)
 		};
