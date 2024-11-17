@@ -1,9 +1,9 @@
-using PhotoSi.Documentation;
-using PhotoSi.Products.Data.Context;
-using PhotoSi.Products.Utils.Demo.Setup;
-using PhotoSi.Products.Setup;
+using PhotoSi.Users.Utils.Documentation;
+using PhotoSi.Users.Utils.Demo.Setup;
+using PhotoSi.Users.Setup;
+using PhotoSi.Users.Data.Context;
 
-namespace PhotoSi.Products;
+namespace PhotoSi.Users;
 
 internal class Startup
 {
@@ -19,14 +19,14 @@ internal class Startup
 		services
 			.AddApiDocumentation()
 			.AddPhotoSiProductsAPI()
-			.AddPhotoSiProductsCore(_configuration.GetConnectionString("Products")!)
+			.AddPhotoSiProductsCore(_configuration.GetConnectionString("Users")!)
 			.AddPhotoSiDemo();
 		
 		services
 			.AddControllers();
 	}
 
-	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ProductsDbContext productDbContext)
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UsersDbContext productDbContext)
 	{
 		if (env.IsDevelopment())
 		{

@@ -33,7 +33,7 @@ public class ProductsController : ControllerBase
 		var validationResult = await _validator.ValidateAsync(product);
 		if (!validationResult.IsValid)
 		{
-			_logger.LogInformation($"Order validation failed [{nameof(ProductModel.Id)}:{product.Id}]");
+			_logger.LogInformation($"Product validation failed [{nameof(ProductModel.Id)}:{product.Id}]");
 			return BadRequest(validationResult.GetErrorMessage());
 		}
 
@@ -56,11 +56,11 @@ public class ProductsController : ControllerBase
 		var requestResult = await _productsPortal.GetAllProductsAsync();
 		_logger.LogInformation("Order get all end");
 
-		var orders = requestResult
+		var products = requestResult
 			.GetList()
 			.Select(_apiLayerTranslator.Translate)
 			.ToList();
 
-		return Ok(orders);
+		return Ok(products);
 	}
 }

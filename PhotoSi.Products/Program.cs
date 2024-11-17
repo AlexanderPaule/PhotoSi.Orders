@@ -1,4 +1,4 @@
-namespace PhotoSi.Sales;
+namespace PhotoSi.Products;
 
 internal static class Program
 {

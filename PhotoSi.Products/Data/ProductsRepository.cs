@@ -43,14 +43,14 @@ internal class ProductsRepository : IProductsRepository
 			.Select(_dbLayerTranslator.Translate)
 			.ToList();
 
-		await using var salesDbContext = _dbContextFactory
+		await using var dbContext = _dbContextFactory
 			.CreateDbContext();
 
-		await salesDbContext.Categories.UpsertBulkAsync(
+		await dbContext.Categories.UpsertBulkAsync(
 			entities: categoryEntities,
 			dbFilter: e => categoryEntities.Select(x => x.Id).Contains(e.Id));
 
-		await salesDbContext.SaveChangesAsync();
+		await dbContext.SaveChangesAsync();
 	}
 
 	public async Task UpsertAsync(IEnumerable<Product> products)

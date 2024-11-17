@@ -13,7 +13,7 @@ internal class ProductsDbDesignTimeContextFactory : IDesignTimeDbContextFactory<
 			.Build();
 
 		var builder = new DbContextOptionsBuilder<ProductsDbContext>();
-		builder.UseSqlServer(configuration.GetConnectionString("Sales"));
+		builder.UseSqlServer(configuration.GetConnectionString("Products"));
 		return new ProductsDbContext(builder.Options);
 	}
 }
