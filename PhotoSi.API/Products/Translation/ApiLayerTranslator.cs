@@ -1,5 +1,4 @@
-﻿using PhotoSi.API.Products;
-using PhotoSi.API.Products.Models;
+﻿using PhotoSi.API.Products.Models;
 using PhotoSi.Products.Core.Models;
 
 namespace PhotoSi.API.Products.Translation;

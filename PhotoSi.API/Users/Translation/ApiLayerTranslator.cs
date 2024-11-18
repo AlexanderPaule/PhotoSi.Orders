@@ -1,5 +1,4 @@
-﻿using PhotoSi.API.Users;
-using PhotoSi.API.Users.Models;
+﻿using PhotoSi.API.Users.Models;
 using PhotoSi.Users.Core.Models;
 
 namespace PhotoSi.API.Users.Translation;
