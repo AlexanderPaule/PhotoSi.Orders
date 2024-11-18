@@ -13,7 +13,6 @@
 
 ### Setup
 - Clonare il repository
-- Installare un'istanza SQL server (SQL Express o altro)
 - Aprire la solution utilizzando Visual Studio
 - Settare PhotoSi.API come progetto di avvio
 - Configurare le connection string ai 4 Database nel file 'appsettings.json', nella sezione 'ConnectionStrings' del progetto PhotoSi.API.
