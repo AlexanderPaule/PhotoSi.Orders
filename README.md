@@ -20,7 +20,7 @@
 - Avviare il progetto premendo F5 o ctrl+F5. Questa azione comporterà le seguenti operazioni:
   - Il servizio API verrà avviato.
   - Se non è già presente, 4 Database conformi ai modelli definiti via EF Core verranno generati nell'istanza specificata al punto precedente.
-  - Il browser di default si avvierà puntanto all'indirizzo 'https://localhost:44354/swagger/index.html'.
+  - Il browser di default si avvierà puntando all'indirizzo 'https://localhost:44354/swagger/index.html'.
 
 La libreria swagger integrata nel progetto faciliterà l'iterazione con il servizio.
 
