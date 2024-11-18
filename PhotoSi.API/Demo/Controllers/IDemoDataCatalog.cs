@@ -2,7 +2,7 @@
 using PhotoSi.Products.Core.Models;
 using PhotoSi.Users.Core.Models;
 
-namespace PhotoSi.Addresses.Utils.Demo.Controllers;
+namespace PhotoSi.API.Demo.Controllers;
 
 public interface IDemoDataCatalog
 {

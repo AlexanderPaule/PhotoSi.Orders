@@ -3,7 +3,7 @@ using PhotoSi.Addresses.Core;
 using PhotoSi.Products.Core;
 using PhotoSi.Users.Core;
 
-namespace PhotoSi.Addresses.Utils.Demo.Controllers;
+namespace PhotoSi.API.Demo.Controllers;
 
 [ApiController]
 [Route("[controller]")]

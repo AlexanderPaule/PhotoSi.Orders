@@ -1,7 +1,7 @@
-﻿using PhotoSi.Addresses.Utils.Demo.Controllers;
-using PhotoSi.Addresses.Utils.Demo.Data;
+﻿using PhotoSi.API.Demo.Controllers;
+using PhotoSi.API.Demo.Data;
 
-namespace PhotoSi.Addresses.Utils.Demo.Setup;
+namespace PhotoSi.API.Demo.Setup;
 
 internal static class DemoSetup
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PhotoSi.Orders.Core.Models;
 
-public class Order
+public record Order
 {
 	public Guid Id { get; set; }
 	public Guid AddressId { get; set; }

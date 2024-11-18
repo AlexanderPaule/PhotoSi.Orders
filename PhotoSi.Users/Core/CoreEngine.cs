@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Users.Core;
 
-internal class CoreEngine : IUsersGateway
+public class CoreEngine : IUsersGateway
 {
 	private readonly IUsersRepository _repository;
 

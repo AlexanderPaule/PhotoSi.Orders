@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Products.Core;
 
-internal class CoreEngine : IProductsGateway
+public class CoreEngine : IProductsGateway
 {
 	private readonly IProductsRepository _repository;
 
@@ -35,7 +35,7 @@ internal class CoreEngine : IProductsGateway
 			.ExistsCategoryAsync(id);
 	}
 
-	public Task<IDictionary<Guid, bool>> ExistsProductsAsync(List<Guid> productsIds)
+	public Task<IDictionary<Guid, bool>> ExistsProductsAsync(IEnumerable<Guid> productsIds)
 	{
 		return _repository
 			.ExistsProductsAsync(productsIds);

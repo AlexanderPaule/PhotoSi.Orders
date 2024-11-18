@@ -2,7 +2,7 @@
 
 namespace PhotoSi.Users.Core;
 
-internal interface IUsersRepository
+public interface IUsersRepository
 {
 	Task UpsertAsync(IEnumerable<User> users);
 	Task<RequestResult<User, Guid>> GetAllUsersAsync();

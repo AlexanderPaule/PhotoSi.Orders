@@ -1,6 +1,6 @@
 using PhotoSi.Addresses.Data.Context;
 using PhotoSi.Addresses.Setup;
-using PhotoSi.Addresses.Utils.Demo.Setup;
+using PhotoSi.API.Demo.Setup;
 using PhotoSi.API.Setup;
 using PhotoSi.API.Utils.Documentation;
 using PhotoSi.Orders.Data.Context;

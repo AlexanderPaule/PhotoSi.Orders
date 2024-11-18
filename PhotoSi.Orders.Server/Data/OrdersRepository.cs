@@ -48,7 +48,7 @@ public class OrdersRepository : IOrdersRepository
 			.ToListAsync();
 
 		return RequestResult<Order, Guid>.New(
-			requestedObjects: order.Select(x => _dbLayerTranslator.Translate(x)),
+			requestedObjects: order.Select(_dbLayerTranslator.Translate),
 			searchedIds: [id]);
 	}
 
@@ -63,7 +63,7 @@ public class OrdersRepository : IOrdersRepository
 			.ToListAsync();
 
 		return RequestResult<Order, Guid>.New(
-			requestedObjects: orders.Select(x => _dbLayerTranslator.Translate(x)),
+			requestedObjects: orders.Select(_dbLayerTranslator.Translate),
 			searchedIds: orders.Select(x => x.Id));
 	}
 

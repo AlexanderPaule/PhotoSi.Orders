@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PhotoSi.Addresses\PhotoSi.Addresses.csproj" />
     <ProjectReference Include="..\PhotoSi.Orders.Server\PhotoSi.Orders.csproj" />
     <ProjectReference Include="..\PhotoSi.Products\PhotoSi.Products.csproj" />

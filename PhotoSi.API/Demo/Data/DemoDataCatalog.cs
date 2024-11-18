@@ -1,9 +1,9 @@
 ﻿using PhotoSi.Addresses.Core.Models;
-using PhotoSi.Addresses.Utils.Demo.Controllers;
+using PhotoSi.API.Demo.Controllers;
 using PhotoSi.Products.Core.Models;
 using PhotoSi.Users.Core.Models;
 
-namespace PhotoSi.Addresses.Utils.Demo.Data;
+namespace PhotoSi.API.Demo.Data;
 
 internal class DemoDataCatalog : IDemoDataCatalog
 {

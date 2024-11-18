@@ -81,7 +81,7 @@ internal class ProductsRepository : IProductsRepository
 			.ToListAsync();
 	}
 
-	public async Task<IDictionary<Guid, bool>> ExistsProductsAsync(List<Guid> productsIds)
+	public async Task<IDictionary<Guid, bool>> ExistsProductsAsync(IEnumerable<Guid> productsIds)
 	{
 		await using var salesDbContext = _dbContextFactory
 			.CreateDbContext();

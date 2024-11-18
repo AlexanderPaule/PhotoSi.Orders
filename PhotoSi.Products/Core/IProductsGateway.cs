@@ -8,5 +8,5 @@ public interface IProductsGateway
 	Task UpsertAsync(IEnumerable<Category> categories);
 	Task<RequestResult<Product, Guid>> GetAllProductsAsync();
 	Task<bool> ExistsCategoryAsync(Guid id);
-	Task<IDictionary<Guid, bool>> ExistsProductsAsync(List<Guid> productsIds);
+	Task<IDictionary<Guid, bool>> ExistsProductsAsync(IEnumerable<Guid> productsIds);
 }

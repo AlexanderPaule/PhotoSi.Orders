@@ -2,11 +2,11 @@
 
 namespace PhotoSi.Products.Core;
 
-internal interface IProductsRepository
+public interface IProductsRepository
 {
 	Task<bool> ExistsCategoryAsync(Guid id);
 	Task UpsertAsync(IEnumerable<Category> categories);
 	Task UpsertAsync(IEnumerable<Product> products);
 	Task<RequestResult<Product, Guid>> GetAllProductsAsync();
-	Task<IDictionary<Guid, bool>> ExistsProductsAsync(List<Guid> productsIds);
+	Task<IDictionary<Guid, bool>> ExistsProductsAsync(IEnumerable<Guid> productsIds);
 }

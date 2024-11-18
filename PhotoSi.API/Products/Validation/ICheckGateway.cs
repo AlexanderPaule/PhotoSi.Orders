@@ -1,4 +1,4 @@
-﻿namespace PhotoSi.Products.Core;
+﻿namespace PhotoSi.API.Products.Validation;
 
 internal interface ICheckGateway
 {
